@@ -1,5 +1,5 @@
-import React from "react";
-import "./Landing.css"
+import React from "react"
+import "./LandingPage.css"
 import { GiHeartKey } from "react-icons/gi"
 
 const LandingPage = () => {
@@ -10,14 +10,17 @@ const LandingPage = () => {
                 <h1 className='matcha'>
                 <GiHeartKey />
                 Matcha</h1>
-                <h1 className='login'>Login</h1>
+                <h2 className='login'>Log in</h2>
             </header>
             <br/>
             <main className='my-main'>
-                {/*<img className= 'home-image' src={image}/>*/}
+                <div>
+                    <p className='SR'>Swipe Right
+                    <sup>®</sup>
+                    </p>
+                </div>
             </main>
-            <footer>
-        
+            <footer className="main-footer">
             </footer>
         </div>
     );
