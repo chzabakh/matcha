@@ -55,10 +55,20 @@ cursor: pointer;
 .SR {
 color: white;
 font-family: prompt;
-font-size: 120px;
+//font-size: 120px;
 margin: 0;
 text-align:center;
 }
+
+/*@media(max-width: 500px) {
+  .SR {
+color: white;
+font-family: prompt;
+font-size: 60px;
+margin: 0;
+text-align:center;
+  }
+}*/
 
 .main-main sup {
   font-weight:350;
@@ -101,11 +111,11 @@ const LandingPage = () => {
                 </h1>
                 <div style={{color: 'green'}}>
                 </div>
-                <h2 className='login'>Log in</h2>
+                <h2 className='login' >Log in</h2>
             </header>
             <main className=' main-main'>
                
-                    <p className='SR'>Swipe Right
+                    <p className='SR text-2xl md:text-sm debug'>Swipe Right
                     <sup>®</sup>
                     </p>
                     <h2 className="register">Create account</h2>
