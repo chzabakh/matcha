@@ -9,12 +9,6 @@ import Input from "@mui/material/Input";
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
 import "react-calendar/dist/Calendar.css";
-import MyDate from "../../components/Date.jsx";
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormLabel from "@mui/material/FormLabel";
-import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 
 const InfosCont = styled.div`
@@ -28,7 +22,8 @@ const InfosCont = styled.div`
   .twoFlex {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly ;
+    justify-content: center;
+    column-gap: 150px;
     flex-wrap: wrap;
   }
 
@@ -43,13 +38,11 @@ const InfosCont = styled.div`
   .personDetails {
     display: flex;
     flex-direction: column;
-    /* margin-left: 15%; */
   }
 
   .personPhotos {
     display: flex;
     flex-direction: column;
-    /* margin-right: 15%; */
   }
 
   .separate {
@@ -81,6 +74,7 @@ const InfosCont = styled.div`
 
   .submitbutton {
     margin-bottom: 20px;
+    color: rgba(255, 119, 0, 1) 75%;
   }
 
 `;
@@ -97,6 +91,10 @@ const Infos = () => {
           <div className="twoFlex">
             <div className="personDetails">
               <FormControl className="separate">
+                <InputLabel htmlFor="userName">Username</InputLabel>
+                <Input id="userName" />
+              </FormControl>
+              <FormControl className="separate">
                 <InputLabel htmlFor="firstName">First Name</InputLabel>
                 <Input id="firstName" />
               </FormControl>
@@ -104,41 +102,9 @@ const Infos = () => {
                 <InputLabel htmlFor="lastName">Last Name</InputLabel>
                 <Input id="lastName" />
               </FormControl>
-              <FormControl className="separate">
-                <FormLabel
-                  className="gender"
-                  id="demo-row-radio-buttons-group-label"
-                >
-                  Gender
-                </FormLabel>
-                <RadioGroup
-                  row
-                  aria-labelledby="demo-row-radio-buttons-group-label"
-                  name="row-radio-buttons-group"
-                >
-                  <FormControlLabel
-                    value="female"
-                    control={<Radio />}
-                    label="Female"
-                  />
-                  <FormControlLabel
-                    value="male"
-                    control={<Radio />}
-                    label="Male"
-                  />
-                </RadioGroup>
-              </FormControl>
-              <p className="bday">Birthdate</p>
-
-              <div className="date separate">
-                <MyDate className="test" />
-              </div>
+              
             </div>
             <div className="personPhotos">
-              <FormControl className="separate">
-                <InputLabel htmlFor="userName">Username</InputLabel>
-                <Input id="userName" />
-              </FormControl>
 
               <FormControl className="separate">
                 <InputLabel htmlFor="emailAddress">Email address</InputLabel>
