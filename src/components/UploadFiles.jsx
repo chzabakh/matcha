@@ -11,10 +11,10 @@ const LogProgress = () => {
     return null;
 }
 
-const myupload = () => (<Uploady
+const MyUpload = () => (<Uploady
     destination={{ url: "https://my-server/upload" }}>
     <LogProgress/>   
     <UploadButton/>
 </Uploady>);
 
-export default Myupload;
+export default MyUpload;

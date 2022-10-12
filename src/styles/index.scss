@@ -34,10 +34,10 @@
     90deg,
     rgba(255, 0, 108, 1) 25%,
     rgba(255, 119, 0, 1) 75%
-  )
+  );
 }
 
-  .main-container {
+.main-container {
   min-height: 100vh;
   background-repeat: no-repeat;
   background-size: cover;
@@ -45,10 +45,34 @@
   flex-direction: column;
   justify-content: space-between;
   background-image: url("../images/background.webp");
-  }
+}
 
-  .button {
-      cursor: pointer;
-  }
+.button {
+  cursor: pointer;
+}
 
- 
+.customaddbutton {
+  cursor: pointer;
+  // border: 1px solid grey;
+  // border-radius: 20px;
+  // position: relative;
+  // bottom: 28px;
+  // left: 53px;
+  position: absolute !important;
+  bottom: -8px;
+  right: -8px;
+}
+
+.customdeletebutton {
+  cursor: pointer;
+  // border: 1px solid black;
+  // position: relative;
+  // bottom: 50px;
+  right: -8px;
+  top: 0px;
+  position: absolute !important;
+}
+
+.customdeletebutton:hover {
+  background-color: lightcoral;
+}

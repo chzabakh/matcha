@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Navbar from "../../components/Navbar.jsx";
 import Footbar from "../../components/Footbar";
 import "../../styles/index.scss";
-import  {Link } from 'react-router-dom';
+import  {Link} from 'react-router-dom';
 
 const Main = styled.div`
   min-height: 100vh;

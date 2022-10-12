@@ -20,7 +20,7 @@ const Footbar = () => {
   return (
     <Foot>
       <footer className="main-footer">
-        <p>Copyright: anel-bou, chzabakh</p>
+        <p>By: anel-bou, chzabakh</p>
       </footer>
     </Foot>
   );

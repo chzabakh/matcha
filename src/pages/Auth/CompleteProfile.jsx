@@ -1,6 +1,7 @@
 import "../../styles/index.scss";
 import "react-datepicker/dist/react-datepicker.css";
 import "react-calendar/dist/Calendar.css";
+import userAvatar from "../../images/imgPlaceholder.webp";
 import React from "react";
 import styled from "styled-components";
 import Navbar from "../../components/Navbar.jsx";
@@ -18,6 +19,11 @@ import Button from "@mui/material/Button";
 import Checkbox from "@mui/material/Checkbox";
 import FormGroup from "@mui/material/FormGroup";
 import TextField from "@mui/material/TextField";
+import MyUpload from "../../components/UploadFiles.jsx";
+import AddIcon from "@mui/icons-material/AddAPhoto";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import IconButton from "@mui/material/IconButton";
+import PhotoCamera from "@mui/icons-material/PhotoCamera";
 
 const InfosCont = styled.div`
   .infos {
@@ -105,11 +111,13 @@ const InfosCont = styled.div`
 
   .pdp {
     border: 1px solid rgba(0, 0, 0, 0.6);
-    border-radius: 10px;
-    height: 150px;
+    /* border-radius: 10px; */
+    height: 132px;
+    position: relative;
     width: 130px;
     margin-top: 50px;
     margin-left: 100px;
+    padding-top: 1px;
   }
 
   .morepdp {
@@ -125,9 +133,11 @@ const InfosCont = styled.div`
 
   .pdpgridfix {
     border: 1px solid rgba(0, 0, 0, 0.6);
-    border-radius: 10px;
-    height: 150px;
+    /* border-radius: 10px; */
+    height: 132px;
     width: 130px;
+    padding-top: 1px;
+    position: relative;
   }
 
   .personPhotosfix {
@@ -142,10 +152,93 @@ const InfosCont = styled.div`
     align-items: center;
     background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
   }
+
+  .correctimg {
+    height: 100%;
+    width: 100%;
+  }
 `;
 
 const CompleteProfile = () => {
   const [selectedDate, setSelectedDate] = useState(null);
+  const [avatar0, setAvatar0] = useState(userAvatar);
+  const [avatar1, setAvatar1] = useState(userAvatar);
+  const [avatar2, setAvatar2] = useState(userAvatar);
+  const [avatar3, setAvatar3] = useState(userAvatar);
+  const [avatar4, setAvatar4] = useState(userAvatar);
+  const [images, setImages] = useState({
+    image1: "",
+    images2: "",
+  });
+  const [isuploaded, setIsuploaded] = useState(0);
+
+  const imageHandler = (event) => {
+    console.log(event.target.name);
+    const reader = new FileReader();
+    
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        if (event.target.name == "img0")
+        {
+          setAvatar0(reader.result);
+          setIsuploaded(1);
+        }
+        else if (event.target.name == "img1")
+        {
+          setAvatar1(reader.result);
+          setIsuploaded(1);
+        }
+        else if (event.target.name == "img2")
+        {
+          setAvatar2(reader.result);
+        setIsuploaded(1);
+        }
+        else if (event.target.name == "img3")
+        {
+          setAvatar3(reader.result);
+        setIsuploaded(1);
+        }
+        else if (event.target.name == "img4")
+        {
+          setAvatar4(reader.result);
+        setIsuploaded(1);
+        }
+      }
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  };
+
+  const deleteImage = (event) => {
+    console.log(event);
+    if (event.target.name == "img0")
+        {
+          setAvatar0(userAvatar);
+          setIsuploaded(0);
+          console.log("hello");
+        }
+        else if (event.target.name == "img1")
+        {
+          setAvatar1(userAvatar);
+          setIsuploaded(0);
+        }
+        else if (event.target.name == "img2")
+        {
+          setAvatar2(userAvatar);
+          setIsuploaded(0);
+        }
+        else if (event.target.name == "img3")
+        {
+          setAvatar3(userAvatar);
+          setIsuploaded(0);
+        }
+        else if (event.target.name == "img4")
+        {
+          setAvatar4(userAvatar);
+          setIsuploaded(0);
+        }
+    // setAvatar0(userAvatar);
+    // setIsuploaded(0);
+  };
 
   return (
     <InfosCont>
@@ -194,8 +287,8 @@ const CompleteProfile = () => {
                   <br />
                   Birthdate
                 </p>
-                <div className="date separate bday test">
-                  <MyDate />
+                <div className="date separate bday test button">
+                  <MyDate className="button" />
                 </div>
 
                 <p className="separate bday">
@@ -203,12 +296,12 @@ const CompleteProfile = () => {
                   Short Description
                 </p>
 
-                <TextField
+                <StyledTextField
                   className="separate bday"
                   id="outlined-multiline-static"
                   placeholder="Max 150 Characters"
                   multiline
-                  fullWidth
+                  // fullWidth
                   rows={7}
                   inputProps={{ maxLength: 150 }}
                 />
@@ -220,16 +313,259 @@ const CompleteProfile = () => {
                     <br />
                     Profile Picture
                   </p>
-                  <div className="pdp"></div>
+                  <div className="pdp">
+                    <img src={avatar0} alt="avatar0" className="correctimg" />
+                    {isuploaded ? (
+                      <div>
+                        <IconButton
+                          className="customaddbutton"
+                          color="primary"
+                          aria-label="upload picture"
+                          component="label"
+                        >
+                          <input
+                            hidden
+                            accept="image/*"
+                            type="file"
+                            name="img0"
+                            onChange={imageHandler}
+                          />
+                          <PhotoCamera />
+                        </IconButton>
+
+
+                        <IconButton
+                          className="customdeletebutton"
+                          color="error"
+                          aria-label="delete picture"
+                          component="label"
+                          name="img0"
+                          onClick={deleteImage}
+                        >
+                            <DeleteForeverIcon />
+                        </IconButton>
+                      </div>
+                    ) : (
+                      <IconButton
+                        className="customaddbutton"
+                        color="primary"
+                        aria-label="upload picture"
+                        component="label"
+
+                      >
+                        <input
+                          hidden
+                          accept="image/*"
+                          type="file"
+                          name="img0"
+                          onChange={imageHandler}
+                        />
+                        <PhotoCamera />
+                      </IconButton>
+                    )}
+                  </div>
 
                   <p className="separate bday">Add More Pictures</p>
                 </div>
 
                 <div className="morepdp">
-                  <div className="pdpgridfix"></div>
-                  <div className="pdpgridfix"></div>
-                  <div className="pdpgridfix"></div>
-                  <div className="pdpgridfix"></div>
+                  <div className="pdpgridfix">
+                    <img src={avatar1} alt="avatar1" className="correctimg" />
+                    {isuploaded ? (
+                      <div>
+                        <IconButton
+                          className="customaddbutton"
+                          color="primary"
+                          aria-label="upload picture"
+                          component="label"
+                        >
+                          <input
+                            hidden
+                            accept="image/*"
+                            type="file"
+                            name="img1"
+                            onChange={imageHandler}
+                          />
+                          <PhotoCamera />
+                        </IconButton>
+
+                        <IconButton
+                          className="customdeletebutton"
+                          color="error"
+                          aria-label="delete picture"
+                          component="label"
+                            name="img1"
+                            onClick={(e) => deleteImage(e)}
+                        >
+                          <DeleteForeverIcon />
+                        </IconButton>
+                      </div>
+                    ) : (
+                      <IconButton
+                        className="customaddbutton"
+                        color="primary"
+                        aria-label="upload picture"
+                        component="label"
+                      >
+                        <input
+                          hidden
+                          accept="image/*"
+                          type="file"
+                            name="img1"
+                            onChange={imageHandler}
+                        />
+                        <PhotoCamera />
+                      </IconButton>
+                    )}
+                  </div>
+                  <div className="pdpgridfix">
+                    <img src={avatar2} alt="avatar2" className="correctimg" />
+
+                    {isuploaded ? (
+                      <div>
+                        <IconButton
+                          className="customaddbutton"
+                          color="primary"
+                          aria-label="upload picture"
+                          component="label"
+                        >
+                          <input
+                            hidden
+                            accept="image/*"
+                            type="file"
+                            name="img2"
+                            onChange={imageHandler}
+                          />
+                          <PhotoCamera />
+                        </IconButton>
+
+                        <IconButton
+                          className="customdeletebutton"
+                          color="error"
+                          aria-label="delete picture"
+                          component="label"
+                            name="img2"
+                            onClick={deleteImage}
+                        >
+                          <DeleteForeverIcon />
+                        </IconButton>
+                      </div>
+                    ) : (
+                      <IconButton
+                        className="customaddbutton"
+                        color="primary"
+                        aria-label="upload picture"
+                        component="label"
+                      >
+                        <input
+                          hidden
+                          accept="image/*"
+                          type="file"
+                            name="img2"
+                            onChange={imageHandler}
+                        />
+                        <PhotoCamera />
+                      </IconButton>
+                    )}
+                  </div>
+                  <div className="pdpgridfix">
+                    <img src={avatar3} alt="avatar3" className="correctimg" />
+                    {isuploaded ? (
+                      <div>
+                        <IconButton
+                          className="customaddbutton"
+                          color="primary"
+                          aria-label="upload picture"
+                          component="label"
+                        >
+                          <input
+                            hidden
+                            accept="image/*"
+                            type="file"
+                            name="img3"
+                            onChange={imageHandler}
+                          />
+                          <PhotoCamera />
+                        </IconButton>
+
+                        <IconButton
+                          className="customdeletebutton"
+                          color="error"
+                          aria-label="delete picture"
+                          component="label"
+                            name="img3"
+                            onClick={deleteImage}
+                        >
+                          <DeleteForeverIcon />
+                        </IconButton>
+                      </div>
+                    ) : (
+                      <IconButton
+                        className="customaddbutton"
+                        color="primary"
+                        aria-label="upload picture"
+                        component="label"
+                      >
+                        <input
+                          hidden
+                          accept="image/*"
+                          type="file"
+                            name="img3"
+                            onChange={imageHandler}
+                        />
+                        <PhotoCamera />
+                      </IconButton>
+                    )}
+                  </div>
+                  <div className="pdpgridfix">
+                    <img src={avatar4} alt="avatar4" className="correctimg" />
+                    {isuploaded ? (
+                      <div>
+                        <IconButton
+                          className="customaddbutton"
+                          color="primary"
+                          aria-label="upload picture"
+                          component="label"
+                        >
+                          <input
+                            hidden
+                            accept="image/*"
+                            type="file"
+                            name="img4"
+                            onChange={imageHandler}
+                          />
+                          <PhotoCamera />
+                        </IconButton>
+
+                        <IconButton
+                          className="customdeletebutton"
+                          color="error"
+                          aria-label="delete picture"
+                          component="label"
+                            name="img4"
+                            onClick={deleteImage}
+                        >
+                          <DeleteForeverIcon />
+                        </IconButton>
+                      </div>
+                    ) : (
+                      <IconButton
+                        className="customaddbutton"
+                        color="primary"
+                        aria-label="upload picture"
+                        component="label"
+                      >
+                        <input
+                          hidden
+                          accept="image/*"
+                          type="file"
+                            name="img4"
+                            onChange={imageHandler}
+                        />
+                        <PhotoCamera />
+                      </IconButton>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
@@ -237,10 +573,10 @@ const CompleteProfile = () => {
               Submit
             </Button>
 
-          <div>
-            <label htmlFor="avatar">Avatar</label>
-            <input type="file"  id="avatar" hidden />
-          </div>
+            <div>
+              <label htmlFor="avatar">Avatar</label>
+              <input type="file" id="avatar" hidden />
+            </div>
           </div>
         </div>
 
@@ -251,3 +587,6 @@ const CompleteProfile = () => {
 };
 
 export default CompleteProfile;
+const StyledTextField = styled(TextField)`
+  width: 90%;
+`;
