@@ -8,11 +8,12 @@
   --rti-tag-remove: "#e53e3e";
 
   width: 200px;
+  height: 200px;
   margin-right: 70px;
 }
 
 .rti--tag {
-  background: #fafafa;
+  background: #cccccc;
   border-radius: 10px;
   border: 1px solid black;
   margin: 2px;

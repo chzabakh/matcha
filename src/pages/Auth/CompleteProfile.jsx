@@ -548,7 +548,7 @@ const CompleteProfile = () => {
                     )}
                   </div>
                 </div>
-                <p className="separate bday tagsfix">Add Tags</p>
+                <p className="separate bday tagsfix">Add Tags (max 5)</p>
                 <div className="date separate bday test button">
                   <MyTags className="separate bday" />
                 </div>

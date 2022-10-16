@@ -4,11 +4,13 @@ import "../styles/tags.css";
 
 const MyTags = () => {
   const [selected, setSelected] = useState([]);
+
   const onTagsChange = (e) => {
     setSelected(e);
   };
   const check = (e) => {
-    if (selected.length < 5) {
+    if (selected.length < 5 && e.length < 20) {
+      console.log(selected[0]);
       return true;
     }
   };
@@ -17,8 +19,8 @@ const MyTags = () => {
       value={selected}
       onChange={onTagsChange}
       beforeAddValidate={check}
-      name="fruits"
-      placeHolder="enter fruits"
+      name="userTags"
+      placeHolder="Enter Tag"
     />
   );
 };
