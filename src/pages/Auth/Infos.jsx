@@ -9,7 +9,7 @@ import Input from "@mui/material/Input";
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
 import "react-calendar/dist/Calendar.css";
-import Button from '@mui/material/Button';
+import Button from "@mui/material/Button";
 
 const InfosCont = styled.div`
   .infos {
@@ -17,6 +17,7 @@ const InfosCont = styled.div`
     font-family: verdana;
     font-style: italic;
     font-weight: bolder;
+    width: 100%;
   }
 
   .twoFlex {
@@ -28,7 +29,7 @@ const InfosCont = styled.div`
   }
 
   .white {
-    background-color: white;
+    background-color: #ffffffdc;
   }
 
   .cA {
@@ -52,7 +53,7 @@ const InfosCont = styled.div`
   .date {
     border: 1px solid rgba(0, 0, 0, 0.6);
     margin-left: 20px;
-    margin-right:0px;
+    margin-right: 0px;
   }
 
   .bday {
@@ -76,7 +77,6 @@ const InfosCont = styled.div`
     margin-bottom: 20px;
     color: rgba(255, 119, 0, 1) 75%;
   }
-
 `;
 
 const Infos = () => {
@@ -86,37 +86,39 @@ const Infos = () => {
     <InfosCont>
       <div className="main-container">
         <Navbar />
-        <div className="white infos">
-          <p className="cA">CREATE ACCOUNT</p>
-          <div className="twoFlex">
-            <div className="personDetails">
-              <FormControl className="separate">
-                <InputLabel htmlFor="userName">Username</InputLabel>
-                <Input id="userName" />
-              </FormControl>
-              <FormControl className="separate">
-                <InputLabel htmlFor="firstName">First Name</InputLabel>
-                <Input id="firstName" />
-              </FormControl>
-              <FormControl className="separate">
-                <InputLabel htmlFor="lastName">Last Name</InputLabel>
-                <Input id="lastName" />
-              </FormControl>
-              
+        <div className="main-main">
+          <div className="white infos">
+            <p className="cA">CREATE ACCOUNT</p>
+            <div className="twoFlex">
+              <div className="personDetails">
+                <FormControl className="separate">
+                  <InputLabel htmlFor="userName">Username</InputLabel>
+                  <Input id="userName" />
+                </FormControl>
+                <FormControl className="separate">
+                  <InputLabel htmlFor="firstName">First Name</InputLabel>
+                  <Input id="firstName" />
+                </FormControl>
+                <FormControl className="separate">
+                  <InputLabel htmlFor="lastName">Last Name</InputLabel>
+                  <Input id="lastName" />
+                </FormControl>
+              </div>
+              <div className="personPhotos">
+                <FormControl className="separate">
+                  <InputLabel htmlFor="emailAddress">Email address</InputLabel>
+                  <Input id="emailAddress" />
+                </FormControl>
+                <FormControl className="separate">
+                  <InputLabel htmlFor="password">Password</InputLabel>
+                  <Input id="password" />
+                </FormControl>
+              </div>
             </div>
-            <div className="personPhotos">
-
-              <FormControl className="separate">
-                <InputLabel htmlFor="emailAddress">Email address</InputLabel>
-                <Input id="emailAddress" />
-              </FormControl>
-              <FormControl className="separate">
-                <InputLabel htmlFor="password">Password</InputLabel>
-                <Input id="password" />
-              </FormControl>
-            </div>
+            <Button className="register submitbutton" variant="contained">
+              Submit
+            </Button>
           </div>
-            <Button className="register submitbutton" variant="contained">Submit</Button>
         </div>
         <Footbar />
       </div>

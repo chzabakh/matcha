@@ -47,6 +47,15 @@
   background-image: url("../images/background.webp");
 }
 
+.main-main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
+}
+
 .button {
   cursor: pointer;
 }
@@ -75,4 +84,10 @@
 
 .customdeletebutton:hover {
   background-color: lightcoral;
+}
+
+.inputclass {
+  color: purple;
+  background: lime;
+
 }

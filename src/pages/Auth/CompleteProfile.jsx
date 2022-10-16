@@ -24,6 +24,7 @@ import AddIcon from "@mui/icons-material/AddAPhoto";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import IconButton from "@mui/material/IconButton";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
+import MyTags from "../../components/Tags.jsx";
 
 const InfosCont = styled.div`
   .infos {
@@ -45,8 +46,8 @@ const InfosCont = styled.div`
   .white {
     height: 100%;
     background-color: #ffffffdc;
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
+    /* backdrop-filter: blur(5px); */
+    /* -webkit-backdrop-filter: blur(5px); */
   }
 
   .cA {
@@ -83,6 +84,10 @@ const InfosCont = styled.div`
     margin-left: 30px;
     margin-right: 30px;
     margin-bottom: -20px;
+  }
+
+  .tagsfix {
+    max-width: 150px;
   }
 
   .gender {
@@ -144,15 +149,6 @@ const InfosCont = styled.div`
     margin-top: -25px;
   }
 
-  .main-main {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
-  }
-
   .correctimg {
     height: 100%;
     width: 100%;
@@ -170,74 +166,61 @@ const CompleteProfile = () => {
     image1: "",
     images2: "",
   });
-  const [isuploaded, setIsuploaded] = useState(0);
+  const [isuploaded0, setIsuploaded0] = useState(0);
+  const [isuploaded1, setIsuploaded1] = useState(0);
+  const [isuploaded2, setIsuploaded2] = useState(0);
+  const [isuploaded3, setIsuploaded3] = useState(0);
+  const [isuploaded4, setIsuploaded4] = useState(0);
 
   const imageHandler = (event) => {
     console.log(event.target.name);
     const reader = new FileReader();
-    
+
     reader.onload = () => {
       if (reader.readyState === 2) {
-        if (event.target.name == "img0")
-        {
+        if (event.target.name === "img0") {
           setAvatar0(reader.result);
-          setIsuploaded(1);
-        }
-        else if (event.target.name == "img1")
-        {
+          setIsuploaded0(1);
+        } else if (event.target.name === "img1") {
           setAvatar1(reader.result);
-          setIsuploaded(1);
-        }
-        else if (event.target.name == "img2")
-        {
+          setIsuploaded1(1);
+        } else if (event.target.name === "img2") {
           setAvatar2(reader.result);
-        setIsuploaded(1);
-        }
-        else if (event.target.name == "img3")
-        {
+          setIsuploaded2(1);
+        } else if (event.target.name === "img3") {
           setAvatar3(reader.result);
-        setIsuploaded(1);
-        }
-        else if (event.target.name == "img4")
-        {
+          setIsuploaded3(1);
+        } else if (event.target.name === "img4") {
           setAvatar4(reader.result);
-        setIsuploaded(1);
+          setIsuploaded4(1);
         }
       }
     };
     reader.readAsDataURL(event.target.files[0]);
   };
 
-  const deleteImage = (event) => {
+  const deleteImage = (event, pp) => {
+    console.log(pp);
     console.log(event);
-    if (event.target.name == "img0")
-        {
-          setAvatar0(userAvatar);
-          setIsuploaded(0);
-          console.log("hello");
-        }
-        else if (event.target.name == "img1")
-        {
-          setAvatar1(userAvatar);
-          setIsuploaded(0);
-        }
-        else if (event.target.name == "img2")
-        {
-          setAvatar2(userAvatar);
-          setIsuploaded(0);
-        }
-        else if (event.target.name == "img3")
-        {
-          setAvatar3(userAvatar);
-          setIsuploaded(0);
-        }
-        else if (event.target.name == "img4")
-        {
-          setAvatar4(userAvatar);
-          setIsuploaded(0);
-        }
+    if (pp === "img0") {
+      setAvatar0(userAvatar);
+      setIsuploaded0(0);
+      console.log("hello");
+    } else if (pp === "img1") {
+      setAvatar1(userAvatar);
+      setIsuploaded1(0);
+    } else if (pp === "img2") {
+      setAvatar2(userAvatar);
+      setIsuploaded2(0);
+    } else if (pp === "img3") {
+      setAvatar3(userAvatar);
+      setIsuploaded3(0);
+    } else if (pp === "img4") {
+      setAvatar4(userAvatar);
+      setIsuploaded4(0);
+    }
     // setAvatar0(userAvatar);
-    // setIsuploaded(0);
+    // setIsuploaded0(0);
   };
 
   return (
@@ -315,7 +298,7 @@ const CompleteProfile = () => {
                   </p>
                   <div className="pdp">
                     <img src={avatar0} alt="avatar0" className="correctimg" />
-                    {isuploaded ? (
+                    {isuploaded0 ? (
                       <div>
                         <IconButton
                           className="customaddbutton"
@@ -333,16 +316,15 @@ const CompleteProfile = () => {
                           <PhotoCamera />
                         </IconButton>
 
-
                         <IconButton
                           className="customdeletebutton"
                           color="error"
                           aria-label="delete picture"
                           component="label"
                           name="img0"
-                          onClick={deleteImage}
+                          onClick={(e) => deleteImage(e, "img0")}
                         >
-                            <DeleteForeverIcon />
+                          <DeleteForeverIcon />
                         </IconButton>
                       </div>
                     ) : (
@@ -351,7 +333,6 @@ const CompleteProfile = () => {
                         color="primary"
                         aria-label="upload picture"
                         component="label"
-
                       >
                         <input
                           hidden
@@ -371,7 +352,7 @@ const CompleteProfile = () => {
                 <div className="morepdp">
                   <div className="pdpgridfix">
                     <img src={avatar1} alt="avatar1" className="correctimg" />
-                    {isuploaded ? (
+                    {isuploaded1 ? (
                       <div>
                         <IconButton
                           className="customaddbutton"
@@ -394,8 +375,8 @@ const CompleteProfile = () => {
                           color="error"
                           aria-label="delete picture"
                           component="label"
-                            name="img1"
-                            onClick={(e) => deleteImage(e)}
+                          name="img1"
+                          onClick={(e) => deleteImage(e, "img1")}
                         >
                           <DeleteForeverIcon />
                         </IconButton>
@@ -411,8 +392,8 @@ const CompleteProfile = () => {
                           hidden
                           accept="image/*"
                           type="file"
-                            name="img1"
-                            onChange={imageHandler}
+                          name="img1"
+                          onChange={imageHandler}
                         />
                         <PhotoCamera />
                       </IconButton>
@@ -421,7 +402,7 @@ const CompleteProfile = () => {
                   <div className="pdpgridfix">
                     <img src={avatar2} alt="avatar2" className="correctimg" />
 
-                    {isuploaded ? (
+                    {isuploaded2 ? (
                       <div>
                         <IconButton
                           className="customaddbutton"
@@ -444,8 +425,8 @@ const CompleteProfile = () => {
                           color="error"
                           aria-label="delete picture"
                           component="label"
-                            name="img2"
-                            onClick={deleteImage}
+                          name="img2"
+                          onClick={(e) => deleteImage(e, "img2")}
                         >
                           <DeleteForeverIcon />
                         </IconButton>
@@ -461,8 +442,8 @@ const CompleteProfile = () => {
                           hidden
                           accept="image/*"
                           type="file"
-                            name="img2"
-                            onChange={imageHandler}
+                          name="img2"
+                          onChange={imageHandler}
                         />
                         <PhotoCamera />
                       </IconButton>
@@ -470,7 +451,7 @@ const CompleteProfile = () => {
                   </div>
                   <div className="pdpgridfix">
                     <img src={avatar3} alt="avatar3" className="correctimg" />
-                    {isuploaded ? (
+                    {isuploaded3 ? (
                       <div>
                         <IconButton
                           className="customaddbutton"
@@ -493,8 +474,8 @@ const CompleteProfile = () => {
                           color="error"
                           aria-label="delete picture"
                           component="label"
-                            name="img3"
-                            onClick={deleteImage}
+                          name="img3"
+                          onClick={(e) => deleteImage(e, "img3")}
                         >
                           <DeleteForeverIcon />
                         </IconButton>
@@ -510,8 +491,8 @@ const CompleteProfile = () => {
                           hidden
                           accept="image/*"
                           type="file"
-                            name="img3"
-                            onChange={imageHandler}
+                          name="img3"
+                          onChange={imageHandler}
                         />
                         <PhotoCamera />
                       </IconButton>
@@ -519,7 +500,7 @@ const CompleteProfile = () => {
                   </div>
                   <div className="pdpgridfix">
                     <img src={avatar4} alt="avatar4" className="correctimg" />
-                    {isuploaded ? (
+                    {isuploaded4 ? (
                       <div>
                         <IconButton
                           className="customaddbutton"
@@ -542,8 +523,8 @@ const CompleteProfile = () => {
                           color="error"
                           aria-label="delete picture"
                           component="label"
-                            name="img4"
-                            onClick={deleteImage}
+                          name="img4"
+                          onClick={(e) => deleteImage(e, "img4")}
                         >
                           <DeleteForeverIcon />
                         </IconButton>
@@ -559,13 +540,17 @@ const CompleteProfile = () => {
                           hidden
                           accept="image/*"
                           type="file"
-                            name="img4"
-                            onChange={imageHandler}
+                          name="img4"
+                          onChange={imageHandler}
                         />
                         <PhotoCamera />
                       </IconButton>
                     )}
                   </div>
+                </div>
+                <p className="separate bday tagsfix">Add Tags</p>
+                <div className="date separate bday test button">
+                  <MyTags className="separate bday" />
                 </div>
               </div>
             </div>

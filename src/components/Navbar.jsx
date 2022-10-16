@@ -1,6 +1,6 @@
 import "../styles/index.scss";
 import styled from "styled-components";
-import  { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const Nav = styled.div`
   .main-header {
@@ -35,7 +35,9 @@ const Navbar = () => {
   return (
     <Nav>
       <header className="main-header">
-        <h1 className="logo"><Link to="/">Matcha</Link></h1>
+        <h1 className="logo">
+          <Link to="/">Matcha</Link>
+        </h1>
         <h2 className="login">Log in</h2>
       </header>
     </Nav>
