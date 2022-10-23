@@ -1,9 +1,9 @@
 import React from "react";
-import bgImage from "../../images/background.webp";
+import bgImage from "../images/background.webp";
 import styled from "styled-components";
-import Navbar from "../../components/Navbar.jsx";
-import Footbar from "../../components/Footbar";
-import "../../styles/index.scss";
+import Navbar from "../components/Navbar.jsx";
+import Footbar from "../components/Footbar";
+import "../styles/index.scss";
 import  {Link} from 'react-router-dom';
 
 const Main = styled.div`

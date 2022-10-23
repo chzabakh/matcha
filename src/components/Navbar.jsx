@@ -1,6 +1,9 @@
 import "../styles/index.scss";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import LoginModal from "./LoginModal.jsx";
+import { useState } from "react";
+
 
 const Nav = styled.div`
   .main-header {
@@ -32,13 +35,22 @@ const Nav = styled.div`
 `;
 
 const Navbar = () => {
+  const [counter, setCounter] = useState(0);
+  const renderModal = () => {
+    setCounter(1);
+  }
   return (
     <Nav>
       <header className="main-header">
         <h1 className="logo">
           <Link to="/">Matcha</Link>
         </h1>
-        <h2 className="login">Log in</h2>
+        {/* <h2 className="login"
+        onClick={renderModal}
+        >Log in
+        </h2> */}
+        {/* {counter ? (<LoginModal/>) : (<div></div>) } */}
+        <LoginModal className="login"/>
       </header>
     </Nav>
   );

@@ -1,16 +1,16 @@
-import "../../styles/index.scss";
+import "../styles/index.scss";
 import "react-datepicker/dist/react-datepicker.css";
 import "react-calendar/dist/Calendar.css";
-import userAvatar from "../../images/imgPlaceholder.webp";
+import userAvatar from "../images/imgPlaceholder.webp";
 import React from "react";
 import styled from "styled-components";
-import Navbar from "../../components/Navbar.jsx";
-import Footbar from "../../components/Footbar.jsx";
+import Navbar from "../components/Navbar.jsx";
+import Footbar from "../components/Footbar.jsx";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import Input from "@mui/material/Input";
 import { useState } from "react";
-import MyDate from "../../components/Date.jsx";
+import MyDate from "../components/Date.jsx";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -19,12 +19,12 @@ import Button from "@mui/material/Button";
 import Checkbox from "@mui/material/Checkbox";
 import FormGroup from "@mui/material/FormGroup";
 import TextField from "@mui/material/TextField";
-import MyUpload from "../../components/UploadFiles.jsx";
+import MyUpload from "../components/UploadFiles.jsx";
 import AddIcon from "@mui/icons-material/AddAPhoto";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import IconButton from "@mui/material/IconButton";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
-import MyTags from "../../components/Tags.jsx";
+import MyTags from "../components/Tags.jsx";
 
 const InfosCont = styled.div`
   .infos {
@@ -554,7 +554,7 @@ const CompleteProfile = () => {
                 </div>
               </div>
             </div>
-            <Button className="register submitbutton" variant="contained">
+            <Button className="subregister submitbutton" variant="contained">
               Submit
             </Button>
 

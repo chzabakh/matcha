@@ -1,8 +1,8 @@
-import "../../styles/index.scss";
+import "../styles/index.scss";
 import React from "react";
 import styled from "styled-components";
-import Navbar from "../../components/Navbar.jsx";
-import Footbar from "../../components/Footbar.jsx";
+import Navbar from "../components/Navbar.jsx";
+import Footbar from "../components/Footbar.jsx";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import Input from "@mui/material/Input";
@@ -115,7 +115,7 @@ const Infos = () => {
                 </FormControl>
               </div>
             </div>
-            <Button className="register submitbutton" variant="contained">
+            <Button className="subregister submitbutton" variant="contained">
               Submit
             </Button>
           </div>
