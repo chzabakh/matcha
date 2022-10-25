@@ -5,6 +5,7 @@ import Navbar from "../components/Navbar.jsx";
 import Footbar from "../components/Footbar";
 import "../styles/index.scss";
 import  {Link} from 'react-router-dom';
+import NavbarLogged from "../components/NavbarLogged";
 
 const Main = styled.div`
   min-height: 100vh;
@@ -78,7 +79,7 @@ const Main = styled.div`
 const Profile = () => {
   return (
     <Main className=" main-container">
-      <Navbar />
+      <NavbarLogged />
       <main className=" main-main">
         <p className="SR">
           Swipe Right

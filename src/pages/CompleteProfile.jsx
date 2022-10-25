@@ -25,6 +25,7 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import IconButton from "@mui/material/IconButton";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import MyTags from "../components/Tags.jsx";
+import NavbarLogged from "../components/NavbarLogged";
 
 const InfosCont = styled.div`
   .infos {
@@ -226,8 +227,8 @@ const CompleteProfile = () => {
   return (
     <InfosCont>
       <div className="main-container">
-        <Navbar />
-        <div className="main-main">
+      <NavbarLogged />
+        <main className="main-main">
           <div className="white infos ">
             <p className="cA">COMPLETE PROFILE</p>
             <div className="twoFlex">
@@ -563,7 +564,7 @@ const CompleteProfile = () => {
               <input type="file" id="avatar" hidden />
             </div>
           </div>
-        </div>
+        </main>
 
         <Footbar />
       </div>

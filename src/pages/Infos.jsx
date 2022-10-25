@@ -85,8 +85,8 @@ const Infos = () => {
   return (
     <InfosCont>
       <div className="main-container">
-        <Navbar />
-        <div className="main-main">
+      <Navbar />
+        <main className="main-main">
           <div className="white infos">
             <p className="cA">CREATE ACCOUNT</p>
             <div className="twoFlex">
@@ -119,7 +119,7 @@ const Infos = () => {
               Submit
             </Button>
           </div>
-        </div>
+        </main>
         <Footbar />
       </div>
     </InfosCont>

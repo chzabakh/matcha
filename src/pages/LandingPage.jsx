@@ -3,7 +3,6 @@ import bgImage from "../images/background.webp";
 import styled from "styled-components";
 import Navbar from "../components/Navbar.jsx";
 import Footbar from "../components/Footbar.jsx";
-import NavbarLogged from "../components/NavbarLogged.jsx";
 import "../styles/index.scss";
 import  {Link } from 'react-router-dom';
 
@@ -79,8 +78,7 @@ const Main = styled.div`
 const LandingPage = () => {
   return (
     <Main className=" main-container">
-      {/* <Navbar /> */}
-      <NavbarLogged />
+      <Navbar />
       <main className=" main-main">
         <p className="SR">
           Swipe Right
