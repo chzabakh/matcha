@@ -558,11 +558,6 @@ const CompleteProfile = () => {
             <Button className="subregister submitbutton" variant="contained">
               Submit
             </Button>
-
-            <div>
-              <label htmlFor="avatar">Avatar</label>
-              <input type="file" id="avatar" hidden />
-            </div>
           </div>
         </main>
 
