@@ -3,6 +3,7 @@ import styled from "styled-components";
 import "../styles/index.scss";
 import NavbarLogged from "../components/NavbarLogged";
 import Footbar from "../components/Footbar";
+import Viewed, {Liked, LikedBack, Unliked} from "../components/Notif";
 
 const Notif = styled.div`
   .infos {
@@ -12,7 +13,20 @@ const Notif = styled.div`
     font-weight: bolder;
     background-color: #ffffffdc;
     width: 100%;
-    margin-top: -70%;
+    position: absolute;
+    top: 100px;
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+
+  .rel {
+    position: relative;
+  }
+
+  .bigger {
+    font-size: larger;
+    font-style: italic;
+    text-decoration: underline;
   }
 `;
 
@@ -21,9 +35,9 @@ const Notifications = () => {
     <Notif>
       <div className="main-container">
         <NavbarLogged />
-        <main className=" main-main">
+        <main className=" main-main rel">
           <div className="infos">
-            <p>Notifications</p>
+            <p className="bigger">Notifications</p>
           </div>
         </main>
         <Footbar />
