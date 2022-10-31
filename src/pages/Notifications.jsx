@@ -27,6 +27,7 @@ const Notif = styled.div`
     font-size: larger;
     font-style: italic;
     text-decoration: underline;
+    margin-bottom: 50px;
   }
 `;
 
@@ -38,6 +39,10 @@ const Notifications = () => {
         <main className=" main-main rel">
           <div className="infos">
             <p className="bigger">Notifications</p>
+            <Liked />
+            <LikedBack />
+            <Viewed />
+            <Unliked />
           </div>
         </main>
         <Footbar />
