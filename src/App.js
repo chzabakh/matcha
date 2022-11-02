@@ -6,6 +6,7 @@ import Infos from "./pages/Infos";
 import CompleteProfile from "./pages/CompleteProfile";
 import Notifications from "./pages/Notifications";
 import Profile from "./pages/Profile"
+import Messages from "./pages/Messages";
 
 
 function App() {
@@ -26,6 +27,9 @@ function App() {
         </Route>
         <Route exact path="/profile">
           <Profile />
+        </Route>
+        <Route exact path="/messages">
+          <Messages />
         </Route>
       </Switch>
     </Router>

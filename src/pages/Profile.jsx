@@ -4,90 +4,64 @@ import styled from "styled-components";
 import Navbar from "../components/Navbar.jsx";
 import Footbar from "../components/Footbar";
 import "../styles/index.scss";
-import  {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
 import NavbarLogged from "../components/NavbarLogged";
 
 const Main = styled.div`
-  min-height: 100vh;
-  background-repeat: no-repeat;
-  /*background-size: cover;*/
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background-image: url(${bgImage});
-
-  .main-header {
-    display: flex;
-    height: 6rem;
-    justify-content: space-between;
-    align-items: center;
-    background-image: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.4));
-  }
-
-  .logo {
-    font-family: Lobster, cursive;
-    color: white;
-    font-size: 40px;
-    font-weight: normal;
-    margin-left: 20px;
-  }
-
-  .login {
-    font-family: sans-serif;
-    margin-right: 20px;
-    background-color: white;
-    font-size: 18px;
-    padding: 10px 25px;
-    border-radius: 30px;
-    cursor: pointer;
-  }
-
-  .main-main {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
-  }
-
-  .SR {
-    color: white;
-    font-family: prompt;
-    font-size: 120px;
-    margin: 0;
+  .infos {
     text-align: center;
+    font-family: verdana;
+    font-style: italic;
+    font-weight: bolder;
+    background-color: #ffffffdc;
+    width: 100%;
+    position: absolute;
+    top: 100px;
+    padding-top: 100px;
+    padding-bottom: 100px;
   }
-
-  @media (max-width: 500px) {
-    .SR {
-      color: white;
-      font-family: prompt;
-      font-size: 60px;
-      margin: 0;
-      text-align: center;
-    }
+  .rel {
+    position: relative;
   }
-
-  .main-main sup {
-    font-weight: 350;
-    font-size: 50px;
+  .bigger {
+    font-size: larger;
+    font-style: italic;
+    text-decoration: underline;
+    margin-bottom: 50px;
   }
-
+  .twoFlex {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    /* column-gap: 100px; */
+  }
+  .profilePicture {
+    width: 40%;
+  }
+  .userInfos {
+    width: 20%;
+  }
 `;
 
 const Profile = () => {
   return (
     <Main className=" main-container">
       <NavbarLogged />
-      <main className=" main-main">
-        <p className="SR">
-          Swipe Right
-          <sup>®</sup>
-        </p>
-        <Link to="/infos">
-        <h2 className="register button">Create account</h2>
-        </Link>
+      <main className=" main-main rel">
+        <div className="infos">
+          <p className="bigger">PROFILE</p>
+          <div className="twoFlex">
+            <div className="profilePicture">
+              <img src="https://pbs.twimg.com/profile_images/1229161450536611848/gS5WbBcp_400x400.jpg"
+              alt="profile picture" width="300" height="300"/>
+            </div>
+            <div className="userInfos">
+gfggfxxgf
+            </div>
+
+          </div>
+        </div>
       </main>
       <Footbar />
     </Main>
