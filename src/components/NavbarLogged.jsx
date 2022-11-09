@@ -91,25 +91,30 @@ const NavbarLogged = () => {
                 />
               </button>
             </Link>
-            <Link to="/messages">
+            {/* <Link to="/messages">
               <button className="hvbtn">
                 <ChatIcon sx={{ fontSize: 30 }} style={{ color: "white" }} />
               </button>
-            </Link>
+            </Link> */}
             <Link to="/profile">
               <button className="hvbtn">
                 <PersonIcon sx={{ fontSize: 30 }} style={{ color: "white" }} />
               </button>
             </Link>
-          </div>
-        </div>
-
-        <div className="logotoolsgrid">
-          <Link to="/settings">
+            <Link to="/settings">
             <button className="fixgear hvbtn">
               <SettingsIcon sx={{ fontSize: 30 }} style={{ color: "white" }} />
             </button>
           </Link>
+          </div>
+        </div>
+
+        <div className="logotoolsgrid">
+          {/* <Link to="/settings">
+            <button className="fixgear hvbtn">
+              <SettingsIcon sx={{ fontSize: 30 }} style={{ color: "white" }} />
+            </button>
+          </Link> */}
           <Link to="/">
             <h2
               className="login"

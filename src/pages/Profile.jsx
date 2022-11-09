@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import bgImage from "../images/background.webp";
 import styled from "styled-components";
 import Navbar from "../components/Navbar.jsx";
@@ -6,6 +6,7 @@ import Footbar from "../components/Footbar";
 import "../styles/index.scss";
 import { Link } from "react-router-dom";
 import NavbarLogged from "../components/NavbarLogged";
+import axios from "axios";
 
 const Main = styled.div`
   .infos {
@@ -45,6 +46,15 @@ const Main = styled.div`
 `;
 
 const Profile = () => {
+  const fetchUsers = async () => {
+    const { data } = await axios.get(
+      "https://jsonplaceholder.typicode.com/users/1"
+    );
+    console.log(data);
+  };
+
+  fetchUsers();
+
   return (
     <Main className=" main-container">
       <NavbarLogged />
@@ -53,13 +63,17 @@ const Profile = () => {
           <p className="bigger">PROFILE</p>
           <div className="twoFlex">
             <div className="profilePicture">
-              <img src="https://pbs.twimg.com/profile_images/1229161450536611848/gS5WbBcp_400x400.jpg"
-              alt="profile picture" width="300" height="300"/>
+              <img
+                src="https://pbs.twimg.com/profile_images/1229161450536611848/gS5WbBcp_400x400.jpg"
+                alt="profile picture"
+                width="300"
+                height="300"
+              />
             </div>
             <div className="userInfos">
-gfggfxxgf
+              hello, my name is {"Adolf"}, im looking for a beautiful girl, i am
+              a peinter
             </div>
-
           </div>
         </div>
       </main>

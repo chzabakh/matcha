@@ -12,18 +12,18 @@ const Notif = styled.div`
     font-weight: bolder;
     background-color: #ffffffdc;
     width: 100%;
-    margin-top: -70%;
+    margin-top: -70px;
   }
 `;
 
-const Notifications = () => {
+const AccountSuccess = () => {
   return (
     <Notif>
       <div className="main-container">
         <NavbarLogged />
         <main className=" main-main">
           <div className="infos">
-            <p>Notifications</p>
+            <p>Account Created successfully</p>
           </div>
         </main>
         <Footbar />
@@ -32,4 +32,4 @@ const Notifications = () => {
   );
 };
 
-export default Notifications;
+export default AccountSuccess;
