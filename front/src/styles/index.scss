@@ -98,7 +98,7 @@
 
 .mylogin {
   font-family: sans-serif;
-  margin-right: 20px;
+  margin-left: 15px;
   background-color: white;
   // background-color: orange !important;
   color: black !important;
@@ -106,6 +106,9 @@
   padding: 10px 25px;
   border-radius: 30px;
   cursor: pointer;
+  width: 90%;
+  // margin-left: 40%;
+  // margin-right: auto;
 }
 
 .login:hover {

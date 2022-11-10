@@ -102,11 +102,19 @@ const LoginModal = () => {
               <br />
               {/* <button  className="userlogin" onClick={hello}>Login</button> */}
               <button
-                style={{ border: "1px solid black" }}
+                style={{border: "1px solid black" }}
                 className="mylogin"
                 onClick={hello}
               >
                 Login
+              </button>
+              <br />
+              <button
+                style={{marginTop: "5px", border: "1px solid black" }}
+                className="mylogin"
+                onClick={hello}
+              >
+                Reset Password
               </button>
             </form>
           </Box>
