@@ -11,6 +11,7 @@ import { useState } from "react";
 import "react-calendar/dist/Calendar.css";
 import Button from "@mui/material/Button";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const InfosCont = styled.div`
   .infos {
@@ -81,6 +82,8 @@ const InfosCont = styled.div`
 `;
 
 const Infos = () => {
+  const history = useHistory();
+
   const [selectedDate, setSelectedDate] = useState(null);
   const [userData, setUserData] = useState({
     username: "",
@@ -89,19 +92,26 @@ const Infos = () => {
     email: "",
     password: "",
   });
+
   const onHandleChange = (e) => {
     setUserData({ ...userData, [e.target.id]: e.target.value });
   };
+
   const onSubmitForm = async () => {
     // const res = await axios.get(`http://localhost:3001?username=${username}`)
-    const res = await axios.post("http://localhost:3001/register", {
-      ...userData,
-    });
-    console.log(res.status);
-    if (res.status == 200)
-    {
-      
+    try {
+      const res = await axios.post("http://localhost:3001/register", {
+        ...userData,
+      });
+      history.push("/account_success");
+    } catch (err) {
+      console.log("my error");
     }
+    // console.log(res.status);
+    // if (res.status == 200)
+    // {
+    //   // history.push("/account_success");
+    // }
   };
   return (
     <InfosCont>
@@ -114,25 +124,29 @@ const Infos = () => {
               <div className="personDetails">
                 <FormControl className="separate">
                   <InputLabel htmlFor="userName">Username</InputLabel>
-                  <Input id="username" onChange={onHandleChange} />
+                  <Input autoComplete="off" id="username" onChange={onHandleChange} />
                 </FormControl>
                 <FormControl className="separate">
                   <InputLabel htmlFor="firstName">First Name</InputLabel>
-                  <Input id="firstName" onChange={onHandleChange} />
+                  <Input autoComplete="off" id="firstName" onChange={onHandleChange} />
                 </FormControl>
                 <FormControl className="separate">
                   <InputLabel htmlFor="lastName">Last Name</InputLabel>
-                  <Input id="lastName" onChange={onHandleChange} />
+                  <Input autoComplete="off" id="lastName" onChange={onHandleChange} />
                 </FormControl>
               </div>
               <div className="personPhotos">
                 <FormControl className="separate">
                   <InputLabel htmlFor="emailAddress">Email address</InputLabel>
-                  <Input id="email" onChange={onHandleChange} />
+                  <Input autoComplete="off" id="email" onChange={onHandleChange} />
                 </FormControl>
                 <FormControl className="separate">
                   <InputLabel htmlFor="password">Password</InputLabel>
-                  <Input id="password" onChange={onHandleChange} />
+                  <Input autoComplete="off"
+                    type="password"
+                    id="password"
+                    onChange={onHandleChange}
+                  />
                 </FormControl>
               </div>
             </div>
