@@ -105,7 +105,7 @@ const Infos = () => {
       });
       history.push("/account_success");
     } catch (err) {
-      console.log("my error");
+      history.push("/account_failed");
     }
     // console.log(res.status);
     // if (res.status == 200)

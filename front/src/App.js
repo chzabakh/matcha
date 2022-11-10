@@ -7,7 +7,8 @@ import CompleteProfile from "./pages/CompleteProfile";
 import Notifications from "./pages/Notifications";
 import Profile from "./pages/Profile"
 import Messages from "./pages/Messages";
-import AccountSuccess from "./pages/AccountConfirmation";
+import AccountSuccess from "./pages/AccountCreationsuccess";
+import AccountFailed from "./pages/AccountCreationFailed";
 
 
 function App() {
@@ -34,6 +35,9 @@ function App() {
         </Route>
         <Route exact path="/account_success">
           <AccountSuccess />
+        </Route>
+        <Route exact path="/account_failed">
+          <AccountFailed />
         </Route>
       </Switch>
     </Router>
