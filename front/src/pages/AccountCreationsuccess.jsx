@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import "../styles/index.scss";
-import NavbarLogged from "../components/NavbarLogged";
+import Navbar from "../components/Navbar";
 import Footbar from "../components/Footbar";
 
 const Notif = styled.div`
@@ -24,10 +24,10 @@ const AccountSuccess = () => {
   return (
     <Notif>
       <div className="main-container">
-        <NavbarLogged />
+        <Navbar />
         <main className=" main-main">
           <div className="infos">
-            <p>Account Created successfully</p>
+            <p>Account Created successfully. You need to Activate your Account by the link send to your Email.</p>
           </div>
         </main>
         <Footbar />

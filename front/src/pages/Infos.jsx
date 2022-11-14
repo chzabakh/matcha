@@ -78,6 +78,10 @@ const InfosCont = styled.div`
   .submitbutton {
     margin-bottom: 20px;
     color: rgba(255, 119, 0, 1) 75%;
+    border-radius: 18px;
+  }
+  .bf {
+    display: block;
   }
 `;
 
@@ -85,6 +89,11 @@ const Infos = () => {
   const history = useHistory();
 
   const [selectedDate, setSelectedDate] = useState(null);
+  const [DtCheck0, setDtCheck0] = useState(0);
+  const [DtCheck1, setDtCheck1] = useState(0);
+  const [DtCheck2, setDtCheck2] = useState(0);
+  const [DtCheck3, setDtCheck3] = useState(0);
+  const [DtCheck4, setDtCheck4] = useState(0);
   const [userData, setUserData] = useState({
     username: "",
     firstName: "",
@@ -93,11 +102,84 @@ const Infos = () => {
     password: "",
   });
 
-  const onHandleChange = (e) => {
-    setUserData({ ...userData, [e.target.id]: e.target.value });
+  const onHandleChange = (e, type) => {
+       
+    setUserData({ ...userData, [e.target.id]: e.target.value }); 
   };
 
-  const onSubmitForm = async () => {
+  const onHandleBlur = (e, type) => {
+    if (type == "password") {
+      if (
+        /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,16}$/.test(
+          e.target.value
+        )
+      ) {
+        console.log("yes");
+        setUserData({ ...userData, [e.target.id]: e.target.value });
+        console.log(userData);
+        setDtCheck0(1);
+      } else {
+        console.log("no");
+        setUserData({ ...userData, [e.target.id]: e.target.value });
+        console.log(userData);
+        setDtCheck0(0);
+      }
+    } else if (type == "user") {
+      if (/\w{5, 10}/.test(e.target.value)) {
+        console.log("yes");
+        setUserData({ ...userData, [e.target.id]: e.target.value });
+        console.log(userData);
+        setDtCheck1(1);
+      } else {
+        console.log("no");
+        setUserData({ ...userData, [e.target.id]: e.target.value });
+        console.log(userData);
+        setDtCheck1(0);
+      }
+    } else if (type == "first") {
+      if (/[a-z]{5, 10}/.test(e.target.value)) {
+        console.log("yes");
+        setUserData({ ...userData, [e.target.id]: e.target.value });
+        console.log(userData);
+        setDtCheck2(1);
+      } else {
+        console.log("no");
+        setUserData({ ...userData, [e.target.id]: e.target.value });
+        console.log(userData);
+        setDtCheck2(0);
+      }
+    } else if (type == "last") {
+      if (/[a-z]{5, 10}/.test(e.target.value)) {
+        console.log("yes");
+        setUserData({ ...userData, [e.target.id]: e.target.value });
+        console.log(userData);
+        setDtCheck3(1);
+      } else {
+        console.log("no");
+        setUserData({ ...userData, [e.target.id]: e.target.value });
+        console.log(userData);
+        setDtCheck3(0);
+      }
+    } else if (type == "mail") {
+      if (/[a-z]{1,10}\@[a-z]{3,10}\.[a-z]{3,4}/.test(e.target.value)) {
+        console.log("yes");
+        setUserData({ ...userData, [e.target.id]: e.target.value });
+        console.log(userData);
+        setDtCheck4(1);
+      } else {
+        console.log("no");
+        setUserData({ ...userData, [e.target.id]: e.target.value });
+        console.log(userData);
+        setDtCheck4(0);
+      }
+    }
+
+  }
+
+    const onSubmitForm = async (e) => {
+    console.log("testtttt");
+    // e.prevenDefault();
+
     // const res = await axios.get(`http://localhost:3001?username=${username}`)
     try {
       const res = await axios.post("http://localhost:3001/register", {
@@ -120,43 +202,75 @@ const Infos = () => {
         <main className="main-main">
           <div className="white infos">
             <p className="cA">CREATE ACCOUNT</p>
-            <div className="twoFlex">
-              <div className="personDetails">
-                <FormControl className="separate">
-                  <InputLabel htmlFor="userName">Username</InputLabel>
-                  <Input autoComplete="off" id="username" onChange={onHandleChange} />
-                </FormControl>
-                <FormControl className="separate">
-                  <InputLabel htmlFor="firstName">First Name</InputLabel>
-                  <Input autoComplete="off" id="firstName" onChange={onHandleChange} />
-                </FormControl>
-                <FormControl className="separate">
-                  <InputLabel htmlFor="lastName">Last Name</InputLabel>
-                  <Input autoComplete="off" id="lastName" onChange={onHandleChange} />
-                </FormControl>
+            <form onSubmit={onSubmitForm}>
+              <div className="twoFlex">
+                <div className="personDetails">
+                  <FormControl className="separate">
+                    <InputLabel htmlFor="userName">Username</InputLabel>
+                    <Input
+                      required={true}
+                      autoComplete="off"
+                      id="username"
+                      onChange={(e) => onHandleChange(e, "user")}
+                      onBlur = {(e) => onHandleBlur(e, "user")}
+                    />
+                  </FormControl>
+                  <FormControl className="separate">
+                    <InputLabel htmlFor="firstName">First Name</InputLabel>
+                    <Input
+                      required={true}
+                      autoComplete="off"
+                      id="firstName"
+                      onChange={(e) => onHandleChange(e, "first")}
+                      onBlur = {(e) => onHandleBlur(e, "first")}
+                    />
+                  </FormControl>
+                  <FormControl className="separate">
+                    <InputLabel htmlFor="lastName">Last Name</InputLabel>
+                    <Input
+                      required={true}
+                      autoComplete="off"
+                      id="lastName"
+                      onChange={(e) => onHandleChange(e, "last")}
+                      onBlur = {(e) => onHandleBlur(e, "last")}
+                    />
+                  </FormControl>
+                </div>
+                <div className="personPhotos">
+                  <FormControl className="separate">
+                    <InputLabel htmlFor="emailAddress">
+                      Email address
+                    </InputLabel>
+                    <Input
+                      required={true}
+                      autoComplete="off"
+                      id="email"
+                      onChange={(e) => onHandleChange(e, "mail")}
+                      onBlur = {(e) => onHandleBlur(e, "mail")}
+                    />
+                  </FormControl>
+                  <FormControl className="separate">
+                    <InputLabel htmlFor="password">Password</InputLabel>
+                    <Input
+                      required={true}
+                      autoComplete="off"
+                      type="password"
+                      id="password"
+                      onChange={(e) => onHandleChange(e, "password")}
+                      onBlur = {(e) => onHandleBlur(e, "password")}
+                    />
+                  </FormControl>
+                </div>
               </div>
-              <div className="personPhotos">
-                <FormControl className="separate">
-                  <InputLabel htmlFor="emailAddress">Email address</InputLabel>
-                  <Input autoComplete="off" id="email" onChange={onHandleChange} />
-                </FormControl>
-                <FormControl className="separate">
-                  <InputLabel htmlFor="password">Password</InputLabel>
-                  <Input autoComplete="off"
-                    type="password"
-                    id="password"
-                    onChange={onHandleChange}
-                  />
-                </FormControl>
-              </div>
-            </div>
-            <Button
-              className="subregister submitbutton"
-              variant="contained"
-              onClick={onSubmitForm}
-            >
-              Submit
-            </Button>
+              <Button
+                type="submit"
+                className="subregister submitbutton"
+                variant="contained"
+                disabled={(DtCheck0 + DtCheck1 + DtCheck2 + DtCheck3 + DtCheck4) == 5 ? true : false}
+              >
+                Submit
+              </Button>
+            </form>
           </div>
         </main>
         <Footbar />
