@@ -79,9 +79,14 @@ const InfosCont = styled.div`
     margin-bottom: 20px;
     color: rgba(255, 119, 0, 1) 75%;
     border-radius: 18px;
+    cursor: pointer;
   }
   .bf {
     display: block;
+  }
+  .errr {
+    font-size: 10px;
+    color: red;
   }
 `;
 
@@ -102,9 +107,8 @@ const Infos = () => {
     password: "",
   });
 
-  const onHandleChange = (e, type) => {
-       
-    setUserData({ ...userData, [e.target.id]: e.target.value }); 
+  const onHandleChange = (e) => {
+    setUserData({ ...userData, [e.target.id]: e.target.value });
   };
 
   const onHandleBlur = (e, type) => {
@@ -114,77 +118,55 @@ const Infos = () => {
           e.target.value
         )
       ) {
-        console.log("yes");
         setUserData({ ...userData, [e.target.id]: e.target.value });
-        console.log(userData);
         setDtCheck0(1);
       } else {
-        console.log("no");
         setUserData({ ...userData, [e.target.id]: e.target.value });
-        console.log(userData);
         setDtCheck0(0);
       }
     } else if (type == "user") {
-      if (/\w{5, 10}/.test(e.target.value)) {
-        console.log("yes");
+      console.log("the value is: " + e.target.value);
+      if (/^\w{3,10}$/.test(e.target.value)) {
         setUserData({ ...userData, [e.target.id]: e.target.value });
-        console.log(userData);
         setDtCheck1(1);
       } else {
-        console.log("no");
         setUserData({ ...userData, [e.target.id]: e.target.value });
-        console.log(userData);
         setDtCheck1(0);
       }
     } else if (type == "first") {
-      if (/[a-z]{5, 10}/.test(e.target.value)) {
-        console.log("yes");
+      if (/^[a-z]{2,15} ?[a-z]{2,15}$/.test(e.target.value)) {
         setUserData({ ...userData, [e.target.id]: e.target.value });
-        console.log(userData);
         setDtCheck2(1);
       } else {
-        console.log("no");
         setUserData({ ...userData, [e.target.id]: e.target.value });
-        console.log(userData);
         setDtCheck2(0);
       }
     } else if (type == "last") {
-      if (/[a-z]{5, 10}/.test(e.target.value)) {
-        console.log("yes");
+      if (/^[a-z]{2,15} ?[a-z]{2,15}$/.test(e.target.value)) {
         setUserData({ ...userData, [e.target.id]: e.target.value });
-        console.log(userData);
         setDtCheck3(1);
       } else {
-        console.log("no");
         setUserData({ ...userData, [e.target.id]: e.target.value });
-        console.log(userData);
         setDtCheck3(0);
       }
     } else if (type == "mail") {
-      if (/[a-z]{1,10}\@[a-z]{3,10}\.[a-z]{3,4}/.test(e.target.value)) {
-        console.log("yes");
+      if (/^[a-z]{1,15}\@[a-z]{1,15}\.[a-z]{1,10}$/.test(e.target.value)) {
         setUserData({ ...userData, [e.target.id]: e.target.value });
-        console.log(userData);
         setDtCheck4(1);
       } else {
-        console.log("no");
         setUserData({ ...userData, [e.target.id]: e.target.value });
-        console.log(userData);
         setDtCheck4(0);
       }
     }
+  };
 
-  }
-
-    const onSubmitForm = async (e) => {
-    console.log("testtttt");
-    // e.prevenDefault();
-
-    // const res = await axios.get(`http://localhost:3001?username=${username}`)
+  const onSubmitForm = async (e) => {
+    e.preventDefault();  //prevent refreshing
     try {
       const res = await axios.post("http://localhost:3001/register", {
         ...userData,
       });
+      console.log("test" + res.status);
       history.push("/account_success");
     } catch (err) {
       history.push("/account_failed");
@@ -211,9 +193,12 @@ const Infos = () => {
                       required={true}
                       autoComplete="off"
                       id="username"
-                      onChange={(e) => onHandleChange(e, "user")}
-                      onBlur = {(e) => onHandleBlur(e, "user")}
+                      onChange={(e) => onHandleChange(e)}
+                      onBlur={(e) => onHandleBlur(e, "user")}
                     />
+                    {
+                      (DtCheck1 == 0 && userData.username != "") ? (<div className="errr">Username must be 3 to 10 chars</div>) : (<div></div>)
+                    }
                   </FormControl>
                   <FormControl className="separate">
                     <InputLabel htmlFor="firstName">First Name</InputLabel>
@@ -221,9 +206,12 @@ const Infos = () => {
                       required={true}
                       autoComplete="off"
                       id="firstName"
-                      onChange={(e) => onHandleChange(e, "first")}
-                      onBlur = {(e) => onHandleBlur(e, "first")}
+                      onChange={(e) => onHandleChange(e)}
+                      onBlur={(e) => onHandleBlur(e, "first")}
                     />
+                    {
+                      (DtCheck2 == 0 && userData.firstName != "") ? (<div className="errr">First Name must be 2 to 15 chars and letters only</div>) : (<div></div>)
+                    }
                   </FormControl>
                   <FormControl className="separate">
                     <InputLabel htmlFor="lastName">Last Name</InputLabel>
@@ -231,9 +219,12 @@ const Infos = () => {
                       required={true}
                       autoComplete="off"
                       id="lastName"
-                      onChange={(e) => onHandleChange(e, "last")}
-                      onBlur = {(e) => onHandleBlur(e, "last")}
+                      onChange={(e) => onHandleChange(e)}
+                      onBlur={(e) => onHandleBlur(e, "last")}
                     />
+                    {
+                      (DtCheck3 == 0 && userData.lastName != "") ? (<div className="errr">Last Name must be 2 to 15 chars and letters only</div>) : (<div></div>)
+                    }
                   </FormControl>
                 </div>
                 <div className="personPhotos">
@@ -245,9 +236,12 @@ const Infos = () => {
                       required={true}
                       autoComplete="off"
                       id="email"
-                      onChange={(e) => onHandleChange(e, "mail")}
-                      onBlur = {(e) => onHandleBlur(e, "mail")}
+                      onChange={(e) => onHandleChange(e)}
+                      onBlur={(e) => onHandleBlur(e, "mail")}
                     />
+                    {
+                      (DtCheck4 == 0 && userData.email != "") ? (<div className="errr">Not a valid Email format</div>) : (<div></div>)
+                    }
                   </FormControl>
                   <FormControl className="separate">
                     <InputLabel htmlFor="password">Password</InputLabel>
@@ -256,17 +250,25 @@ const Infos = () => {
                       autoComplete="off"
                       type="password"
                       id="password"
-                      onChange={(e) => onHandleChange(e, "password")}
-                      onBlur = {(e) => onHandleBlur(e, "password")}
+                      onChange={(e) => onHandleChange(e)}
+                      onBlur={(e) => onHandleBlur(e, "password")}
                     />
+                    {
+                      (DtCheck0 == 0 && userData.password != "") ? (<div className="errr">8 to 16 chars (lowercase, uppercase, number, symbol)</div>) : (<div></div>)
+                    }
                   </FormControl>
                 </div>
               </div>
               <Button
                 type="submit"
                 className="subregister submitbutton"
+                // style={{ color: "white" }}
                 variant="contained"
-                disabled={(DtCheck0 + DtCheck1 + DtCheck2 + DtCheck3 + DtCheck4) == 5 ? true : false}
+                disabled={
+                  DtCheck0 + DtCheck1 + DtCheck2 + DtCheck3 + DtCheck4 == 5
+                    ? false
+                    : true
+                }
               >
                 Submit
               </Button>
