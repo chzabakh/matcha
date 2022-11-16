@@ -27,6 +27,7 @@ import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import MyTags from "../components/Tags.jsx";
 import NavbarLogged from "../components/NavbarLogged";
 import { useHistory } from "react-router-dom";
+import axios from "axios";
 
 const InfosCont = styled.div`
   .infos {
@@ -159,6 +160,20 @@ const InfosCont = styled.div`
 `;
 
 const CompleteProfile = () => {
+  
+  const history = useHistory();
+
+  const [userData2, setUserData2] = useState({
+    birthday: "",
+    gender: "",
+    sexualPreferences: "",
+    biography: "",
+    city: "",
+    latitude: 0.0,
+    longitude: 0.0,
+    tags: [],
+  });
+
   const [selectedDate, setSelectedDate] = useState(null);
   const [avatar0, setAvatar0] = useState(userAvatar);
   const [avatar1, setAvatar1] = useState(userAvatar);
@@ -232,13 +247,16 @@ const CompleteProfile = () => {
       const res = await axios.post("http://localhost:3001/register", {
         ...userData2,
       });
-      console.log("test" + res.status);
       history.push("/account_success");
     } catch (err) {
       history.push("/account_failed");
     }
 };
 
+const onHandleChange = (e) => {
+  setUserData2({ ...userData2, [e.target.id]: e.target.value });
+};
+const formerror = [M, F].filter((v) => v).length !== 1;
   return (
     <InfosCont>
       <div className="main-container">
@@ -249,7 +267,7 @@ const CompleteProfile = () => {
             <form onSubmit={onSubmitForm2}>
               <div className="twoFlex">
                 <div className="personDetails">
-                  <FormControl className="separate">
+                  <FormControl required error={formerror} className="separate">
                     <FormLabel
                       className="gender"
                       id="demo-row-radio-buttons-group-label"
@@ -262,6 +280,7 @@ const CompleteProfile = () => {
                       aria-labelledby="demo-row-radio-buttons-group-label"
                       name="row-radio-buttons-group"
                       aria-required={true}
+                      
                     >
                       <FormControlLabel
                         className="bday"
