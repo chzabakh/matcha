@@ -160,7 +160,8 @@ const InfosCont = styled.div`
 `;
 
 const CompleteProfile = () => {
-  
+  console.log("spm " + spm);
+  console.log("spf " + spf);
   const history = useHistory();
 
   const [userData2, setUserData2] = useState({
@@ -253,10 +254,22 @@ const CompleteProfile = () => {
     }
 };
 
+const formerror = () => {
+
+};
+
 const onHandleChange = (e) => {
   setUserData2({ ...userData2, [e.target.id]: e.target.value });
 };
-const formerror = [M, F].filter((v) => v).length !== 1;
+const [spm, setspm] = useState(false);
+const [spf, setspf] = useState(false);
+const handleChangem = (e) => {
+  setspm(e.target.checked);
+}
+const handleChangef = (e) => {
+  setspf(e.target.checked);
+}
+// const formerror = [M, F].filter((v) => v).length !== 1;
   return (
     <InfosCont>
       <div className="main-container">
@@ -297,11 +310,18 @@ const formerror = [M, F].filter((v) => v).length !== 1;
                     </RadioGroup>
                   </FormControl>
 
+
+
+
                   <FormGroup className="bday">
                     Sexual Preferences
-                    <FormControlLabel control={<Checkbox />} label="Males" />
-                    <FormControlLabel control={<Checkbox />} label="Females" />
+                    <FormControlLabel control={<Checkbox checked={spm} onChange={handleChangem}/>} label="Males" />
+                    <FormControlLabel control={<Checkbox checked={spf} onChange={handleChangef}/>} label="Females" />
                   </FormGroup>
+
+
+
+
 
                   <p className="separate bday">
                     <br />
