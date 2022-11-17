@@ -160,8 +160,6 @@ const InfosCont = styled.div`
 `;
 
 const CompleteProfile = () => {
-  console.log("spm " + spm);
-  console.log("spf " + spf);
   const history = useHistory();
 
   const [userData2, setUserData2] = useState({
@@ -252,24 +250,25 @@ const CompleteProfile = () => {
     } catch (err) {
       history.push("/account_failed");
     }
-};
+  };
 
-const formerror = () => {
+  const formerror = () => {};
 
-};
-
-const onHandleChange = (e) => {
-  setUserData2({ ...userData2, [e.target.id]: e.target.value });
-};
-const [spm, setspm] = useState(false);
-const [spf, setspf] = useState(false);
-const handleChangem = (e) => {
-  setspm(e.target.checked);
-}
-const handleChangef = (e) => {
-  setspf(e.target.checked);
-}
-// const formerror = [M, F].filter((v) => v).length !== 1;
+  const onHandleChange = (e) => {
+    setUserData2({ ...userData2, [e.target.id]: e.target.value });
+  };
+  const [gender, setgender] = useState('');
+  const [spm, setspm] = useState(false);
+  const [spf, setspf] = useState(false);
+  const handleChangem = (e) => {
+    setspm(e.target.checked);
+  };
+  const handleChangef = (e) => {
+    setspf(e.target.checked);
+  };
+  console.log("spm " + spm);
+  console.log("spf " + spf);
+  // const formerror = [M, F].filter((v) => v).length !== 1;
   return (
     <InfosCont>
       <div className="main-container">
@@ -280,10 +279,13 @@ const handleChangef = (e) => {
             <form onSubmit={onSubmitForm2}>
               <div className="twoFlex">
                 <div className="personDetails">
-                  <FormControl required error={formerror} className="separate">
+                  <FormControl
+                    required
+                    /*error={formerror}*/ className="separate"
+                  >
                     <FormLabel
                       className="gender"
-                      id="demo-row-radio-buttons-group-label"
+                      id="gender"
                     >
                       Gender
                     </FormLabel>
@@ -293,7 +295,6 @@ const handleChangef = (e) => {
                       aria-labelledby="demo-row-radio-buttons-group-label"
                       name="row-radio-buttons-group"
                       aria-required={true}
-                      
                     >
                       <FormControlLabel
                         className="bday"
@@ -312,13 +313,23 @@ const handleChangef = (e) => {
 
 
 
-
-                  <FormGroup className="bday">
-                    Sexual Preferences
-                    <FormControlLabel control={<Checkbox checked={spm} onChange={handleChangem}/>} label="Males" />
-                    <FormControlLabel control={<Checkbox checked={spf} onChange={handleChangef}/>} label="Females" />
-                  </FormGroup>
-
+                  <FormControl required>
+                    <FormGroup className="bday">
+                      Sexual Preferences
+                      <FormControlLabel
+                        control={
+                          <Checkbox checked={spm} onChange={handleChangem} />
+                        }
+                        label="Males"
+                      />
+                      <FormControlLabel
+                        control={
+                          <Checkbox checked={spf} onChange={handleChangef} />
+                        }
+                        label="Females"
+                      />
+                    </FormGroup>
+                  </FormControl>
 
 
 
