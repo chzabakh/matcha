@@ -261,6 +261,7 @@ const CompleteProfile = () => {
   const [spm, setspm] = useState(false);
   const [spf, setspf] = useState(false);
   const handleChangem = (e) => {
+    setUserData2({...userData2, sexualPreferences: "M"})
     setspm(e.target.checked);
   };
   const handleChangef = (e) => {
@@ -268,11 +269,13 @@ const CompleteProfile = () => {
   };
   const genderChange = (e) => {
     setgender(e.target.value);
+    setUserData2({...userData2, gender: e.target.value});
 
   }
   console.log("spm " + spm);
   console.log("spf " + spf);
   console.log("gender " + gender);
+  console.log(userData2);
   // const formerror = [M, F].filter((v) => v).length !== 1;
   return (
     <InfosCont>
@@ -285,7 +288,6 @@ const CompleteProfile = () => {
               <div className="twoFlex">
                 <div className="personDetails">
                   <FormControl
-                    required
                     /*error={formerror}*/ className="separate"
                   >
                     <FormLabel
@@ -305,13 +307,13 @@ const CompleteProfile = () => {
                     >
                       <FormControlLabel
                         className="bday"
-                        value="male"
+                        value="M"
                         control={<Radio />}
                         label="Male"
                       />
                       <FormControlLabel
                         className="bday"
-                        value="female"
+                        value="F"
                         control={<Radio />}
                         label="Female"
                       />
@@ -324,7 +326,7 @@ const CompleteProfile = () => {
                       <p className="bday">
                         Sexual Preferences
                         </p>
-                    <FormGroup row className="bday">
+                    <FormGroup row className="separate bday">
                       <FormControlLabel
                         control={
                           <Checkbox checked={spm} onChange={handleChangem} />
@@ -344,7 +346,7 @@ const CompleteProfile = () => {
 
 
                   <p className="separate bday">
-                    <br />
+                    <br/>
                     Birthdate
                   </p>
                   <div className="date separate bday test button">
