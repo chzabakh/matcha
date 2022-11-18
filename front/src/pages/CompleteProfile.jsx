@@ -2,7 +2,7 @@ import "../styles/index.scss";
 import "react-datepicker/dist/react-datepicker.css";
 import "react-calendar/dist/Calendar.css";
 import userAvatar from "../images/imgPlaceholder.webp";
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import Navbar from "../components/Navbar.jsx";
 import Footbar from "../components/Footbar.jsx";
@@ -164,8 +164,8 @@ const CompleteProfile = () => {
 
   const [userData2, setUserData2] = useState({
     birthday: "",
-    gender: "",
-    sexualPreferences: "",
+    gender: "N",
+    sexualPreferences: "N",
     biography: "",
     city: "",
     latitude: 0.0,
@@ -260,13 +260,41 @@ const CompleteProfile = () => {
   const [gender, setgender] = useState('');
   const [spm, setspm] = useState(false);
   const [spf, setspf] = useState(false);
+
   const handleChangem = (e) => {
-    setUserData2({...userData2, sexualPreferences: "M"})
+    // setUserData2({...userData2, sexualPreferences: "N"});
     setspm(e.target.checked);
+    // if ((spm && spf) || (!spm && !spf))
+    // {
+    //   setUserData2({...userData2, sexualPreferences: "M"});
+    // }
   };
+  
   const handleChangef = (e) => {
+    // setUserData2({...userData2, sexualPreferences: "N"});
     setspf(e.target.checked);
+    // if ((spm && spf) || (!spm && !spf))
+    // {
+    // setUserData2({...userData2, sexualPreferences: "F"});
+    // }
   };
+
+  useEffect(() => {
+    if ((spm == false && spf == false) || (spm == true && spf == true))
+    {
+      setUserData2({...userData2, sexualPreferences: "N"});
+    }
+    else if (spm == true && spf == false)
+    {
+      setUserData2({...userData2, sexualPreferences: "M"});
+    }
+    else if (spf == true && spm == false)
+    {
+      setUserData2({...userData2, sexualPreferences: "F"});
+    }
+  }, [spm, spf]
+  );
+
   const genderChange = (e) => {
     setgender(e.target.value);
     setUserData2({...userData2, gender: e.target.value});
@@ -360,12 +388,13 @@ const CompleteProfile = () => {
 
                   <StyledTextField
                     className="separate bday"
-                    id="outlined-multiline-static"
+                    id="biography"
                     placeholder="Max 150 Characters"
                     multiline
                     // fullWidth
                     rows={7}
                     inputProps={{ maxLength: 150 }}
+                    onChange={onHandleChange}
                   />
                 </div>
 
