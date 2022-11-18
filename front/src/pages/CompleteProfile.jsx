@@ -266,8 +266,13 @@ const CompleteProfile = () => {
   const handleChangef = (e) => {
     setspf(e.target.checked);
   };
+  const genderChange = (e) => {
+    setgender(e.target.value);
+
+  }
   console.log("spm " + spm);
   console.log("spf " + spf);
+  console.log("gender " + gender);
   // const formerror = [M, F].filter((v) => v).length !== 1;
   return (
     <InfosCont>
@@ -295,6 +300,8 @@ const CompleteProfile = () => {
                       aria-labelledby="demo-row-radio-buttons-group-label"
                       name="row-radio-buttons-group"
                       aria-required={true}
+                      value={gender}
+                      onChange={genderChange}
                     >
                       <FormControlLabel
                         className="bday"
@@ -314,8 +321,10 @@ const CompleteProfile = () => {
 
 
                   <FormControl required>
-                    <FormGroup className="bday">
-                      Sexual Preferences
+                      <p className="bday">
+                        Sexual Preferences
+                        </p>
+                    <FormGroup row className="bday">
                       <FormControlLabel
                         control={
                           <Checkbox checked={spm} onChange={handleChangem} />
