@@ -2,7 +2,7 @@ import "../styles/index.scss";
 import "react-datepicker/dist/react-datepicker.css";
 import "react-calendar/dist/Calendar.css";
 import userAvatar from "../images/imgPlaceholder.webp";
-import React, { useEffect } from "react";
+import React, { useEffect, createContext } from "react";
 import styled from "styled-components";
 import Navbar from "../components/Navbar.jsx";
 import Footbar from "../components/Footbar.jsx";
@@ -28,6 +28,7 @@ import MyTags from "../components/Tags.jsx";
 import NavbarLogged from "../components/NavbarLogged";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
+export const DateContext = createContext(null);
 
 const InfosCont = styled.div`
   .infos {
@@ -260,7 +261,8 @@ const CompleteProfile = () => {
   const [gender, setgender] = useState('');
   const [spm, setspm] = useState(false);
   const [spf, setspf] = useState(false);
-
+  const [bdate, setbdate] = useState("")
+  const bd = "";
   const handleChangem = (e) => {
     // setUserData2({...userData2, sexualPreferences: "N"});
     setspm(e.target.checked);
@@ -378,7 +380,11 @@ const CompleteProfile = () => {
                     Birthdate
                   </p>
                   <div className="date separate bday test button">
+                    <DateContext.Provider value={bd}>
+                    {console.log(bd)}
+
                     <MyDate className="button" />
+                    </DateContext.Provider>
                   </div>
 
                   <p className="separate bday">

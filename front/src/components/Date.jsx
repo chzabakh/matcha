@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import DatePicker from "react-datepicker";
 import styled from "styled-components";
 
@@ -14,6 +14,9 @@ const DatePickerStyled = styled(DatePicker)`
 
 const Mydate = () => {
   const [startDate, setStartDate] = useState(null);
+  const dt = useContext(DateContext);
+  {dt = startDate}
+  // {console.log(startDate)}
   return (
     <DatePickerStyled
       minDate={addMonths(new Date(), -958)}
@@ -28,8 +31,8 @@ const Mydate = () => {
       scrollableYearDropdown
       dropdownMode="select"
       selected={startDate}
-      onChange={(date) => setStartDate(date)}
-    />
+      onChange={(date) => setStartDate(date)} 
+      />
   );
 };
 
