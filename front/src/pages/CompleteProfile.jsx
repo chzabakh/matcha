@@ -189,6 +189,7 @@ const CompleteProfile = () => {
   const [isuploaded2, setIsuploaded2] = useState(0);
   const [isuploaded3, setIsuploaded3] = useState(0);
   const [isuploaded4, setIsuploaded4] = useState(0);
+  const [startDate, setStartDate] = useState(null);
 
   const imageHandler = (event) => {
     console.log(event.target.name);
@@ -242,15 +243,19 @@ const CompleteProfile = () => {
   };
 
   const onSubmitForm2 = async (e) => {
+    console.log("hello");
+    console.log(startDate );
+    console.log("hello");
+
     e.preventDefault();
-    try {
-      const res = await axios.post("http://localhost:3001/register", {
-        ...userData2,
-      });
-      history.push("/account_success");
-    } catch (err) {
-      history.push("/account_failed");
-    }
+    // try {
+    //   const res = await axios.post("http://localhost:3001/register", {
+    //     ...userData2,
+    //   });
+    //   history.push("/account_success");
+    // } catch (err) {
+    //   history.push("/account_failed");
+    // }
   };
 
   const formerror = () => {};
@@ -258,10 +263,10 @@ const CompleteProfile = () => {
   const onHandleChange = (e) => {
     setUserData2({ ...userData2, [e.target.id]: e.target.value });
   };
-  const [gender, setgender] = useState('');
+  const [gender, setgender] = useState("");
   const [spm, setspm] = useState(false);
   const [spf, setspf] = useState(false);
-  const [bdate, setbdate] = useState("")
+  const [bdate, setbdate] = useState("");
   const bd = "";
   const handleChangem = (e) => {
     // setUserData2({...userData2, sexualPreferences: "N"});
@@ -271,7 +276,7 @@ const CompleteProfile = () => {
     //   setUserData2({...userData2, sexualPreferences: "M"});
     // }
   };
-  
+
   const handleChangef = (e) => {
     // setUserData2({...userData2, sexualPreferences: "N"});
     setspf(e.target.checked);
@@ -282,26 +287,19 @@ const CompleteProfile = () => {
   };
 
   useEffect(() => {
-    if ((spm == false && spf == false) || (spm == true && spf == true))
-    {
-      setUserData2({...userData2, sexualPreferences: "N"});
+    if ((spm == false && spf == false) || (spm == true && spf == true)) {
+      setUserData2({ ...userData2, sexualPreferences: "N" });
+    } else if (spm == true && spf == false) {
+      setUserData2({ ...userData2, sexualPreferences: "M" });
+    } else if (spf == true && spm == false) {
+      setUserData2({ ...userData2, sexualPreferences: "F" });
     }
-    else if (spm == true && spf == false)
-    {
-      setUserData2({...userData2, sexualPreferences: "M"});
-    }
-    else if (spf == true && spm == false)
-    {
-      setUserData2({...userData2, sexualPreferences: "F"});
-    }
-  }, [spm, spf]
-  );
+  }, [spm, spf]);
 
   const genderChange = (e) => {
     setgender(e.target.value);
-    setUserData2({...userData2, gender: e.target.value});
-
-  }
+    setUserData2({ ...userData2, gender: e.target.value });
+  };
   console.log("spm " + spm);
   console.log("spf " + spf);
   console.log("gender " + gender);
@@ -317,13 +315,8 @@ const CompleteProfile = () => {
             <form onSubmit={onSubmitForm2}>
               <div className="twoFlex">
                 <div className="personDetails">
-                  <FormControl
-                    /*error={formerror}*/ className="separate"
-                  >
-                    <FormLabel
-                      className="gender"
-                      id="gender"
-                    >
+                  <FormControl /*error={formerror}*/ className="separate">
+                    <FormLabel className="gender" id="gender">
                       Gender
                     </FormLabel>
                     <RadioGroup
@@ -350,12 +343,8 @@ const CompleteProfile = () => {
                     </RadioGroup>
                   </FormControl>
 
-
-
                   <FormControl required>
-                      <p className="bday">
-                        Sexual Preferences
-                        </p>
+                    <p className="bday">Sexual Preferences</p>
                     <FormGroup row className="separate bday">
                       <FormControlLabel
                         control={
@@ -372,19 +361,16 @@ const CompleteProfile = () => {
                     </FormGroup>
                   </FormControl>
 
-
-
-
                   <p className="separate bday">
-                    <br/>
+                    <br />
                     Birthdate
                   </p>
                   <div className="date separate bday test button">
-                    <DateContext.Provider value={bd}>
-                    {console.log(bd)}
-
-                    <MyDate className="button" />
-                    </DateContext.Provider>
+                    <MyDate
+                      className="button"
+                      startDate={startDate}
+                      setStartDate={setStartDate}
+                    />
                   </div>
 
                   <p className="separate bday">

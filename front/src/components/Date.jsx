@@ -12,10 +12,10 @@ const DatePickerStyled = styled(DatePicker)`
   padding-left: 0.5rem;
 `;
 
-const Mydate = () => {
-  const [startDate, setStartDate] = useState(null);
-  const dt = useContext(DateContext);
-  {dt = startDate}
+const Mydate = ({
+startDate, setStartDate
+
+}) => {
   // {console.log(startDate)}
   return (
     <DatePickerStyled
