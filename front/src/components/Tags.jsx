@@ -1,26 +1,33 @@
+import { SettingsAccessibility } from "@mui/icons-material";
 import React, { useState } from "react";
 import { TagsInput } from "react-tag-input-component";
 import "../styles/tags.css";
 
-const MyTags = () => {
-  const [selected, setSelected] = useState([]);
+const MyTags = ({tags, settags}) => {
+
+
 
   const onTagsChange = (e) => {
-    setSelected(e);
+    const custom = e.map(x => x[0] != '#' ? '# ' + x + ' ' : x);
+    settags(custom);
   };
   const check = (e) => {
-    if (selected.length < 5 && e.length < 20) {
-      console.log(selected[0]);
+    if (tags.length < 5 && e.length < 20) {
+      console.log(tags[tags.length - 1]);
       return true;
     }
+    
   };
   return (
     <TagsInput
-      value={selected}
+      value={tags}
+      // value={e => diez(e, tags)}
       onChange={onTagsChange}
       beforeAddValidate={check}
       name="userTags"
-      placeHolder="Enter Tag"
+      placeHolder="Add Tag"
+      separators={["Enter", " "]}
+      onExisting
     />
   );
 };

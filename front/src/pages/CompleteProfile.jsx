@@ -164,7 +164,7 @@ const CompleteProfile = () => {
   const history = useHistory();
 
   const [userData2, setUserData2] = useState({
-    birthday: "",
+    birthday: "N",
     gender: "N",
     sexualPreferences: "N",
     biography: "",
@@ -190,6 +190,7 @@ const CompleteProfile = () => {
   const [isuploaded3, setIsuploaded3] = useState(0);
   const [isuploaded4, setIsuploaded4] = useState(0);
   const [startDate, setStartDate] = useState(null);
+  const [tags, settags] = useState('');
 
   const imageHandler = (event) => {
     console.log(event.target.name);
@@ -243,9 +244,11 @@ const CompleteProfile = () => {
   };
 
   const onSubmitForm2 = async (e) => {
-    console.log("hello");
-    console.log(startDate );
-    console.log("hello");
+    // console.log("hello");
+    // console.log(startDate );
+    // const hh = startDate.toISOString().split('T')[0];
+    // console.log(hh );
+    // console.log("hello");
 
     e.preventDefault();
     // try {
@@ -286,6 +289,10 @@ const CompleteProfile = () => {
     // }
   };
 
+  const hello = () => {
+    console.log('test');
+  }
+
   useEffect(() => {
     if ((spm == false && spf == false) || (spm == true && spf == true)) {
       setUserData2({ ...userData2, sexualPreferences: "N" });
@@ -295,6 +302,18 @@ const CompleteProfile = () => {
       setUserData2({ ...userData2, sexualPreferences: "F" });
     }
   }, [spm, spf]);
+
+  useEffect(() => {
+    if (startDate)
+    setUserData2({ ...userData2, birthday: startDate.toISOString().split('T')[0]});
+    console.log(userData2.birthday );
+
+  }, [startDate]);
+
+  useEffect(() => {
+    if (tags)
+    setUserData2({ ...userData2, tags: tags});
+  }, [tags])
 
   const genderChange = (e) => {
     setgender(e.target.value);
@@ -370,6 +389,7 @@ const CompleteProfile = () => {
                       className="button"
                       startDate={startDate}
                       setStartDate={setStartDate}
+                      onChange={hello}
                     />
                   </div>
 
@@ -650,7 +670,8 @@ const CompleteProfile = () => {
                   </div>
                   <p className="separate bday tagsfix">Add Tags (max 5)</p>
                   <div className="date separate bday test button">
-                    <MyTags className="separate bday" />
+                    <MyTags className="separate bday" tags={tags} settags={settags} />
+                    <em>press enter or space to add new tag</em>
                   </div>
                 </div>
               </div>
