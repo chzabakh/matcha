@@ -8,7 +8,7 @@ const MyTags = ({tags, settags}) => {
 
 
   const onTagsChange = (e) => {
-    const custom = e.map(x => x[0] != '#' ? '# ' + x + ' ' : x);
+    const custom = e.map(x => x[0] != '#' ? '#' + x : x);
     settags(custom);
   };
   const check = (e) => {
