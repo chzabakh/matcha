@@ -198,6 +198,7 @@ const CompleteProfile = () => {
 
     reader.onload = () => {
       if (reader.readyState === 2) {
+        console.log(reader);
         if (event.target.name === "img0") {
           setAvatar0(reader.result);
           setIsuploaded0(1);
@@ -251,14 +252,14 @@ const CompleteProfile = () => {
     // console.log("hello");
 
     e.preventDefault();
-    // try {
-    //   const res = await axios.post("http://localhost:3001/register", {
-    //     ...userData2,
-    //   });
-    //   history.push("/account_success");
-    // } catch (err) {
-    //   history.push("/account_failed");
-    // }
+    try {
+      const res = await axios.post("http://localhost:3001/register", {
+        ...userData2,
+      });
+      history.push("/account_success");
+    } catch (err) {
+      history.push("/account_failed");
+    }
   };
 
   const formerror = () => {};

@@ -134,7 +134,7 @@ const Infos = () => {
         setDtCheck1(0);
       }
     } else if (type == "first") {
-      if (/^[a-z]{2,15} ?[a-z]{2,15}$/.test(e.target.value)) {
+      if (/^[a-zA-Z]{2,15} ?[a-zA-Z]{2,15}$/.test(e.target.value)) {
         setUserData({ ...userData, [e.target.id]: e.target.value });
         setDtCheck2(1);
       } else {
@@ -142,7 +142,7 @@ const Infos = () => {
         setDtCheck2(0);
       }
     } else if (type == "last") {
-      if (/^[a-z]{2,15} ?[a-z]{2,15}$/.test(e.target.value)) {
+      if (/^[a-zA-Z]{2,15} ?[a-zA-Z]{2,15}$/.test(e.target.value)) {
         setUserData({ ...userData, [e.target.id]: e.target.value });
         setDtCheck3(1);
       } else {
@@ -150,7 +150,7 @@ const Infos = () => {
         setDtCheck3(0);
       }
     } else if (type == "mail") {
-      if (/^[a-z]{1,15}\@[a-z]{1,15}\.[a-z]{1,10}$/.test(e.target.value)) {
+      if (/^\w{1,25}\@[a-zA-Z]{1,20}\.[a-zA-Z]{1,10}$/.test(e.target.value)) {
         setUserData({ ...userData, [e.target.id]: e.target.value });
         setDtCheck4(1);
       } else {
