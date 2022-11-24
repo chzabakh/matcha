@@ -192,30 +192,46 @@ const CompleteProfile = () => {
   const [startDate, setStartDate] = useState(null);
   const [tags, settags] = useState('');
 
+  const [image0, setImage0] = useState('');
+  const [image1, setImage1] = useState('');
+  const [image2, setImage2] = useState('');
+  const [image3, setImage3] = useState('');
+  const [image4, setImage4] = useState('');
+
   const imageHandler = (event) => {
     console.log(event.target.name);
+    console.log('gggggggggg')
+    console.log(event.target.files);
     const reader = new FileReader();
 
     reader.onload = () => {
       if (reader.readyState === 2) {
-        console.log(reader);
+        // console.log(reader);
         if (event.target.name === "img0") {
+          setImage0(event.target.files[0]);
           setAvatar0(reader.result);
           setIsuploaded0(1);
         } else if (event.target.name === "img1") {
           setAvatar1(reader.result);
+          setImage1(event.target.files[0]);
+          
           setIsuploaded1(1);
         } else if (event.target.name === "img2") {
           setAvatar2(reader.result);
+          setImage2(event.target.files[0]);
           setIsuploaded2(1);
         } else if (event.target.name === "img3") {
           setAvatar3(reader.result);
+          setImage3(event.target.files[0]);
           setIsuploaded3(1);
         } else if (event.target.name === "img4") {
           setAvatar4(reader.result);
+          setImage4(event.target.files[0]);
           setIsuploaded4(1);
         }
       }
+      console.log('thiiiiiis');
+      console.log(event.target.files[0]);
     };
     reader.readAsDataURL(event.target.files[0]);
   };
