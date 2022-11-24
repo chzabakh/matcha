@@ -214,7 +214,6 @@ const CompleteProfile = () => {
         } else if (event.target.name === "img1") {
           setAvatar1(reader.result);
           setImage1(event.target.files[0]);
-          
           setIsuploaded1(1);
         } else if (event.target.name === "img2") {
           setAvatar2(reader.result);
@@ -231,9 +230,9 @@ const CompleteProfile = () => {
         }
       }
       console.log('thiiiiiis');
-      console.log(event.target.files[0]);
     };
     reader.readAsDataURL(event.target.files[0]);
+   
   };
 
   const deleteImage = (event, pp) => {
@@ -241,19 +240,24 @@ const CompleteProfile = () => {
     console.log(event);
     if (pp === "img0") {
       setAvatar0(userAvatar);
+      setImage0('');
       setIsuploaded0(0);
       console.log("hello");
     } else if (pp === "img1") {
       setAvatar1(userAvatar);
+      setImage1('');
       setIsuploaded1(0);
     } else if (pp === "img2") {
       setAvatar2(userAvatar);
+      setImage2('');
       setIsuploaded2(0);
     } else if (pp === "img3") {
       setAvatar3(userAvatar);
+      setImage3('');
       setIsuploaded3(0);
     } else if (pp === "img4") {
       setAvatar4(userAvatar);
+      setImage3('');
       setIsuploaded4(0);
     }
     // setAvatar0(userAvatar);
@@ -333,6 +337,11 @@ const CompleteProfile = () => {
   }, [tags])
 
   const genderChange = (e) => {
+    console.log(image0);
+    console.log(image1);
+    console.log(image2);
+    console.log(image3);
+    console.log(image4);
     setgender(e.target.value);
     setUserData2({ ...userData2, gender: e.target.value });
   };
