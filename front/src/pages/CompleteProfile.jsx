@@ -164,6 +164,7 @@ const CompleteProfile = () => {
   const history = useHistory();
 
   const [userData2, setUserData2] = useState({
+    images: [],
     birthday: "N",
     gender: "N",
     sexualPreferences: "N",
@@ -208,23 +209,28 @@ const CompleteProfile = () => {
       if (reader.readyState === 2) {
         // console.log(reader);
         if (event.target.name === "img0") {
+          userData2.images[0] = event.target.files[0];
           setImage0(event.target.files[0]);
           setAvatar0(reader.result);
           setIsuploaded0(1);
         } else if (event.target.name === "img1") {
           setAvatar1(reader.result);
+          userData2.images[1] = event.target.files[0];
           setImage1(event.target.files[0]);
           setIsuploaded1(1);
         } else if (event.target.name === "img2") {
           setAvatar2(reader.result);
+          userData2.images[2] = event.target.files[0];
           setImage2(event.target.files[0]);
           setIsuploaded2(1);
         } else if (event.target.name === "img3") {
           setAvatar3(reader.result);
+          userData2.images[3] = event.target.files[0];
           setImage3(event.target.files[0]);
           setIsuploaded3(1);
         } else if (event.target.name === "img4") {
           setAvatar4(reader.result);
+          userData2.images[4] = event.target.files[0];
           setImage4(event.target.files[0]);
           setIsuploaded4(1);
         }
@@ -273,9 +279,33 @@ const CompleteProfile = () => {
 
     e.preventDefault();
     try {
+      const profileImage = new FormData();
+      const feedImages = new FormData();
+      if (userData2.images[0])
+      {
+        profileImage.append('image[]', userData2.images[0]);
+      }
+      if (userData2.images[1])
+      {
+        feedImages.append('images[]', userData2.images[1]);
+      }
+      if (userData2.images[2])
+      {
+      feedImages.append('images[]', userData2.images[2]);
+      }
+      if (userData2.images[3])
+      {
+      feedImages.append('images[]', userData2.images[3]);
+      }
+      if (userData2.images[4])
+      {
+      feedImages.append('images[]', userData2.images[4]);
+      }
       const res = await axios.post("http://localhost:3001/register", {
         ...userData2,
       });
+      const res1 = await axios.post("http://localhost:3001/upload_profile_image", profileImage)
+      const res2 = await axios.post("http://localhost:3001/upload_feed_images", profileImage)
       history.push("/account_success");
     } catch (err) {
       history.push("/account_failed");
@@ -350,6 +380,21 @@ const CompleteProfile = () => {
   console.log("gender " + gender);
   console.log(userData2);
   // const formerror = [M, F].filter((v) => v).length !== 1;
+
+ const getLocation = (e) => {
+
+   
+   navigator.geolocation.getCurrentPosition(function(position) {
+     
+     console.log("Latitude is :", position.coords.latitude);
+     
+     console.log("Longitude is :", position.coords.longitude);
+     
+    });
+  }
+
+ 
+
   return (
     <InfosCont>
       <div className="main-container">
@@ -434,8 +479,19 @@ const CompleteProfile = () => {
                     inputProps={{ maxLength: 150 }}
                     onChange={onHandleChange}
                   />
-                </div>
 
+                <p className="separate bday">
+                    <br />
+                    Location
+                  </p>
+                  <div className="date separate bdday test button">
+                    <Button onClick={getLocation}>Get my Position</Button>
+                    
+                    {userData2.city != '' ? <div><br/>{userData2.city} </div> : null}
+                  </div>
+
+
+                      </div>
                 <div className="personPhotos">
                   <div className="personPhotosfix">
                     <p className="separate bday">
