@@ -317,6 +317,7 @@ const CompleteProfile = () => {
   const onHandleChange = (e) => {
     setUserData2({ ...userData2, [e.target.id]: e.target.value });
   };
+  const [city, setCity] = useState("");
   const [gender, setgender] = useState("");
   const [spm, setspm] = useState(false);
   const [spf, setspf] = useState(false);
@@ -384,9 +385,14 @@ const CompleteProfile = () => {
  const getLocation = (e) => {
 
    
-   navigator.geolocation.getCurrentPosition(function(position) {
-     
+   navigator.geolocation.getCurrentPosition(async function(position) {
+
+    userData2.city = await axios.get('https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=37.42159&longitude=-122.0837&localityLanguage=en');
+
      console.log("Latitude is :", position.coords.latitude);
+     userData2.city = userData2.city.data.city;
+     setCity(userData2.city);
+     console.log(userData2.city);
      
      console.log("Longitude is :", position.coords.longitude);
      
@@ -485,9 +491,9 @@ const CompleteProfile = () => {
                     Location
                   </p>
                   <div className="date separate bdday test button">
-                    <Button onClick={getLocation}>Get my Position</Button>
-                    
-                    {userData2.city != '' ? <div><br/>{userData2.city} </div> : null}
+                    <Button className="date" style={{marginTop: "5px", marginBottom: "5px"}} onClick={getLocation}>Get my Position</Button>
+                    {/* <div style={{marginTop: "5px", marginBottom: "5px"}}><br/>{userData2.city} </div> */}
+                    {userData2.city == "" ? null : <div style={{marginTop: "5px", marginBottom: "5px"}}><br/>{city} </div>}
                   </div>
 
 
