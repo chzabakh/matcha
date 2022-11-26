@@ -191,17 +191,17 @@ const CompleteProfile = () => {
   const [isuploaded3, setIsuploaded3] = useState(0);
   const [isuploaded4, setIsuploaded4] = useState(0);
   const [startDate, setStartDate] = useState(null);
-  const [tags, settags] = useState('');
+  const [tags, settags] = useState("");
 
-  const [image0, setImage0] = useState('');
-  const [image1, setImage1] = useState('');
-  const [image2, setImage2] = useState('');
-  const [image3, setImage3] = useState('');
-  const [image4, setImage4] = useState('');
+  const [image0, setImage0] = useState("");
+  const [image1, setImage1] = useState("");
+  const [image2, setImage2] = useState("");
+  const [image3, setImage3] = useState("");
+  const [image4, setImage4] = useState("");
 
   const imageHandler = (event) => {
     console.log(event.target.name);
-    console.log('gggggggggg')
+    console.log("gggggggggg");
     console.log(event.target.files);
     const reader = new FileReader();
 
@@ -235,10 +235,9 @@ const CompleteProfile = () => {
           setIsuploaded4(1);
         }
       }
-      console.log('thiiiiiis');
+      console.log("thiiiiiis");
     };
     reader.readAsDataURL(event.target.files[0]);
-   
   };
 
   const deleteImage = (event, pp) => {
@@ -246,24 +245,24 @@ const CompleteProfile = () => {
     console.log(event);
     if (pp === "img0") {
       setAvatar0(userAvatar);
-      setImage0('');
+      setImage0("");
       setIsuploaded0(0);
       console.log("hello");
     } else if (pp === "img1") {
       setAvatar1(userAvatar);
-      setImage1('');
+      setImage1("");
       setIsuploaded1(0);
     } else if (pp === "img2") {
       setAvatar2(userAvatar);
-      setImage2('');
+      setImage2("");
       setIsuploaded2(0);
     } else if (pp === "img3") {
       setAvatar3(userAvatar);
-      setImage3('');
+      setImage3("");
       setIsuploaded3(0);
     } else if (pp === "img4") {
       setAvatar4(userAvatar);
-      setImage3('');
+      setImage3("");
       setIsuploaded4(0);
     }
     // setAvatar0(userAvatar);
@@ -281,31 +280,32 @@ const CompleteProfile = () => {
     try {
       const profileImage = new FormData();
       const feedImages = new FormData();
-      if (userData2.images[0])
-      {
-        profileImage.append('image[]', userData2.images[0]);
+      if (userData2.images[0]) {
+        profileImage.append("image[]", userData2.images[0]);
       }
-      if (userData2.images[1])
-      {
-        feedImages.append('images[]', userData2.images[1]);
+      if (userData2.images[1]) {
+        feedImages.append("images[]", userData2.images[1]);
       }
-      if (userData2.images[2])
-      {
-      feedImages.append('images[]', userData2.images[2]);
+      if (userData2.images[2]) {
+        feedImages.append("images[]", userData2.images[2]);
       }
-      if (userData2.images[3])
-      {
-      feedImages.append('images[]', userData2.images[3]);
+      if (userData2.images[3]) {
+        feedImages.append("images[]", userData2.images[3]);
       }
-      if (userData2.images[4])
-      {
-      feedImages.append('images[]', userData2.images[4]);
+      if (userData2.images[4]) {
+        feedImages.append("images[]", userData2.images[4]);
       }
       const res = await axios.post("http://localhost:3001/register", {
         ...userData2,
       });
-      const res1 = await axios.post("http://localhost:3001/upload_profile_image", profileImage)
-      const res2 = await axios.post("http://localhost:3001/upload_feed_images", profileImage)
+      const res1 = await axios.post(
+        "http://localhost:3001/upload_profile_image",
+        profileImage
+      );
+      const res2 = await axios.post(
+        "http://localhost:3001/upload_feed_images",
+        profileImage
+      );
       history.push("/account_success");
     } catch (err) {
       history.push("/account_failed");
@@ -342,8 +342,8 @@ const CompleteProfile = () => {
   };
 
   const hello = () => {
-    console.log('test');
-  }
+    console.log("test");
+  };
 
   useEffect(() => {
     if ((spm == false && spf == false) || (spm == true && spf == true)) {
@@ -357,15 +357,16 @@ const CompleteProfile = () => {
 
   useEffect(() => {
     if (startDate)
-    setUserData2({ ...userData2, birthday: startDate.toISOString().split('T')[0]});
-    console.log(userData2.birthday );
-
+      setUserData2({
+        ...userData2,
+        birthday: startDate.toISOString().split("T")[0],
+      });
+    console.log(userData2.birthday);
   }, [startDate]);
 
   useEffect(() => {
-    if (tags)
-    setUserData2({ ...userData2, tags: tags});
-  }, [tags])
+    if (tags) setUserData2({ ...userData2, tags: tags });
+  }, [tags]);
 
   const genderChange = (e) => {
     console.log(image0);
@@ -382,24 +383,23 @@ const CompleteProfile = () => {
   console.log(userData2);
   // const formerror = [M, F].filter((v) => v).length !== 1;
 
- const getLocation = (e) => {
+  const getLocation = (e) => {
 
    
-   navigator.geolocation.getCurrentPosition(async function(position) {
-
-    userData2.city = await axios.get('https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=37.42159&longitude=-122.0837&localityLanguage=en');
-
-     console.log("Latitude is :", position.coords.latitude);
-     userData2.city = userData2.city.data.city;
-     setCity(userData2.city);
-     console.log(userData2.city);
-     
-     console.log("Longitude is :", position.coords.longitude);
-     
-    });
-  }
-
+    navigator.geolocation.getCurrentPosition(async function(position) {
+      console.log(Geolocation.getCurrentPosition());
  
+     userData2.city = await axios.get('https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=37.42159&longitude=-122.0837&localityLanguage=en');
+ 
+      console.log("Latitude is :", position.coords.latitude);
+      userData2.city = userData2.city.data.city;
+      setCity(userData2.city);
+      console.log(userData2.city);
+      
+      console.log("Longitude is :", position.coords.longitude);
+      
+     });
+   }
 
   return (
     <InfosCont>
@@ -486,18 +486,32 @@ const CompleteProfile = () => {
                     onChange={onHandleChange}
                   />
 
-                <p className="separate bday">
+                  <p className="separate bday">
                     <br />
                     Location
                   </p>
-                  <div className="date separate bdday test button">
-                    <Button className="date" style={{marginTop: "5px", marginBottom: "5px"}} onClick={getLocation}>Get my Position</Button>
+                  <div className="date separate bdday test">
+                    <Button
+                      className="date  submitbutton"
+                      style={{
+                        backgroundColor: "gray",
+                        color: "white",
+                        marginTop: "5px",
+                        marginBottom: "5px",
+                      }}
+                      onClick={getLocation}
+                    >
+                      Get my Position
+                    </Button>
                     {/* <div style={{marginTop: "5px", marginBottom: "5px"}}><br/>{userData2.city} </div> */}
-                    {userData2.city == "" ? null : <div style={{marginTop: "5px", marginBottom: "5px"}}><br/>{city} </div>}
-                  </div>
-
-
+                    {userData2.city == "" ? null : (
+                      <div style={{ marginTop: "5px", marginBottom: "5px" }}>
+                        <br />
+                        {city}{" "}
                       </div>
+                    )}
+                  </div>
+                </div>
                 <div className="personPhotos">
                   <div className="personPhotosfix">
                     <p className="separate bday">
@@ -758,7 +772,11 @@ const CompleteProfile = () => {
                   </div>
                   <p className="separate bday tagsfix">Add Tags (max 5)</p>
                   <div className="date separate bday test button">
-                    <MyTags className="separate bday" tags={tags} settags={settags} />
+                    <MyTags
+                      className="separate bday"
+                      tags={tags}
+                      settags={settags}
+                    />
                     <em>press enter or space to add new tag</em>
                   </div>
                 </div>
