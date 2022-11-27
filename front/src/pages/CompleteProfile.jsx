@@ -73,7 +73,7 @@ const InfosCont = styled.div`
   }
 
   .date {
-    border: 1px solid rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(123, 123, 123, 0.6);
     margin-left: 20px;
     margin-right: 0px;
   }
@@ -119,8 +119,13 @@ const InfosCont = styled.div`
     margin-left: 40px;
   }
 
+  .loc {
+    height: 50px;
+    padding-top: 10px;
+  }
+
   .pdp {
-    border: 1px solid rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(129, 129, 129, 0.6);
     /* border-radius: 10px; */
     height: 132px;
     position: relative;
@@ -142,7 +147,7 @@ const InfosCont = styled.div`
   }
 
   .pdpgridfix {
-    border: 1px solid rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(128, 128, 128, 0.6);
     /* border-radius: 10px; */
     height: 132px;
     width: 130px;
@@ -169,7 +174,7 @@ const CompleteProfile = () => {
     gender: "N",
     sexualPreferences: "N",
     biography: "",
-    city: "",
+    city: null,
     latitude: 0.0,
     longitude: 0.0,
     tags: [],
@@ -387,14 +392,20 @@ const CompleteProfile = () => {
 
    
     navigator.geolocation.getCurrentPosition(async function(position) {
-      console.log(Geolocation.getCurrentPosition());
- 
-     userData2.city = await axios.get('https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=37.42159&longitude=-122.0837&localityLanguage=en');
- 
+      // console.log(Geolocation.getCurrentPosition());
+      // userData2.longitude = -6.8889402;
+      // userData2.latitude = 32.8781108;
+      userData2.longitude = position.coords.longitude;
+      userData2.latitude = position.coords.latitude;
+      // console.log("hay");
+      const objj  = await axios.get(`https://us1.locationiq.com/v1/reverse?key=pk.5bfdc788e3ad8b271b37318a1b98387b&lat=${userData2.latitude}&lon=${userData2.longitude}&format=json`);
+      userData2.city = objj.data.address.city;
+      // console.log(userData2.city);
+      // console.log("hello",objj.data.address.city);
       console.log("Latitude is :", position.coords.latitude);
-      userData2.city = userData2.city.data.city;
+      // userData2.city = userData2.address.city;
       setCity(userData2.city);
-      console.log(userData2.city);
+      // console.log(userData2.city);
       
       console.log("Longitude is :", position.coords.longitude);
       
@@ -406,7 +417,7 @@ const CompleteProfile = () => {
       <div className="main-container">
         <NavbarLogged />
         <main className="main-main">
-          <div className="white infos ">
+          <div className="white infos">
             <p className="cA">COMPLETE PROFILE</p>
             <form onSubmit={onSubmitForm2}>
               <div className="twoFlex">
@@ -476,6 +487,7 @@ const CompleteProfile = () => {
                   </p>
 
                   <StyledTextField
+                  style={{marginLeft: "auto", marginRight: "auto", width: "90%"}}
                     className="separate bday"
                     id="biography"
                     placeholder="Max 150 Characters"
@@ -490,27 +502,32 @@ const CompleteProfile = () => {
                     <br />
                     Location
                   </p>
-                  <div className="date separate bdday test">
-                    <Button
-                      className="date  submitbutton"
+                  <div className="date separate loc" style={{color: "gray", fontFamily:"Arial", marginLeft: "auto", marginRight: "auto", width: "70%"}}>
+                    
+                    {/* {userData2.city == "" ? null : (
+                      <div style={{ marginTop: "5px", marginBottom: "5px" }}>
+                        <br />
+                        {city}
+                      </div>
+                    )} */}
+                        {city}
+                    
+                  </div>
+                  <Button
+                      className="date  submitbutton bday"
                       style={{
                         backgroundColor: "gray",
                         color: "white",
                         marginTop: "5px",
                         marginBottom: "5px",
+                        width: "200px",
+                        marginLeft: "auto",
+                        marginRight: "auto",
                       }}
                       onClick={getLocation}
                     >
                       Get my Position
                     </Button>
-                    {/* <div style={{marginTop: "5px", marginBottom: "5px"}}><br/>{userData2.city} </div> */}
-                    {userData2.city == "" ? null : (
-                      <div style={{ marginTop: "5px", marginBottom: "5px" }}>
-                        <br />
-                        {city}{" "}
-                      </div>
-                    )}
-                  </div>
                 </div>
                 <div className="personPhotos">
                   <div className="personPhotosfix">
