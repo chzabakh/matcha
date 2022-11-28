@@ -122,15 +122,17 @@ const Infos = () => {
         setDtCheck0(1);
       } else {
         setUserData({ ...userData, [e.target.id]: e.target.value });
+        setDts(0);
         setDtCheck0(0);
       }
     } else if (type == "user") {
-      console.log("the value is: " + e.target.value);
+      console.log("the value is: " + dts);
       if (/^\w{3,10}$/.test(e.target.value)) {
         setUserData({ ...userData, [e.target.id]: e.target.value });
         setDtCheck1(1);
       } else {
         setUserData({ ...userData, [e.target.id]: e.target.value });
+        setDts(0);
         setDtCheck1(0);
       }
     } else if (type == "first") {
@@ -139,6 +141,7 @@ const Infos = () => {
         setDtCheck2(1);
       } else {
         setUserData({ ...userData, [e.target.id]: e.target.value });
+        setDts(0);
         setDtCheck2(0);
       }
     } else if (type == "last") {
@@ -147,6 +150,7 @@ const Infos = () => {
         setDtCheck3(1);
       } else {
         setUserData({ ...userData, [e.target.id]: e.target.value });
+        setDts(0);
         setDtCheck3(0);
       }
     } else if (type == "mail") {
@@ -155,13 +159,26 @@ const Infos = () => {
         setDtCheck4(1);
       } else {
         setUserData({ ...userData, [e.target.id]: e.target.value });
+        setDts(0);
         setDtCheck4(0);
       }
     }
   };
 
+  const [dts, setDts] = useState(1);
+
   const onSubmitForm = async (e) => {
     e.preventDefault();  //prevent refreshing
+    if (DtCheck0 + DtCheck1 + DtCheck2 + DtCheck3 + DtCheck4 == 5)
+    {
+      setDts(1);
+    }
+
+    else if (DtCheck0 + DtCheck1 + DtCheck2 + DtCheck3 + DtCheck4 != 5)
+    {
+      setDts(0);
+      return;
+    }
     try {
       const res = await axios.post("http://localhost:3001/register", {
         ...userData,
@@ -259,16 +276,17 @@ const Infos = () => {
                   </FormControl>
                 </div>
               </div>
+              {/* {dts == 0 ? <div>error</div> : null} */}
               <Button
                 type="submit"
                 className="subregister submitbutton"
                 // style={{ color: "white" }}
                 variant="contained"
-                disabled={
-                  DtCheck0 + DtCheck1 + DtCheck2 + DtCheck3 + DtCheck4 == 5
-                    ? false
-                    : true
-                }
+                // disabled={
+                //   DtCheck0 + DtCheck1 + DtCheck2 + DtCheck3 + DtCheck4 == 5
+                //     ? false
+                //     : true
+                // }
               >
                 Submit
               </Button>
