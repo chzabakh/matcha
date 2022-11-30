@@ -300,16 +300,37 @@ const CompleteProfile = () => {
       if (userData2.images[4]) {
         feedImages.append("images[]", userData2.images[4]);
       }
-      const res = await axios.post("http://localhost:3001/register", {
-        ...userData2,
-      });
+      const res = await axios.post(
+        "http://localhost:3001/register",
+        {
+          ...userData2,
+        },
+        {
+          headers: {
+            Authorization:
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1vdXJhcyIsImlkIjoxLCJpYXQiOjE2Njk4MzE3ODR9.0JYl_2gwZQjbJrL_QvSI12XMPSj8RIxArt-cDm95dyc",
+          },
+        }
+      );
       const res1 = await axios.post(
         "http://localhost:3001/upload_profile_image",
-        profileImage
+        profileImage,
+        {
+          headers: {
+            Authorization:
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1vdXJhcyIsImlkIjoxLCJpYXQiOjE2Njk4MzE3ODR9.0JYl_2gwZQjbJrL_QvSI12XMPSj8RIxArt-cDm95dyc",
+          },
+        }
       );
       const res2 = await axios.post(
         "http://localhost:3001/upload_feed_images",
-        profileImage
+        profileImage,
+        {
+          headers: {
+            Authorization:
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1vdXJhcyIsImlkIjoxLCJpYXQiOjE2Njk4MzE3ODR9.0JYl_2gwZQjbJrL_QvSI12XMPSj8RIxArt-cDm95dyc",
+          },
+        }
       );
       history.push("/account_success");
     } catch (err) {
@@ -389,16 +410,16 @@ const CompleteProfile = () => {
   // const formerror = [M, F].filter((v) => v).length !== 1;
 
   const getLocation = (e) => {
-
-   
-    navigator.geolocation.getCurrentPosition(async function(position) {
+    navigator.geolocation.getCurrentPosition(async function (position) {
       // console.log(Geolocation.getCurrentPosition());
       // userData2.longitude = -6.8889402;
       // userData2.latitude = 32.8781108;
       userData2.longitude = position.coords.longitude;
       userData2.latitude = position.coords.latitude;
       // console.log("hay");
-      const objj  = await axios.get(`https://us1.locationiq.com/v1/reverse?key=pk.5bfdc788e3ad8b271b37318a1b98387b&lat=${userData2.latitude}&lon=${userData2.longitude}&format=json`);
+      const objj = await axios.get(
+        `https://us1.locationiq.com/v1/reverse?key=pk.5bfdc788e3ad8b271b37318a1b98387b&lat=${userData2.latitude}&lon=${userData2.longitude}&format=json`
+      );
       userData2.city = objj.data.address.city;
       // console.log(userData2.city);
       // console.log("hello",objj.data.address.city);
@@ -406,11 +427,10 @@ const CompleteProfile = () => {
       // userData2.city = userData2.address.city;
       setCity(userData2.city);
       // console.log(userData2.city);
-      
+
       console.log("Longitude is :", position.coords.longitude);
-      
-     });
-   }
+    });
+  };
 
   return (
     <InfosCont>
@@ -487,7 +507,11 @@ const CompleteProfile = () => {
                   </p>
 
                   <StyledTextField
-                  style={{marginLeft: "auto", marginRight: "auto", width: "90%"}}
+                    style={{
+                      marginLeft: "auto",
+                      marginRight: "auto",
+                      width: "90%",
+                    }}
                     className="separate bday"
                     id="biography"
                     placeholder="Max 150 Characters"
@@ -502,32 +526,39 @@ const CompleteProfile = () => {
                     <br />
                     Location
                   </p>
-                  <div className="date separate loc" style={{color: "gray", fontFamily:"Arial", marginLeft: "auto", marginRight: "auto", width: "70%"}}>
-                    
+                  <div
+                    className="date separate loc"
+                    style={{
+                      color: "gray",
+                      fontFamily: "Arial",
+                      marginLeft: "auto",
+                      marginRight: "auto",
+                      width: "70%",
+                    }}
+                  >
                     {/* {userData2.city == "" ? null : (
                       <div style={{ marginTop: "5px", marginBottom: "5px" }}>
                         <br />
                         {city}
                       </div>
                     )} */}
-                        {city}
-                    
+                    {city}
                   </div>
                   <Button
-                      className="date  submitbutton bday"
-                      style={{
-                        backgroundColor: "gray",
-                        color: "white",
-                        marginTop: "5px",
-                        marginBottom: "5px",
-                        width: "200px",
-                        marginLeft: "auto",
-                        marginRight: "auto",
-                      }}
-                      onClick={getLocation}
-                    >
-                      Get my Position
-                    </Button>
+                    className="date  submitbutton bday"
+                    style={{
+                      backgroundColor: "gray",
+                      color: "white",
+                      marginTop: "5px",
+                      marginBottom: "5px",
+                      width: "200px",
+                      marginLeft: "auto",
+                      marginRight: "auto",
+                    }}
+                    onClick={getLocation}
+                  >
+                    Get my Position
+                  </Button>
                 </div>
                 <div className="personPhotos">
                   <div className="personPhotosfix">

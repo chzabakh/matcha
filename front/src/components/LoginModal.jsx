@@ -43,11 +43,25 @@ const LoginModal = () => {
   const [inputPass, setInputPass] = useState("");
   const InputPassRef = useRef("");
 
+  const test = async () => {
+    console.log("before");
+    const res = await axios
+      .post(`http://localhost:3001/login`, {
+        login: "mouras",
+        password: "Maroc2019-",
+      })
+      .then((e) => {
+        console.log("resolved");
+        console.log(e.data);
+      })
+      .catch((er) => console.error(er));
+  };
   const handlechange = () => console.log("changing");
   const hello = async (e) => {
     e.preventDefault();
     navigate.push("/complete_profile");
   };
+  test();
   return (
     <ModalWrapper>
       <Button className="login" onClick={handleOpen}>
@@ -66,7 +80,7 @@ const LoginModal = () => {
       >
         <Fade in={open}>
           <Box sx={style}>
-            <div className="customlogo" >Matcha</div>
+            <div className="customlogo">Matcha</div>
             <form className="myform" onSubmit={hello}>
               <Typography
                 id="transition-modal-title"
@@ -81,7 +95,7 @@ const LoginModal = () => {
                 type="text"
                 placeholder="ex@am.ple"
                 onChange={handlechange}
-                />
+              />
               <br />
               <br />
               <Typography
@@ -102,7 +116,7 @@ const LoginModal = () => {
               <br />
               {/* <button  className="userlogin" onClick={hello}>Login</button> */}
               <button
-                style={{border: "1px solid black" }}
+                style={{ border: "1px solid black" }}
                 className="mylogin"
                 onClick={hello}
               >
@@ -110,7 +124,7 @@ const LoginModal = () => {
               </button>
               <br />
               <button
-                style={{marginTop: "5px", border: "1px solid black" }}
+                style={{ marginTop: "5px", border: "1px solid black" }}
                 className="mylogin"
                 onClick={hello}
               >

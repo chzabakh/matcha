@@ -168,14 +168,10 @@ const Infos = () => {
   const [dts, setDts] = useState(1);
 
   const onSubmitForm = async (e) => {
-    e.preventDefault();  //prevent refreshing
-    if (DtCheck0 + DtCheck1 + DtCheck2 + DtCheck3 + DtCheck4 == 5)
-    {
+    e.preventDefault(); //prevent refreshing
+    if (DtCheck0 + DtCheck1 + DtCheck2 + DtCheck3 + DtCheck4 == 5) {
       setDts(1);
-    }
-
-    else if (DtCheck0 + DtCheck1 + DtCheck2 + DtCheck3 + DtCheck4 != 5)
-    {
+    } else if (DtCheck0 + DtCheck1 + DtCheck2 + DtCheck3 + DtCheck4 != 5) {
       setDts(0);
       return;
     }
@@ -213,9 +209,11 @@ const Infos = () => {
                       onChange={(e) => onHandleChange(e)}
                       onBlur={(e) => onHandleBlur(e, "user")}
                     />
-                    {
-                      (DtCheck1 == 0 && userData.username != "") ? (<div className="errr">Username must be 3 to 10 chars</div>) : (<div></div>)
-                    }
+                    {DtCheck1 == 0 && userData.username != "" ? (
+                      <div className="errr">Username must be 3 to 10 chars</div>
+                    ) : (
+                      <div></div>
+                    )}
                   </FormControl>
                   <FormControl className="separate">
                     <InputLabel htmlFor="firstName">First Name</InputLabel>
@@ -226,9 +224,13 @@ const Infos = () => {
                       onChange={(e) => onHandleChange(e)}
                       onBlur={(e) => onHandleBlur(e, "first")}
                     />
-                    {
-                      (DtCheck2 == 0 && userData.firstName != "") ? (<div className="errr">First Name must be 2 to 15 chars and letters only</div>) : (<div></div>)
-                    }
+                    {DtCheck2 == 0 && userData.firstName != "" ? (
+                      <div className="errr">
+                        First Name must be 2 to 15 chars and letters only
+                      </div>
+                    ) : (
+                      <div></div>
+                    )}
                   </FormControl>
                   <FormControl className="separate">
                     <InputLabel htmlFor="lastName">Last Name</InputLabel>
@@ -239,9 +241,13 @@ const Infos = () => {
                       onChange={(e) => onHandleChange(e)}
                       onBlur={(e) => onHandleBlur(e, "last")}
                     />
-                    {
-                      (DtCheck3 == 0 && userData.lastName != "") ? (<div className="errr">Last Name must be 2 to 15 chars and letters only</div>) : (<div></div>)
-                    }
+                    {DtCheck3 == 0 && userData.lastName != "" ? (
+                      <div className="errr">
+                        Last Name must be 2 to 15 chars and letters only
+                      </div>
+                    ) : (
+                      <div></div>
+                    )}
                   </FormControl>
                 </div>
                 <div className="personPhotos">
@@ -256,23 +262,29 @@ const Infos = () => {
                       onChange={(e) => onHandleChange(e)}
                       onBlur={(e) => onHandleBlur(e, "mail")}
                     />
-                    {
-                      (DtCheck4 == 0 && userData.email != "") ? (<div className="errr">Not a valid Email format</div>) : (<div></div>)
-                    }
+                    {DtCheck4 == 0 && userData.email != "" ? (
+                      <div className="errr">Not a valid Email format</div>
+                    ) : (
+                      <div></div>
+                    )}
                   </FormControl>
                   <FormControl className="separate">
                     <InputLabel htmlFor="password">Password</InputLabel>
                     <Input
                       required={true}
-                      autoComplete="off"
+                      autoComplete="on"
                       type="password"
                       id="password"
                       onChange={(e) => onHandleChange(e)}
                       onBlur={(e) => onHandleBlur(e, "password")}
                     />
-                    {
-                      (DtCheck0 == 0 && userData.password != "") ? (<div className="errr">8 to 16 chars (lowercase, uppercase, number, symbol)</div>) : (<div></div>)
-                    }
+                    {DtCheck0 == 0 && userData.password != "" ? (
+                      <div className="errr">
+                        8 to 16 chars (lowercase, uppercase, number, symbol)
+                      </div>
+                    ) : (
+                      <div></div>
+                    )}
                   </FormControl>
                 </div>
               </div>
