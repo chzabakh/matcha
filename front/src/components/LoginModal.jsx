@@ -56,7 +56,16 @@ const LoginModal = () => {
       })
       .catch((er) => console.error(er));
   };
-  const handlechange = () => console.log("changing");
+  const handlechange = (e, type) => {
+    if (type == "mail")
+    {
+      console.log('yes');
+    } 
+    else if (type == "pass")
+    {
+      console.log('yyyyyyy');
+    }
+  };
   const hello = async (e) => {
     e.preventDefault();
     navigate.push("/complete_profile");
@@ -94,7 +103,7 @@ const LoginModal = () => {
                 className="enteremail"
                 type="text"
                 placeholder="ex@am.ple"
-                onChange={handlechange}
+                onChange={handlechange("mail")}
               />
               <br />
               <br />

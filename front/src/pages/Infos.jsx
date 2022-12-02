@@ -154,7 +154,8 @@ const Infos = () => {
         setDtCheck3(0);
       }
     } else if (type == "mail") {
-      if (/^\w{1,25}\@[a-zA-Z]{1,20}\.[a-zA-Z]{1,10}$/.test(e.target.value)) {
+      // if (/^\w{1,25}\@[a-zA-Z]{1,20}\.[a-zA-Z]{1,10}$/.test(e.target.value)) {
+        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(e.target.value)) {
         setUserData({ ...userData, [e.target.id]: e.target.value });
         setDtCheck4(1);
       } else {
