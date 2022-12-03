@@ -43,10 +43,21 @@ const LoginModal = () => {
   const [inputPass, setInputPass] = useState("");
   const InputPassRef = useRef("");
 
-  const test = async () => {
-    console.log("before");
+  const submit = async () => {
+    // console.log("before");
     const res = await axios
-      .post(`http://localhost:3001/login`, {
+      .post(`http://localhost:3001/login`, logIn)
+      .then((e) => {
+        console.log("login resolved");
+        console.log(e.data);
+      })
+      .catch((er) => console.error(er));
+  };
+
+  const reset = async () => {
+    // console.log("before");
+    const res = await axios
+      .post(`http://localhost:3001/reset_password`, {
         login: "mouras",
         password: "Maroc2019-",
       })
@@ -56,21 +67,22 @@ const LoginModal = () => {
       })
       .catch((er) => console.error(er));
   };
+
   const handlechange = (e, type) => {
-    if (type == "mail")
-    {
-      console.log('yes');
-    } 
-    else if (type == "pass")
-    {
-      console.log('yyyyyyy');
+    if (type == "mail") {
+      logIn.login = e.target.value;
+      // console.log(e.target.value);
+    } else if (type == "pass") {
+      logIn.password = e.target.value;
+      // console.log(e.target.value);
     }
   };
   const hello = async (e) => {
     e.preventDefault();
     navigate.push("/complete_profile");
   };
-  test();
+  // test();
+  const logIn = {login:"", password:""}
   return (
     <ModalWrapper>
       <Button className="login" onClick={handleOpen}>
@@ -103,7 +115,7 @@ const LoginModal = () => {
                 className="enteremail"
                 type="text"
                 placeholder="ex@am.ple"
-                onChange={handlechange("mail")}
+                onChange={(e) => handlechange(e, "mail")}
               />
               <br />
               <br />
@@ -118,8 +130,8 @@ const LoginModal = () => {
               <input
                 className="enteremail"
                 type="password"
-                // onChange={handlechange}
-                ref={InputPassRef}
+                onChange={(e) => handlechange(e, "pass")}
+                // ref={InputPassRef}
               />
               <br />
               <br />
@@ -127,7 +139,7 @@ const LoginModal = () => {
               <button
                 style={{ border: "1px solid black" }}
                 className="mylogin"
-                onClick={hello}
+                onClick={submit}
               >
                 Login
               </button>
@@ -135,7 +147,7 @@ const LoginModal = () => {
               <button
                 style={{ marginTop: "5px", border: "1px solid black" }}
                 className="mylogin"
-                onClick={hello}
+                onClick={reset}
               >
                 Reset Password
               </button>
