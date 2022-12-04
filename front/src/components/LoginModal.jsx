@@ -43,24 +43,29 @@ const LoginModal = () => {
   const [inputPass, setInputPass] = useState("");
   const InputPassRef = useRef("");
 
-  const submit = async () => {
+  const submit = async (e) => {
+    e.preventDefault(); //prevent refreshing
+
     // console.log("before");
     const res = await axios
-      .post(`http://localhost:3001/login`, logIn)
-      .then((e) => {
-        console.log("login resolved");
-        console.log(e.data);
+      .post(`http://localhost:3001/login`, {
+        login: logIn.login,
+        password: logIn.password,
       })
-      .catch((er) => console.error(er));
+      .then((e) => {
+        // console.log("login resolved");
+        console.log("the data", e.data);
+      })
+      .catch((er) => {
+        console.error(logIn);
+        console.error(er);
+      });
   };
 
   const reset = async () => {
     // console.log("before");
     const res = await axios
-      .post(`http://localhost:3001/reset_password`, {
-        login: "mouras",
-        password: "Maroc2019-",
-      })
+      .post(`http://localhost:3001/reset_password`, logIn)
       .then((e) => {
         console.log("resolved");
         console.log(e.data);
@@ -69,7 +74,7 @@ const LoginModal = () => {
   };
 
   const handlechange = (e, type) => {
-    if (type == "mail") {
+    if (type == "login" || type == "mail") {
       logIn.login = e.target.value;
       // console.log(e.target.value);
     } else if (type == "pass") {
@@ -77,12 +82,12 @@ const LoginModal = () => {
       // console.log(e.target.value);
     }
   };
-  const hello = async (e) => {
-    e.preventDefault();
-    navigate.push("/complete_profile");
-  };
+  // const hello = async (e) => {
+  //   e.preventDefault();
+  //   navigate.push("/complete_profile");
+  // };
   // test();
-  const logIn = {login:"", password:""}
+  const logIn = { login: "", password: "", mail: "" };
   return (
     <ModalWrapper>
       <Button className="login" onClick={handleOpen}>
@@ -102,20 +107,19 @@ const LoginModal = () => {
         <Fade in={open}>
           <Box sx={style}>
             <div className="customlogo">Matcha</div>
-            <form className="myform" onSubmit={hello}>
+            <form className="myform" /*onSubmit={hello}*/>
               <Typography
                 id="transition-modal-title"
                 variant="h6"
                 component="h2"
                 className="ithick"
               >
-                Email
+                Login
               </Typography>
               <input
                 className="enteremail"
                 type="text"
-                placeholder="ex@am.ple"
-                onChange={(e) => handlechange(e, "mail")}
+                onChange={(e) => handlechange(e, "login")}
               />
               <br />
               <br />
@@ -143,6 +147,23 @@ const LoginModal = () => {
               >
                 Login
               </button>
+              <br />
+              <br />
+              <br />
+              <Typography
+                id="transition-modal-title"
+                variant="h6"
+                component="h2"
+                className="ithick"
+              >
+                Email
+              </Typography>
+              <input
+                className="enteremail"
+                type="text"
+                onChange={(e) => handlechange(e, "mail")}
+              />
+              <br />
               <br />
               <button
                 style={{ marginTop: "5px", border: "1px solid black" }}

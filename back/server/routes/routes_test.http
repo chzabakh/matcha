@@ -44,8 +44,8 @@ POST {{hostname}}/login
 Content-Type: application/json
 
 {
-    "login": "arrmani88",
-    "password": "qweqwe123"
+    "login": "chzabakh",
+    "password": "qwe123QWE@"
 }
 
 # -------------------------------------------------------------------------
