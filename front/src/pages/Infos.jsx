@@ -181,9 +181,9 @@ const Infos = () => {
         ...userData,
       });
       console.log("test" + res.status);
-      history.push("/account_success");
+      history.push("/account-success");
     } catch (err) {
-      history.push("/account_failed");
+      history.push("/account-failed");
     }
     // console.log(res.status);
     // if (res.status == 200)

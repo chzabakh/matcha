@@ -11,6 +11,9 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { CenterFocusStrong } from "@mui/icons-material";
 import { autocompleteClasses } from "@mui/material";
+import { useContext } from "react";
+import { userContext } from "../App";
+import Reset from "../pages/reset";
 
 const style = {
   position: "absolute",
@@ -42,6 +45,8 @@ const LoginModal = () => {
   const handleClose = () => setOpen(false);
   const [inputPass, setInputPass] = useState("");
   const InputPassRef = useRef("");
+  const { token, setToken } = useContext(userContext);
+  const history = useHistory();
 
   const submit = async (e) => {
     e.preventDefault(); //prevent refreshing
@@ -55,18 +60,24 @@ const LoginModal = () => {
       .then((e) => {
         // console.log("login resolved");
         console.log("the data", e.data);
+        localStorage.setItem("token", e.data.accessToken);
+        if (e.data.isAccountConfirmed == "0") {
+        }
       })
       .catch((er) => {
-        console.error(logIn);
-        console.error(er);
+        // console.error(logIn);
+        // console.log(er.response.data.error.details);
+        console.log(er);
       });
   };
 
-  const reset = async () => {
+  const reset = async (e) => {
     // console.log("before");
+    e.preventDefault(); //prevent refreshing
     const res = await axios
       .post(`http://localhost:3001/reset_password`, logIn)
       .then((e) => {
+        history.push("/reset-password");
         console.log("resolved");
         console.log(e.data);
       })
@@ -114,7 +125,7 @@ const LoginModal = () => {
                 component="h2"
                 className="ithick"
               >
-                Login
+                Login/Email
               </Typography>
               <input
                 className="enteremail"

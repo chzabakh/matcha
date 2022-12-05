@@ -55,8 +55,8 @@ let transporter = nodemailer.createTransport({
   },
 });
 
-// router.post('/', validateRegistrationInput, async (req, res) => {
-router.post("/", async (req, res) => {
+router.post('/', validateRegistrationInput, async (req, res) => {
+// router.post("/", async (req, res) => {
   const { firstName, lastName, username, email, password } = req.body;
   bcrypt.hash(password, 10).then((hashedPassword) => {
     dbController.query(
