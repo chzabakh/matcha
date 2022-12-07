@@ -11,7 +11,7 @@ import { useState } from "react";
 import "react-calendar/dist/Calendar.css";
 import Button from "@mui/material/Button";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const InfosCont = styled.div`
   .infos {
@@ -91,7 +91,7 @@ const InfosCont = styled.div`
 `;
 
 const Infos = () => {
-  const history = useHistory();
+  const history = useNavigate();
 
   const [selectedDate, setSelectedDate] = useState(null);
   const [DtCheck0, setDtCheck0] = useState(0);
@@ -136,7 +136,7 @@ const Infos = () => {
         setDtCheck1(0);
       }
     } else if (type == "first") {
-      if (/^[a-zA-Z]{2,15} ?[a-zA-Z]{2,15}$/.test(e.target.value)) {
+      if (/^[a-zA-Z]{2,15}( ?[a-zA-Z]{2,15})?$/.test(e.target.value)) {
         setUserData({ ...userData, [e.target.id]: e.target.value });
         setDtCheck2(1);
       } else {
@@ -145,7 +145,8 @@ const Infos = () => {
         setDtCheck2(0);
       }
     } else if (type == "last") {
-      if (/^[a-zA-Z]{2,15} ?[a-zA-Z]{2,15}$/.test(e.target.value)) {
+      // if (/^[a-zA-Z]{2,15} ?[a-zA-Z]{2,15}$/.test(e.target.value)) {
+      if (/^[a-zA-Z]{2,15}( ?[a-zA-Z]{2,15})?$/.test(e.target.value)) {
         setUserData({ ...userData, [e.target.id]: e.target.value });
         setDtCheck3(1);
       } else {
@@ -169,6 +170,7 @@ const Infos = () => {
   const [dts, setDts] = useState(1);
 
   const onSubmitForm = async (e) => {
+    let res = 0;
     e.preventDefault(); //prevent refreshing
     if (DtCheck0 + DtCheck1 + DtCheck2 + DtCheck3 + DtCheck4 == 5) {
       setDts(1);
@@ -177,13 +179,20 @@ const Infos = () => {
       return;
     }
     try {
-      const res = await axios.post("http://localhost:3001/register", {
+      res = await axios.post("http://localhost:3001/register", {
         ...userData,
       });
       console.log("test" + res.status);
-      history.push("/account-success");
+      history("/account-success");
     } catch (err) {
-      history.push("/account-failed");
+      if (res.status == 409)
+      {
+        history("/user-exists");
+      }
+      else{
+        history("/account-failed");
+      }
+      console.log(res.status)
     }
     // console.log(res.status);
     // if (res.status == 200)

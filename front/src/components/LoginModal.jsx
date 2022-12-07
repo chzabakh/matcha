@@ -8,7 +8,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useState, useRef } from "react";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { CenterFocusStrong } from "@mui/icons-material";
 import { autocompleteClasses } from "@mui/material";
 import { useContext } from "react";
@@ -32,21 +32,20 @@ const ModalWrapper = styled.div`
     /* border: 1px solid black; */
     background-color: red;
   }
-
   .myform {
     margin-left: 50px !important;
   }
 `;
 
 const LoginModal = () => {
-  const navigate = useHistory();
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [inputPass, setInputPass] = useState("");
   const InputPassRef = useRef("");
   const { token, setToken } = useContext(userContext);
-  const history = useHistory();
+  const history = useNavigate();
 
   const submit = async (e) => {
     e.preventDefault(); //prevent refreshing

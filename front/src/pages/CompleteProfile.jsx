@@ -26,7 +26,7 @@ import IconButton from "@mui/material/IconButton";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import MyTags from "../components/Tags.jsx";
 import NavbarLogged from "../components/NavbarLogged";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 export const DateContext = createContext(null);
 
@@ -166,7 +166,7 @@ const InfosCont = styled.div`
 `;
 
 const CompleteProfile = () => {
-  const history = useHistory();
+  const history = useNavigate();
 
   const [userData2, setUserData2] = useState({
     images: [],
