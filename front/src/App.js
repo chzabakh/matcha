@@ -12,25 +12,31 @@ import AccountFailed from "./pages/AccountCreationFailed";
 import Reset from "./pages/reset";
 import NotFound from "./pages/notfound";
 import UserExists from "./pages/UserExists";
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
+import ProtecedRoute from "./components/ProtecedRoute";
+import PublicRoute from "./components/PublicRoutes";
 export const userContext = createContext();
 
 function App() {
-  const [token, setToken] = useState("");
+  const [token, setToken] = useState(localStorage.getItem('token'));
   return (
     <userContext.Provider value={{ token, setToken }}>
       <Router>
         <Routes>
-          <Route exact path="/" element={<LandingPage />} />
-          <Route exact path="/infos" element={<Infos />} />
-          <Route exact path="/complete-profile" element={<CompleteProfile />} />
-          <Route exact path="/notifications" element={<Notifications />} />
-          <Route exact path="/profile" element={<Profile />} />
-          <Route exact path="/messages" element={<Messages />} />
-          <Route exact path="/account-success" element={<AccountSuccess />} />
-          <Route exact path="/account-failed" element={<AccountFailed />} />
-          <Route exact path="/reset-password" element={<Reset />} />
-          <Route exact path="/user-exists" element={<UserExists />} />
+          <Route element={<ProtecedRoute token={token} />}>
+            <Route path="/complete-profile" element={<CompleteProfile />} />
+            <Route path="/notifications" element={<Notifications />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/messages" element={<Messages />} />
+          </Route>
+          <Route path="/" element={<PublicRoute token={token} />}>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/infos" element={<Infos />} />
+            <Route path="/account-success" element={<AccountSuccess />} />
+            <Route path="/account-failed" element={<AccountFailed />} />
+            <Route path="/reset-password" element={<Reset />} />
+            <Route path="/user-exists" element={<UserExists />} />
+          </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
