@@ -9,7 +9,7 @@ Content-Type: application/json
     "lastName": "el boudali",
     "username": "arrmani88",
     "email": "a@a.com",
-    "password": "@Qweqwe123"
+    "password": "Q@qweqwe123"
 }
 
 # username: between 2 & 35 characters, and can be alphanumeric
@@ -44,8 +44,8 @@ POST {{hostname}}/login
 Content-Type: application/json
 
 {
-    "login": "chzabakh",
-    "password": "qwe123QWE@"
+    "login": "arrmani88",
+    "password": "qweqwe123"
 }
 
 # -------------------------------------------------------------------------

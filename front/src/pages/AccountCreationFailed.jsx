@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import "../styles/index.scss";
-import NavbarLogged from "../components/NavbarLogged";
+import Navbar from "../components/Navbar";
 import Footbar from "../components/Footbar";
 
 const Notif = styled.div`
@@ -24,7 +24,7 @@ const AccountFailed = () => {
   return (
     <Notif>
       <div className="main-container">
-        <NavbarLogged />
+        <Navbar />
         <main className=" main-main">
           <div className="infos">
             <p style={{color:"red"}} >Failed to create Account</p>
