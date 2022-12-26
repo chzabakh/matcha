@@ -27,7 +27,7 @@ const UserExists = () => {
         <Navbar />
         <main className=" main-main">
           <div className="infos">
-            <p>Account Created successfully. You need to Activate your Account by the link send to your Email.</p>
+            <p style={{color: "red"}}>User Already Exists!</p>
           </div>
         </main>
         <Footbar />

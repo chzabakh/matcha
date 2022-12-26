@@ -9,7 +9,7 @@ Content-Type: application/json
     "lastName": "el boudali",
     "username": "arrmani88",
     "email": "a@a.com",
-    "password": "qweqwe123"
+    "password": "@Qweqwe123"
 }
 
 # username: between 2 & 35 characters, and can be alphanumeric
