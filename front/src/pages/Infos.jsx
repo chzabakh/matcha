@@ -197,7 +197,7 @@ const Infos = () => {
     // console.log(res.status);
     // if (res.status == 200)
     // {
-    //   // history.push("/account_success");
+    //   // history("/account_success");
     // }
   };
   return (

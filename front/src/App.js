@@ -9,29 +9,34 @@ import Profile from "./pages/Profile";
 import Messages from "./pages/Messages";
 import AccountSuccess from "./pages/AccountCreationsuccess";
 import AccountFailed from "./pages/AccountCreationFailed";
-import Reset from "./pages/reset";
-import NotFound from "./pages/notfound";
+import Reset from "./pages/ResetPassword";
+import NotFound from "./pages/PageNotFound";
 import UserExists from "./pages/UserExists";
 import { createContext, useEffect, useState } from "react";
-import ProtecedRoute from "./components/ProtecedRoute";
-import PublicRoute from "./components/PublicRoutes";
+import ProtectedRoute from "./components/ProtectedRoute";
+import PublicRoute from "./components/PublicRoute";
+import ActivateAccount from "./pages/ActivateAccount"
+import Home from "./pages/HomePage";
 export const userContext = createContext();
 
 function App() {
-  const [token, setToken] = useState(localStorage.getItem('token'));
+  const [token, setToken] = useState(localStorage.getItem("token"));
   return (
     <userContext.Provider value={{ token, setToken }}>
       <Router>
         <Routes>
-          <Route element={<ProtecedRoute token={token} />}>
+          <Route element={<ProtectedRoute token={token} />}>
             <Route path="/complete-profile" element={<CompleteProfile />} />
             <Route path="/notifications" element={<Notifications />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/home" element={<Home />} />
             <Route path="/messages" element={<Messages />} />
           </Route>
-          <Route path="/" element={<PublicRoute token={token} />}>
+          {/* <Route path="/" element={<PublicRoute token={token} />}> */}
+          <Route element={<PublicRoute token={token} />}>
             <Route path="/" element={<LandingPage />} />
             <Route path="/infos" element={<Infos />} />
+            <Route path="/activate-account" element={<ActivateAccount />} />
             <Route path="/account-success" element={<AccountSuccess />} />
             <Route path="/account-failed" element={<AccountFailed />} />
             <Route path="/reset-password" element={<Reset />} />

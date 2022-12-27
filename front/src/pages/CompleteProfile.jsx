@@ -332,9 +332,9 @@ const CompleteProfile = () => {
           },
         }
       );
-      history.push("/account_success");
+      history("/account_success");
     } catch (err) {
-      history.push("/account_failed");
+      history("/account_failed");
     }
   };
 

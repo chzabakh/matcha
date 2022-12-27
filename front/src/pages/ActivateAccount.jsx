@@ -20,7 +20,7 @@ const Notif = styled.div`
   }
 `;
 
-const AccountSuccess = () => {
+const ActivateAccount = () => {
   return (
     <Notif>
       <div className="main-container">
@@ -36,4 +36,4 @@ const AccountSuccess = () => {
   );
 };
 
-export default ActivateMsg;
+export default ActivateAccount;

@@ -7,6 +7,8 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import ChatIcon from "@mui/icons-material/Chat";
 import PersonIcon from "@mui/icons-material/Person";
 import SettingsIcon from "@mui/icons-material/Settings";
+import { useNavigate } from "react-router-dom";
+
 
 const Nav = styled.div`
   .main-header {
@@ -70,7 +72,15 @@ const Nav = styled.div`
   }
 `;
 
+
 const NavbarLogged = () => {
+  const history = useNavigate();
+  
+  const logout = () => {
+    localStorage.removeItem("token");
+    history('/');
+    history(0);
+  } 
   const [counter, setCounter] = useState(0);
   const renderModal = () => {
     setCounter(1);
@@ -118,7 +128,7 @@ const NavbarLogged = () => {
           <Link to="/">
             <h2
               className="login"
-              // onClick={}
+              onClick={logout}
             >
               Log out
             </h2>

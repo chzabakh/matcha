@@ -13,7 +13,9 @@ import { CenterFocusStrong } from "@mui/icons-material";
 import { autocompleteClasses } from "@mui/material";
 import { useContext } from "react";
 import { userContext } from "../App";
-import Reset from "../pages/reset";
+import Reset from "../pages/ResetPassword";
+import CompleteProfile from "../pages/CompleteProfile";
+import Home from "../pages/HomePage";
 
 const style = {
   position: "absolute",
@@ -57,16 +59,34 @@ const LoginModal = () => {
         password: logIn.password,
       })
       .then((e) => {
-        // console.log("login resolved");
+        console.log("login resolved");
         console.log("the data", e.data);
         localStorage.setItem("token", e.data.accessToken);
-        if (e.data.isAccountConfirmed == "0") {
+        console.log(e.data);
+        // if (e.data.isAccountConfirmed == "1") {
+        // }
+        if (e.data.birthday == null)
+        {
+          console.log('test1');
+          history(0);
+          history("/complete-profile");
+        }
+        else {
+          history("/home");
+          history(0);
+          console.log('test1');
         }
       })
-      .catch((er) => {
+      .catch((err) => {
+        // console.log('sdf');
+        if (err.response.status == 422) {
+          // history(0);
+          history("/activate-account");
+          console.log(err);
+        }
         // console.error(logIn);
         // console.log(er.response.data.error.details);
-        console.log(er);
+        // console.log(err);
       });
   };
 
@@ -76,7 +96,7 @@ const LoginModal = () => {
     const res = await axios
       .post(`http://localhost:3001/reset_password`, logIn)
       .then((e) => {
-        history.push("/reset-password");
+        history("/reset-password");
         console.log("resolved");
         console.log(e.data);
       })
@@ -94,7 +114,7 @@ const LoginModal = () => {
   };
   // const hello = async (e) => {
   //   e.preventDefault();
-  //   navigate.push("/complete_profile");
+  //   navigate("/complete_profile");
   // };
   // test();
   const logIn = { login: "", password: "", mail: "" };
