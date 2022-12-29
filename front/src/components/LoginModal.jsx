@@ -65,15 +65,15 @@ const LoginModal = () => {
         console.log(e.data);
         // if (e.data.isAccountConfirmed == "1") {
         // }
-        if (e.data.birthday == null)
+        if (e.data.city == null)
         {
           console.log('test1');
-          history(0);
           history("/complete-profile");
+          history(0);
         }
         else {
           history("/home");
-          history(0);
+          // history(0);
           console.log('test1');
         }
       })

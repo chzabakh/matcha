@@ -3,6 +3,7 @@ import styled from "styled-components";
 import "../styles/index.scss";
 import Navbar from "../components/Navbar";
 import Footbar from "../components/Footbar";
+import NavbarLogged from "../components/NavbarLogged";
 
 const Notif = styled.div`
   .infos {
@@ -24,7 +25,10 @@ const NotFound = () => {
   return (
     <Notif>
       <div className="main-container">
-        <Navbar />
+        {
+          (localStorage.getItem("token") ? <NavbarLogged /> : <Navbar/> )
+        }
+        {/* <Navbar /> */}
         <main className=" main-main">
           <div className="infos">
             <p>Page not found</p>

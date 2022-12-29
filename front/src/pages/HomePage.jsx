@@ -46,14 +46,7 @@ const Main = styled.div`
 `;
 
 const Home = () => {
-  const fetchUsers = async () => {
-    const { data } = await axios.get(
-      "https://jsonplaceholder.typicode.com/users/1"
-    );
-    // console.log(data);
-  };
-
-  fetchUsers();
+  
 
   return (
     <Main className=" main-container">
@@ -66,8 +59,8 @@ const Home = () => {
               <img
                 src="https://pbs.twimg.com/profile_images/1229161450536611848/gS5WbBcp_400x400.jpg"
                 alt="profile picture"
-                width="300"
-                height="300"
+                width="200"
+                height="200"
               />
             </div>
             <div className="userInfos">

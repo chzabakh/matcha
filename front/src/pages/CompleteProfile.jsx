@@ -301,14 +301,11 @@ const CompleteProfile = () => {
         feedImages.append("images[]", userData2.images[4]);
       }
       const res = await axios.post(
-        "http://localhost:3001/register",
-        {
-          ...userData2,
-        },
+        "http://localhost:3001/complete_profile", userData2,
         {
           headers: {
             Authorization:
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1vdXJhcyIsImlkIjoxLCJpYXQiOjE2Njk4MzE3ODR9.0JYl_2gwZQjbJrL_QvSI12XMPSj8RIxArt-cDm95dyc",
+              localStorage.getItem("token")
           },
         }
       );
@@ -318,7 +315,7 @@ const CompleteProfile = () => {
         {
           headers: {
             Authorization:
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1vdXJhcyIsImlkIjoxLCJpYXQiOjE2Njk4MzE3ODR9.0JYl_2gwZQjbJrL_QvSI12XMPSj8RIxArt-cDm95dyc",
+            localStorage.getItem("token")
           },
         }
       );
@@ -328,13 +325,14 @@ const CompleteProfile = () => {
         {
           headers: {
             Authorization:
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1vdXJhcyIsImlkIjoxLCJpYXQiOjE2Njk4MzE3ODR9.0JYl_2gwZQjbJrL_QvSI12XMPSj8RIxArt-cDm95dyc",
-          },
+            localStorage.getItem("token")
+          }
         }
       );
       history("/account_success");
     } catch (err) {
-      history("/account_failed");
+      console.log(err);
+      // history("/account_failed");
     }
   };
 

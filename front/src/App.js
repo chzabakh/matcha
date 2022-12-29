@@ -15,7 +15,7 @@ import UserExists from "./pages/UserExists";
 import { createContext, useEffect, useState } from "react";
 import ProtectedRoute from "./components/ProtectedRoute";
 import PublicRoute from "./components/PublicRoute";
-import ActivateAccount from "./pages/ActivateAccount"
+import ActivateAccount from "./pages/ActivateAccount";
 import Home from "./pages/HomePage";
 export const userContext = createContext();
 
@@ -26,6 +26,7 @@ function App() {
       <Router>
         <Routes>
           <Route element={<ProtectedRoute token={token} />}>
+            {/* <Route path="/" element={<Home />} /> */}
             <Route path="/complete-profile" element={<CompleteProfile />} />
             <Route path="/notifications" element={<Notifications />} />
             <Route path="/profile" element={<Profile />} />
