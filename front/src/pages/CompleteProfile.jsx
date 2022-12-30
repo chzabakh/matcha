@@ -286,19 +286,19 @@ const CompleteProfile = () => {
       const profileImage = new FormData();
       const feedImages = new FormData();
       if (userData2.images[0]) {
-        profileImage.append("image[]", userData2.images[0]);
+        profileImage.append("image", userData2.images[0]);
       }
       if (userData2.images[1]) {
-        feedImages.append("images[]", userData2.images[1]);
+        feedImages.append("images", userData2.images[1]);
       }
       if (userData2.images[2]) {
-        feedImages.append("images[]", userData2.images[2]);
+        feedImages.append("images", userData2.images[2]);
       }
       if (userData2.images[3]) {
-        feedImages.append("images[]", userData2.images[3]);
+        feedImages.append("images", userData2.images[3]);
       }
       if (userData2.images[4]) {
-        feedImages.append("images[]", userData2.images[4]);
+        feedImages.append("images", userData2.images[4]);
       }
       const res = await axios.post(
         "http://localhost:3001/complete_profile", userData2,
@@ -321,7 +321,7 @@ const CompleteProfile = () => {
       );
       const res2 = await axios.post(
         "http://localhost:3001/upload_feed_images",
-        profileImage,
+        feedImages,
         {
           headers: {
             Authorization:
@@ -329,7 +329,7 @@ const CompleteProfile = () => {
           }
         }
       );
-      history("/account_success");
+      history("/home");
     } catch (err) {
       console.log(err);
       // history("/account_failed");
