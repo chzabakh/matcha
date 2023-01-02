@@ -24,6 +24,7 @@ function App() {
   return (
     <userContext.Provider value={{ token, setToken }}>
       <Router>
+        {console.log("here " + token)}
         <Routes>
           <Route element={<ProtectedRoute token={token} />}>
             {/* <Route path="/" element={<Home />} /> */}
