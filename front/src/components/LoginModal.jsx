@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { CenterFocusStrong } from "@mui/icons-material";
 import { autocompleteClasses } from "@mui/material";
 import { useContext } from "react";
-import { userContext } from "../App";
+import { UserContext } from "../App";
 import Reset from "../pages/ResetPassword";
 import CompleteProfile from "../pages/CompleteProfile";
 import Home from "../pages/HomePage";
@@ -46,7 +46,7 @@ const LoginModal = () => {
   const handleClose = () => setOpen(false);
   const [inputPass, setInputPass] = useState("");
   const InputPassRef = useRef("");
-  const { token, setToken } = useContext(userContext);
+  const { token, setToken, completedProfile, setCompletedProfile } = useContext(UserContext);
   const history = useNavigate();
 
   const submit = async (e) => {
@@ -65,6 +65,7 @@ const LoginModal = () => {
         console.log(e.data);
         // if (e.data.isAccountConfirmed == "1") {
         // }
+        setCompletedProfile(e.data.city);
         if (e.data.city == null)
         {
           console.log('test1');
