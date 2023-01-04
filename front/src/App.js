@@ -12,7 +12,7 @@ import AccountFailed from "./pages/AccountCreationFailed";
 import Reset from "./pages/ResetPassword";
 import NotFound from "./pages/PageNotFound";
 import UserExists from "./pages/UserExists";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import ProtectedRoute from "./components/ProtectedRoute";
 import PublicRoute from "./components/PublicRoute";
 import ActivateAccount from "./pages/ActivateAccount";
@@ -29,13 +29,7 @@ function App() {
       <Router>
         {console.log("here " + token)}
         <Routes>
-          <Route
-            element={
-              <ProtectedRoute
-                token={token}
-                completedProfile={completedProfile}
-              />
-            }
+          <Route element={<ProtectedRoute token={token} completedProfile={completedProfile} />}
           >
             {/* <Route path="/" element={<Home />} /> */}
             <Route path="/complete-profile" element={<CompleteProfile />} />
@@ -46,29 +40,22 @@ function App() {
           </Route>
           {/* <Route path="/" element={<PublicRoute token={token} />}> */}
           <Route element={<PublicRoute token={token} />}>
-            <Route path="/" element={<LandingPage />} /> //here
-            <Route path="/infos" element={<Infos />} /> //here
-            <Route
-              path="/activate-account"
-              element={<ActivateAccount />}
-            />{" "}
-            //here
-            <Route path="/account-success" element={<AccountSuccess />} />{" "}
-            //here
-            <Route path="/account-failed" element={<AccountFailed />} /> //here
-            <Route path="/reset-password" element={<Reset />} /> //here
-            <Route path="/user-exists" element={<UserExists />} /> //here
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/infos" element={<Infos />} />
+            <Route path="/activate-account" element={<ActivateAccount />} />
+
+            <Route path="/account-success" element={<AccountSuccess />} />
+
+            <Route path="/account-failed" element={<AccountFailed />} />
+            <Route path="/reset-password" element={<Reset />} />
+            <Route path="/user-exists" element={<UserExists />} />
           </Route>
           <Route
             path="*"
             element={<NotFound completedProfile={completedProfile} />}
-          />{" "}
-          //here? | wa9ila khas check ydar f kolchi machi ghir here
-        </Routes>{" "}
-        //btw check rah dyal wach profile completed, ya3ni makhasch ytcheka
-        kolchi,
-      </Router>{" "}
-      // ghir mli tbghi dkhol private page
+          />
+        </Routes>
+      </Router>
     </UserContext.Provider> // ila dert login + private pages
   ); //loginmodal line 68
 }
