@@ -5,6 +5,6 @@ import { UserContext } from "../App";
 
 export default function PublicRoute({ token0 }) {
   const { token, setToken, completedProfile, setCompletedProfile } = useContext(UserContext);
-  
+  console.log('publicRoute');
   return token0 === null ? <Outlet /> : <Navigate to="/home" />;
 }
