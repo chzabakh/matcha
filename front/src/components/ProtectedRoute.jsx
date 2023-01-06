@@ -4,26 +4,22 @@ import { useNavigate } from "react-router-dom";
 import LandingPage from "../pages/LandingPage";
 import CompleteProfile from "../pages/CompleteProfile";
 
-export default function ProtecedRoute({token, completedProfile}) {
-  console.log("ikhan "+ token);
-  console.log('inside prtctc');
+export default function ProtecedRoute({ token, completedProfile }) {
+  console.log("ikhan " + token);
+  console.log("inside prtctc");
   const history = useNavigate();
 
-  if (token !== null)
-  {
-    {console.log('nga '+completedProfile)}
-    if (completedProfile !== null)
+  if (token !== null) {
     {
-      return <Outlet />; 
+      console.log("nga " + completedProfile);
     }
-    else
-    {
-      return (<CompleteProfile />);
+    if (completedProfile !== null) {
+      return <Outlet />;
+    } else {
+      return <CompleteProfile />;
     }
-  }
-  else if (token === null)
-  {
-    return (<LandingPage />);
+  } else if (token === null) {
+    return <LandingPage />;
     // return <Navigate to="/" />;
   }
   // return <Outlet />
