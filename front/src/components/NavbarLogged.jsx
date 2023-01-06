@@ -90,7 +90,7 @@ const NavbarLogged = () => {
       <header className="main-header">
         <div className="logotoolsgrid">
           <h1 className="logo">
-            <Link to="/">Matcha</Link>
+            <Link to="/home">Matcha</Link>
           </h1>
           <div className="usertools">
             <Link to="/notifications">
