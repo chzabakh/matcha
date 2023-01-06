@@ -27,11 +27,6 @@ function App() {
       value={{ token, setToken, completedProfile, setCompletedProfile }}
     >
       <Router>
-<<<<<<< HEAD
-=======
-        {console.log("here " + token)}
-  {console.log('app.js')}
->>>>>>> 996aa04050184274614c23d8d8204fc33366c2a2
         <Routes>
           <Route element={<ProtectedRoute token={token} completedProfile={completedProfile} />}
           >
