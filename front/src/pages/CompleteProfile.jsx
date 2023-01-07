@@ -28,6 +28,9 @@ import MyTags from "../components/Tags.jsx";
 import NavbarLogged from "../components/NavbarLogged";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useContext } from "react";
+import { UserContext } from "../App";
+
 export const DateContext = createContext(null);
 
 const InfosCont = styled.div`
@@ -167,6 +170,8 @@ const InfosCont = styled.div`
 
 const CompleteProfile = () => {
   const history = useNavigate();
+  const { token, setToken, completedProfile, setCompletedProfile } = useContext(UserContext);
+
 
   const [userData2, setUserData2] = useState({
     images: [],
@@ -285,50 +290,61 @@ const CompleteProfile = () => {
     try {
       const profileImage = new FormData();
       const feedImages = new FormData();
-      if (userData2.images[0]) {
-        profileImage.append("image", userData2.images[0]);
+      if (image0) {
+        profileImage.append("image", image0);
+        const res1 = await axios.post(
+          "http://localhost:3001/upload_profile_image",
+          profileImage,
+          {
+            headers: {
+              Authorization:
+              localStorage.getItem("token")
+            },
+          }
+        );
       }
-      if (userData2.images[1]) {
-        feedImages.append("images", userData2.images[1]);
+      let img = 0;
+      if (image1) {
+        feedImages.append("images", image1);
+        img++;
       }
-      if (userData2.images[2]) {
-        feedImages.append("images", userData2.images[2]);
+      if (image2) {
+        feedImages.append("images", image2);
+        img++;
       }
-      if (userData2.images[3]) {
-        feedImages.append("images", userData2.images[3]);
+      if (image3) {
+        feedImages.append("images", image3);
+        img++;
       }
-      if (userData2.images[4]) {
-        feedImages.append("images", userData2.images[4]);
+      if (image4) {
+        feedImages.append("images", image4);
+        img++;
       }
       const res = await axios.post(
         "http://localhost:3001/complete_profile", userData2,
         {
           headers: {
             Authorization:
-              localStorage.getItem("token")
-          },
-        }
-      );
-      const res1 = await axios.post(
-        "http://localhost:3001/upload_profile_image",
-        profileImage,
-        {
-          headers: {
-            Authorization:
             localStorage.getItem("token")
           },
         }
-      );
-      const res2 = await axios.post(
-        "http://localhost:3001/upload_feed_images",
-        feedImages,
+        );
+        if (img > 0)
         {
-          headers: {
-            Authorization:
-            localStorage.getItem("token")
-          }
+          const res2 = await axios.post(
+            "http://localhost:3001/upload_feed_images",
+            feedImages,
+            {
+              headers: {
+                Authorization:
+                localStorage.getItem("token")
+              }
+            }
+          );
         }
-      );
+        // console.log('redirecti hna a wld l9hba');
+        // return ()
+      setCompletedProfile(1);
       history("/home");
     } catch (err) {
       console.log(err);
