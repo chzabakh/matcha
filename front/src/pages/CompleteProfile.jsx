@@ -178,8 +178,8 @@ const CompleteProfile = () => {
     birthday: "N",
     gender: "N",
     sexualPreferences: "N",
-    biography: "",
-    city: null,
+    biography: null,
+    city: "",
     latitude: 0.0,
     longitude: 0.0,
     tags: [],
@@ -346,6 +346,7 @@ const CompleteProfile = () => {
         // return ()
       setCompletedProfile(1);
       history("/home");
+      history(0);
     } catch (err) {
       console.log(err);
       // history("/account_failed");
@@ -428,6 +429,7 @@ const CompleteProfile = () => {
       // console.log(Geolocation.getCurrentPosition());
       // userData2.longitude = -6.8889402;
       // userData2.latitude = 32.8781108;
+      console.log(position);
       userData2.longitude = position.coords.longitude;
       userData2.latitude = position.coords.latitude;
       // console.log("hay");
@@ -445,7 +447,21 @@ const CompleteProfile = () => {
       console.log("Longitude is :", position.coords.longitude);
     });
   };
+const getIp = async () => {
 
+  const ip = await axios.get('https://api.db-ip.com/v2/free/self');
+  console.log(ip.data.ipAddress);
+  const city = await axios.get(`https://ipinfo.io/${ip.data.ipAddress}?token=5a541cc57f78ed`);
+  console.log(city.data);
+  userData2.city = city.data.city;
+  const cords = city.data.loc.split(',');
+  userData2.longitude = cords[1];
+  userData2.latitude = cords[0];
+  console.log('la '+ userData2.latitude);
+  console.log('lo '+ userData2.longitude);
+  // https://ipinfo.io/62.251.161.88?token=5a541cc57f78ed
+}
+getIp();
   return (
     <InfosCont>
       <div className="main-container">

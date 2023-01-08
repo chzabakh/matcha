@@ -65,8 +65,8 @@ const LoginModal = () => {
         console.log(e.data);
         // if (e.data.isAccountConfirmed == "1") {
         // }
-        setCompletedProfile(e.data.city);
-        if (e.data.city == null)
+        setCompletedProfile(e.data.biography);
+        if (e.data.biography == null)
         {
           console.log('test1');
           history("/complete-profile");
@@ -74,7 +74,7 @@ const LoginModal = () => {
         }
         else {
           history("/home");
-          // history(0);
+          history(0);
           console.log('yakhara');
         }
       })
@@ -187,7 +187,7 @@ const LoginModal = () => {
                 component="h2"
                 className="ithick"
               >
-                Email
+                Login/Email
               </Typography>
               <input
                 className="enteremail"
