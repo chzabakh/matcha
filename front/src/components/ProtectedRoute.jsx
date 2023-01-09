@@ -13,7 +13,7 @@ export default function ProtecedRoute({ token, completedProfile }) {
     {
       console.log("nga " + completedProfile);
     }
-    if (completedProfile !== null) {
+    if (completedProfile === null) { //reverse this later
       return <Outlet />;
     } else {
       return <CompleteProfile />;

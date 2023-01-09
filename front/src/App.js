@@ -22,23 +22,29 @@ export const UserContext = createContext();
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [completedProfile, setCompletedProfile] = useState(null);
-        return (
+  return (
     <UserContext.Provider
       value={{ token, setToken, completedProfile, setCompletedProfile }}
     >
       <Router>
         <Routes>
-          <Route element={<ProtectedRoute token={token} completedProfile={completedProfile} />}
+          <Route
+            element={
+              <ProtectedRoute
+                token={token}
+                completedProfile={completedProfile}
+              />
+            }
           >
             {/* <Route path="/" element={<Home />} /> */}
             <Route path="/complete-profile" element={<CompleteProfile />} />
             <Route path="/notifications" element={<Notifications />} />
-            <Route path="/profile" element={<Profile />} />
+            <Route path="/profile/:id" element={<Profile />} />
             <Route path="/home" element={<Home />} />
             <Route path="/messages" element={<Messages />} />
           </Route>
           <Route element={<PublicRoute token={token} />}>
-            {console.log('pblc')}
+            {console.log("pblc")}
             <Route path="/" element={<LandingPage />} />
             <Route path="/infos" element={<Infos />} />
             <Route path="/activate-account" element={<ActivateAccount />} />

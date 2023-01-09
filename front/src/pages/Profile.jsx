@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Navbar from "../components/Navbar.jsx";
 import Footbar from "../components/Footbar";
 import "../styles/index.scss";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import NavbarLogged from "../components/NavbarLogged";
 import axios from "axios";
 
@@ -55,6 +55,8 @@ const Profile = () => {
 
   fetchUsers();
 
+  let { id } = useParams();
+  console.log(id);
   return (
     <Main className=" main-container">
       <NavbarLogged />
