@@ -16,6 +16,7 @@ import { UserContext } from "../App";
 import Reset from "../pages/ResetPassword";
 import CompleteProfile from "../pages/CompleteProfile";
 import Home from "../pages/HomePage";
+import { Navigate } from "react-router-dom";
 
 const style = {
   position: "absolute",
@@ -50,7 +51,8 @@ const LoginModal = () => {
   const history = useNavigate();
 
   const submit = async (e) => {
-    e.preventDefault(); //prevent refreshing
+   e.preventDefault(); 
+   //prevent refreshing
 
     // console.log("before");
     const res = await axios
@@ -73,7 +75,7 @@ const LoginModal = () => {
           history(0);
         }
         else {
-          history("/home");
+          // history("/home");
           // history(0);
           console.log('yakhara');
         }
