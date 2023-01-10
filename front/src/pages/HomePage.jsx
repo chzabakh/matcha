@@ -45,9 +45,9 @@ const Main = styled.div`
   }
 `;
 
-const Home = () => {
+const Home = (e) => {
   
-
+console.log('second test: ' + e.data);
   return (
     <Main className=" main-container">
       <NavbarLogged />

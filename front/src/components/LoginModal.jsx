@@ -75,9 +75,8 @@ const LoginModal = () => {
           history(0);
         }
         else {
-          // history("/home");
-          // history(0);
-          console.log('yakhara');
+          history("/home");
+          history(0);
         }
       })
       .catch((err) => {
