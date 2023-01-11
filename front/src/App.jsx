@@ -17,12 +17,13 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import PublicRoute from "./components/PublicRoute";
 import ActivateAccount from "./pages/ActivateAccount";
 import Home from "./pages/HomePage";
+import GlobalStyle from "./global-style";
 export const UserContext = createContext();
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [completedProfile, setCompletedProfile] = useState(null);
-  const test = 'hello';
+  const test = "hello";
   return (
     <UserContext.Provider
       value={{ token, setToken, completedProfile, setCompletedProfile }}
@@ -41,7 +42,6 @@ function App() {
             <Route path="/complete-profile" element={<CompleteProfile />} />
             <Route path="/notifications" element={<Notifications />} />
             <Route path="/profile/:id" element={<Profile />} />
-            {console.log('first message is: ' + test)}
             <Route path="/home" test={test} element={<Home />} />
             <Route path="/messages" element={<Messages />} />
           </Route>
@@ -64,6 +64,7 @@ function App() {
           />
         </Routes>
       </Router>
+      <GlobalStyle />
     </UserContext.Provider> // ila dert login + private pages
   ); //loginmodal line 68
 }

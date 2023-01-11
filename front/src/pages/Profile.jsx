@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import bgImage from "../images/background.webp";
 import styled from "styled-components";
 import Navbar from "../components/Navbar.jsx";
@@ -46,32 +46,46 @@ const Main = styled.div`
 `;
 
 const Profile = () => {
-  const fetchUsers = async () => {
-    const { data } = await axios.get(
-      "https://jsonplaceholder.typicode.com/users/1"
-    );
-    // console.log(data);
+  const [userData, setUserData] = useState({});
+  const fetchUsers = async (id) => {
+    if (id === "me") {
+      const { data } = await axios.get("http://localhost:3001/get_me", {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      });
+      setUserData(data);
+    } else if (id !== "me") {
+      const { data } = await axios.get(
+        "https://jsonplaceholder.typicode.com/users/1"
+      );
+    }
   };
 
-  fetchUsers();
-
   let { id } = useParams();
-  console.log(id);
+
+  useEffect(() => {
+    fetchUsers(id);
+  }, []);
+  console.log("userData", userData);
   return (
     <Main className=" main-container">
       <NavbarLogged />
       <main className=" main-main rel">
         <div className="infos">
-          <p className="bigger">PROFILE</p>
+          <p className="bigger bg-primary text-error">PROFILE</p>
+          <div className="card">test</div>
           <div className="twoFlex">
-            <div className="profilePicture">
-              <img
-                src="https://pbs.twimg.com/profile_images/1229161450536611848/gS5WbBcp_400x400.jpg"
-                alt="profile picture"
-                width="300"
-                height="300"
-              />
-            </div>
+            {userData.images?.map(({ image }, idx) => (
+              <div className="profilePicture" key={idx}>
+                <img
+                  src={`http://localhost:3001/images/${image}`}
+                  alt="profile picture"
+                  width="300"
+                  height="300"
+                />
+              </div>
+            ))}
             <div className="userInfos">
               hello, my name is {"Adolf"}, im looking for a beautiful girl, i am
               a peinter
