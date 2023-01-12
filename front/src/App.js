@@ -41,6 +41,7 @@ function App() {
             {/* <Route path="/" element={<Home />} /> */}
             <Route path="/complete-profile" element={<CompleteProfile />} />
             <Route path="/notifications" element={<Notifications />} />
+            {/* <Route path="/profile/me" element={<Profile />} /> */}
             <Route path="/profile/:id" element={<Profile />} />
             <Route path="/home" test={test} element={<Home />} />
             <Route path="/messages" element={<Messages />} />

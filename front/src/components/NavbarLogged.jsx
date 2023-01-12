@@ -106,7 +106,7 @@ const NavbarLogged = () => {
                 <ChatIcon sx={{ fontSize: 30 }} style={{ color: "white" }} />
               </button>
             </Link> */}
-            <Link to="/profile">
+            <Link to="/profile/me">
               <button className="hvbtn">
                 <PersonIcon sx={{ fontSize: 30 }} style={{ color: "white" }} />
               </button>
