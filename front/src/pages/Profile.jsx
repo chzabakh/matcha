@@ -15,7 +15,7 @@ const Main = styled.div`
     font-style: italic;
     font-weight: bolder;
     background-color: #ffffffdc;
-    width: 100%;
+    width: 90%;
     position: absolute;
     top: 100px;
     padding-top: 100px;
@@ -85,6 +85,9 @@ const Main = styled.div`
   .bio {
     margin-top: 80px;
   }
+  .name {
+    margin-top: 30px;
+  }
 `;
 
 const Profile = () => {
@@ -129,15 +132,16 @@ const Profile = () => {
             ))} */}
             <div className="imagescontainer">
               <img src={`http://localhost:3001/images/1673552975680_cbbb780b692555581799208ac3669638.png`} alt="avatar0" className="images" />
-              <p className="elemnts"><p className="jumia">First Name: </p>{userData.firstName}</p>
-              <p className="elemnts"><p className="jumia">Last Name: </p>{userData.lastName}</p>
-              <p className="elemnts"><p className="jumia">Birthdate: </p>{userData.birthday}</p>
+              <p className="jumia name">{userData.firstName} </p>
+              <p className="jumia name">{userData.lastName}</p>
             </div>
             <div className="userInfos">
               <p className="bio">
-              {userData.biography}
+              ❝ {userData.biography} ❞
               </p>
-              <p className="elemnts"><p className="jumia">Gender: </p>{userData.gender}</p>
+              <p className="elemnts"><p className="jumia">Gender: </p>{userData.gender === 'M' ? <p>Male</p> : <p>Female</p>}</p>
+              {userData.gender === 'M' ? <p>Male</p> : <p>Female</p>}
+              <p className="elemnts"><p className="jumia">Birthdate: </p>{userData.birthday}</p>
              
             </div>
           </div>
