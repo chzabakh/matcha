@@ -53,23 +53,38 @@ const Main = styled.div`
     height: 300px;
     width: 260px;
     margin: auto;
+    margin-bottom: 30px;
     /* margin-left: 20px; */
     /* position: relative; */
     /* margin-top: 50px;
     margin-left: 100px;
     padding-top: 1px; */
   }
+
+  
   .imagescontainer {
     border: 1px solid rgba(129, 129, 129, 0.6);
     height: 400px;
     width: 360px;
     margin-left: 20px;
-    /* position: relative; */
-    /* margin-top: 50px;
-    margin-left: 100px;
-    padding-top: 1px; */
   }
-  .elemnts {
+  @media (max-width: 700px){
+    .images {
+      border: 1px solid rgba(129, 129, 129, 0.6);
+    height: 225px;
+    width: 195px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+    }
+    .imagescontainer {
+    border: 1px solid rgba(129, 129, 129, 0.6);
+    height: 300px;
+    width: 360px;
+    margin-left: 20px;
+  }
+  }
+  .elements {
     margin-left: 50px;
     margin-top: 20px;
     text-align: left;
@@ -78,12 +93,17 @@ const Main = styled.div`
 
 
   }
+  .elementsfix {
+    /* margin-left: -400px !important; */
+    margin-top: -26px;
+  }
   .jumia {
     display: inline;
     font-family: sans-serif;
   }
   .bio {
     margin-top: 80px;
+    margin-bottom: 80px;
   }
   .name {
     margin-top: 30px;
@@ -131,7 +151,7 @@ const Profile = () => {
               </div>
             ))} */}
             <div className="imagescontainer">
-              <img src={`http://localhost:3001/images/1673552975680_cbbb780b692555581799208ac3669638.png`} alt="avatar0" className="images" />
+              <img src={`http://localhost:3001/images/1673784871931_cbbb780b692555581799208ac3669638.png`} alt="avatar0" className="images" />
               <p className="jumia name">{userData.firstName} </p>
               <p className="jumia name">{userData.lastName}</p>
             </div>
@@ -139,9 +159,10 @@ const Profile = () => {
               <p className="bio">
               ❝ {userData.biography} ❞
               </p>
-              <p className="elemnts"><p className="jumia">Gender: </p>{userData.gender === 'M' ? <p>Male</p> : <p>Female</p>}</p>
-              {userData.gender === 'M' ? <p>Male</p> : <p>Female</p>}
-              <p className="elemnts"><p className="jumia">Birthdate: </p>{userData.birthday}</p>
+              <p className="elements">Gender: </p>
+              {userData.gender === 'M' ? <p className="elementsfix">male</p> : <p>female</p>}
+              <p className="elements">Birthdate: </p>
+              <p className="elementsfix">{userData.birthday}</p>
              
             </div>
           </div>
