@@ -61,28 +61,27 @@ const Main = styled.div`
     padding-top: 1px; */
   }
 
-  
   .imagescontainer {
     border: 1px solid rgba(129, 129, 129, 0.6);
     height: 400px;
     width: 360px;
     margin-left: 20px;
   }
-  @media (max-width: 700px){
+  @media (max-width: 700px) {
     .images {
       border: 1px solid rgba(129, 129, 129, 0.6);
-    height: 225px;
-    width: 195px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 30px;
+      height: 225px;
+      width: 195px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 30px;
     }
     .imagescontainer {
-    border: 1px solid rgba(129, 129, 129, 0.6);
-    height: 300px;
-    width: 360px;
-    margin-left: 20px;
-  }
+      border: 1px solid rgba(129, 129, 129, 0.6);
+      height: 300px;
+      width: 360px;
+      margin-left: 20px;
+    }
   }
   .elements {
     margin-left: 50px;
@@ -90,8 +89,6 @@ const Main = styled.div`
     text-align: left;
     font-size: 14px;
     font-family: sans-serif;
-
-
   }
   .elementsfix {
     /* margin-left: -400px !important; */
@@ -107,6 +104,19 @@ const Main = styled.div`
   }
   .name {
     margin-top: 30px;
+  }
+  .browseButtons {
+    border: 1px solid rgba(122, 122, 122, 0.6);
+    background-color: #c0c0c0;
+    border-radius: 10px;
+    width: 100px;
+    height: 35px;
+    color: #3c3c3c;
+    margin-bottom: 20px;
+  }
+  .forButtons {
+    display: flex;
+    justify-content: space-around;
   }
 `;
 
@@ -133,6 +143,14 @@ const Profile = () => {
     fetchUsers(id);
   }, []);
   console.log("userData", userData);
+
+  const handleClick = (e, button, items) => {
+    console.log("hello, this is items: " + items);
+    if (button === "n") {
+    } else if (button === "p") {
+    }
+  };
+
   return (
     <Main className=" main-container">
       <NavbarLogged />
@@ -151,19 +169,50 @@ const Profile = () => {
               </div>
             ))} */}
             <div className="imagescontainer">
-              <img src={`http://localhost:3001/images/1673784871931_cbbb780b692555581799208ac3669638.png`} alt="avatar0" className="images" />
-              <p className="jumia name">{userData.firstName} </p>
-              <p className="jumia name">{userData.lastName}</p>
+              <img
+                src={`http://localhost:3001/images/1673889882094_cbbb780b692555581799208ac3669638.png`}
+                alt="avatar0"
+                className="images"
+              />
+              {/* {console.log(userData.images.length)} */}
+              <div className="forButtons">
+                <button
+                  className="browseButtons"
+                  // onClick={(e) => handleClick(e, "p", userData.images.length)}
+                >
+                  Previous
+                </button>
+                <button
+                  className="browseButtons"
+                  // onClick={(e) => handleClick(e, "n", userData.images.length)}
+                >
+                  Next
+                </button>
+              </div>
+              <div>
+                <p className="jumia name">{userData.firstName} </p>
+                <p className="jumia name">{userData.lastName}</p>
+              </div>
             </div>
             <div className="userInfos">
-              <p className="bio">
-              ❝ {userData.biography} ❞
-              </p>
+              <p className="bio">❝ {userData.biography} ❞</p>
               <p className="elements">Gender: </p>
-              {userData.gender === 'M' ? <p className="elementsfix">male</p> : <p>female</p>}
+              {userData.gender === "M" ? (
+                <p className="elementsfix">male</p>
+              ) : (
+                <p className="elementsfix">female</p>
+              )}
               <p className="elements">Birthdate: </p>
               <p className="elementsfix">{userData.birthday}</p>
-             
+              <p className="elements">Sexual Preferences: </p>
+              {userData.sexualPreferences === "M" ? (
+                <p className="elementsfix">male</p>
+              ) : (
+                <p className="elementsfix">female</p>
+              )}
+              <p className="elements">City: </p>
+              <p className="elementsfix">{userData.city}</p>
+              {/* {console.log(userData.images.length)} */}
             </div>
           </div>
         </div>

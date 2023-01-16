@@ -18,6 +18,8 @@ import PublicRoute from "./components/PublicRoute";
 import ActivateAccount from "./pages/ActivateAccount";
 import Home from "./pages/HomePage";
 import GlobalStyle from "./global-style";
+import Settings from "./pages/settings";
+
 export const UserContext = createContext();
 
 function App() {
@@ -45,6 +47,7 @@ function App() {
             <Route path="/profile/:id" element={<Profile />} />
             <Route path="/home" test={test} element={<Home />} />
             <Route path="/messages" element={<Messages />} />
+            <Route path="/settings" element={<Settings />} />
           </Route>
           <Route element={<PublicRoute token={token} />}>
             {console.log("pblc")}
