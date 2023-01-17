@@ -53,7 +53,7 @@ const Main = styled.div`
     height: 300px;
     width: 260px;
     margin: auto;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     /* margin-left: 20px; */
     /* position: relative; */
     /* margin-top: 50px;
@@ -74,7 +74,7 @@ const Main = styled.div`
       width: 195px;
       margin-left: auto;
       margin-right: auto;
-      margin-bottom: 30px;
+      margin-bottom: 10px;
     }
     .imagescontainer {
       border: 1px solid rgba(129, 129, 129, 0.6);
@@ -84,15 +84,15 @@ const Main = styled.div`
     }
   }
   .elements {
-    margin-left: 50px;
+    /* margin-right: 50px; */
     margin-top: 20px;
-    text-align: left;
+    text-align: right;
     font-size: 14px;
     font-family: sans-serif;
   }
   .elementsfix {
     /* margin-left: -400px !important; */
-    margin-top: -26px;
+    margin-top: 30px;
   }
   .jumia {
     display: inline;
@@ -105,23 +105,39 @@ const Main = styled.div`
   .name {
     margin-top: 30px;
   }
-  .browseButtons {
+  .disabledbtn {
     border: 1px solid rgba(122, 122, 122, 0.6);
-    background-color: #c0c0c0;
+    background: #c0c0c0 !important;
     border-radius: 10px;
     width: 100px;
     height: 35px;
-    color: #3c3c3c;
+    color: #848484 !important;
     margin-bottom: 20px;
+    cursor: not-allowed;
   }
   .forButtons {
     display: flex;
     justify-content: space-around;
   }
+  .browseButtons {
+    border: 1px solid rgba(122, 122, 122, 0.6);
+    background: linear-gradient(
+    90deg,
+    rgba(255, 0, 108, 1) 25%,
+    rgba(255, 119, 0, 1) 75%
+    );
+    border-radius: 10px;
+    width: 100px;
+    height: 35px;
+    color: #f4f4f4;
+    margin-bottom: 20px;
+  }
 `;
 
 const Profile = () => {
   const [userData, setUserData] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
+  const [count, setCount] = useState(0);
   const fetchUsers = async (id) => {
     if (id === "me") {
       const { data } = await axios.get("http://localhost:3001/get_me", {
@@ -135,6 +151,7 @@ const Profile = () => {
         "https://jsonplaceholder.typicode.com/users/1"
       );
     }
+    setIsLoading(false);
   };
 
   let { id } = useParams();
@@ -142,15 +159,8 @@ const Profile = () => {
   useEffect(() => {
     fetchUsers(id);
   }, []);
-  console.log("userData", userData);
-
-  const handleClick = (e, button, items) => {
-    console.log("hello, this is items: " + items);
-    if (button === "n") {
-    } else if (button === "p") {
-    }
-  };
-
+  
+  if (isLoading) return <div>Loading ....</div>;
   return (
     <Main className=" main-container">
       <NavbarLogged />
@@ -168,23 +178,28 @@ const Profile = () => {
               />
               </div>
             ))} */}
+
             <div className="imagescontainer">
               <img
-                src={`http://localhost:3001/images/1673889882094_cbbb780b692555581799208ac3669638.png`}
+                src={`http://localhost:3001/images/${userData.images[count].image}`}
                 alt="avatar0"
                 className="images"
               />
               {/* {console.log(userData.images.length)} */}
               <div className="forButtons">
                 <button
-                  className="browseButtons"
-                  // onClick={(e) => handleClick(e, "p", userData.images.length)}
+                  className={`browseButtons ${count ? "" : "disabledbtn"}`}
+                  onClick={() => count > 0 && setCount(count - 1)}
+                  // disabled={!count}
                 >
                   Previous
                 </button>
                 <button
-                  className="browseButtons"
-                  // onClick={(e) => handleClick(e, "n", userData.images.length)}
+                  className={`browseButtons ${!count ? "" : "disabledbtn"}`}
+                  onClick={() =>
+                    count < userData.images.length - 1 && setCount(count + 1)
+                  }
+                  // disabled={count}
                 >
                   Next
                 </button>
@@ -196,23 +211,31 @@ const Profile = () => {
             </div>
             <div className="userInfos">
               <p className="bio">❝ {userData.biography} ❞</p>
-              <p className="elements">Gender: </p>
-              {userData.gender === "M" ? (
-                <p className="elementsfix">male</p>
-              ) : (
-                <p className="elementsfix">female</p>
-              )}
-              <p className="elements">Birthdate: </p>
-              <p className="elementsfix">{userData.birthday}</p>
-              <p className="elements">Sexual Preferences: </p>
+              <div  className="elementsfix">
+              <span className="elements">Gender: </span>
+              {userData?.gender === "M" ? (
+                <span>male</span>
+                ) : (
+                  <span>female</span>
+                  )}
+                  </div>
+                  <div  className="elementsfix">
+              <span className="elements">Birthdate: </span>
+              <span>{userData.birthday}</span>
+                  </div>
+                  <div  className="elementsfix">
+              <span className="elements">Sexual Preferences: </span>
               {userData.sexualPreferences === "M" ? (
-                <p className="elementsfix">male</p>
-              ) : (
-                <p className="elementsfix">female</p>
-              )}
-              <p className="elements">City: </p>
-              <p className="elementsfix">{userData.city}</p>
-              {/* {console.log(userData.images.length)} */}
+                <span>male</span>
+                ) : (
+                  <span>female</span>
+                  )}
+                  </div>
+                  <div  className="elementsfix">
+              <span className="elements">City: </span>
+              <span>{userData.city}</span>
+                  </div>
+              {console.log(userData.images.length)}
             </div>
           </div>
         </div>
