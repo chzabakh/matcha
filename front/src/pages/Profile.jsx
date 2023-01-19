@@ -137,6 +137,7 @@ const Main = styled.div`
 const Profile = () => {
   const [userData, setUserData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [imgCnt, setImgCnt] = useState(0);
   const [count, setCount] = useState(0);
   const fetchUsers = async (id) => {
     if (id === "me") {
@@ -178,7 +179,6 @@ const Profile = () => {
               />
               </div>
             ))} */}
-
             <div className="imagescontainer">
               <img
                 src={`http://localhost:3001/images/${userData.images[count].image}`}
