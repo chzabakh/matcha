@@ -165,6 +165,7 @@ const InfosCont = styled.div`
   .correctimg {
     height: 100%;
     width: 100%;
+    object-fit: cover;
   }
 `;
 

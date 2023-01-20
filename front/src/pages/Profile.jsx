@@ -47,13 +47,14 @@ const Main = styled.div`
     flex-grow: 2;
     margin-right: 20px;
   }
-
+  
   .images {
     border: 1px solid rgba(129, 129, 129, 0.6);
     height: 300px;
     width: 260px;
     margin: auto;
     margin-bottom: 10px;
+    object-fit: cover;
     /* margin-left: 20px; */
     /* position: relative; */
     /* margin-top: 50px;
@@ -75,6 +76,7 @@ const Main = styled.div`
       margin-left: auto;
       margin-right: auto;
       margin-bottom: 10px;
+      object-fit: cover;
     }
     .imagescontainer {
       border: 1px solid rgba(129, 129, 129, 0.6);
@@ -86,13 +88,14 @@ const Main = styled.div`
   .elements {
     /* margin-right: 50px; */
     margin-top: 20px;
-    text-align: right;
     font-size: 14px;
     font-family: sans-serif;
   }
   .elementsfix {
     /* margin-left: -400px !important; */
     margin-top: 30px;
+    /* text-align: left; */
+    /* display: flex; */
   }
   .jumia {
     display: inline;
@@ -122,9 +125,9 @@ const Main = styled.div`
   .browseButtons {
     border: 1px solid rgba(122, 122, 122, 0.6);
     background: linear-gradient(
-    90deg,
-    rgba(255, 0, 108, 1) 25%,
-    rgba(255, 119, 0, 1) 75%
+      90deg,
+      rgba(255, 0, 108, 1) 25%,
+      rgba(255, 119, 0, 1) 75%
     );
     border-radius: 10px;
     width: 100px;
@@ -160,7 +163,7 @@ const Profile = () => {
   useEffect(() => {
     fetchUsers(id);
   }, []);
-  
+
   if (isLoading) return <div>Loading ....</div>;
   return (
     <Main className=" main-container">
@@ -195,7 +198,9 @@ const Profile = () => {
                   Previous
                 </button>
                 <button
-                  className={`browseButtons ${!count ? "" : "disabledbtn"}`}
+                  className={`browseButtons ${
+                    count < userData.images.length - 1 ? "" : "disabledbtn"
+                  }`}
                   onClick={() =>
                     count < userData.images.length - 1 && setCount(count + 1)
                   }
@@ -209,32 +214,32 @@ const Profile = () => {
                 <p className="jumia name">{userData.lastName}</p>
               </div>
             </div>
-            <div className="userInfos">
+            <div className="userInfos debug">
               <p className="bio">❝ {userData.biography} ❞</p>
-              <div  className="elementsfix">
-              <span className="elements">Gender: </span>
-              {userData?.gender === "M" ? (
-                <span>male</span>
+              <div className="elementsfix">
+                <span className="elements">Gender: </span>
+                {userData?.gender === "M" ? (
+                  <span>male</span>
                 ) : (
                   <span>female</span>
-                  )}
-                  </div>
-                  <div  className="elementsfix">
-              <span className="elements">Birthdate: </span>
-              <span>{userData.birthday}</span>
-                  </div>
-                  <div  className="elementsfix">
-              <span className="elements">Sexual Preferences: </span>
-              {userData.sexualPreferences === "M" ? (
-                <span>male</span>
+                )}
+              </div>
+              <div className="elementsfix">
+                <span className="elements">Birthdate: </span>
+                <span>{userData.birthday}</span>
+              </div>
+              <div className="elementsfix">
+                <span className="elements">Sexual Preferences: </span>
+                {userData.sexualPreferences === "M" ? (
+                  <span>male</span>
                 ) : (
                   <span>female</span>
-                  )}
-                  </div>
-                  <div  className="elementsfix">
-              <span className="elements">City: </span>
-              <span>{userData.city}</span>
-                  </div>
+                )}
+              </div>
+              <div className="elementsfix">
+                <span className="elements">City: </span>
+                <span>{userData.city}</span>
+              </div>
               {console.log(userData.images.length)}
             </div>
           </div>
