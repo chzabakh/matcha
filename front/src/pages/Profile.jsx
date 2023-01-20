@@ -47,7 +47,7 @@ const Main = styled.div`
     flex-grow: 2;
     margin-right: 20px;
   }
-  
+
   .images {
     border: 1px solid rgba(129, 129, 129, 0.6);
     height: 300px;
@@ -95,7 +95,8 @@ const Main = styled.div`
     /* margin-left: -400px !important; */
     margin-top: 30px;
     /* text-align: left; */
-    /* display: flex; */
+    display: flex;
+    justify-content: space-evenly;
   }
   .jumia {
     display: inline;
@@ -134,6 +135,14 @@ const Main = styled.div`
     height: 35px;
     color: #f4f4f4;
     margin-bottom: 20px;
+  }
+  .goright {
+    width: 25%;
+    text-align: right;
+  }
+  .goleft {
+    width: 25%;
+    text-align: left;
   }
 `;
 
@@ -214,31 +223,47 @@ const Profile = () => {
                 <p className="jumia name">{userData.lastName}</p>
               </div>
             </div>
-            <div className="userInfos debug">
+            <div className="userInfos">
               <p className="bio">❝ {userData.biography} ❞</p>
               <div className="elementsfix">
-                <span className="elements">Gender: </span>
-                {userData?.gender === "M" ? (
-                  <span>male</span>
-                ) : (
-                  <span>female</span>
-                )}
+                <div className="goright">
+                  <span className="elements">Gender: </span>
+                </div>
+                <div className="goleft">
+                  {userData?.gender === "M" ? (
+                    <span>male</span>
+                  ) : (
+                    <span>female</span>
+                  )}
+                </div>
               </div>
               <div className="elementsfix">
-                <span className="elements">Birthdate: </span>
-                <span>{userData.birthday}</span>
+                <div className="goright">
+                  <span className="elements">Birthdate : </span>
+                </div>
+                <div className="goleft">
+                  <span>{userData.birthday}</span>
+                </div>
               </div>
               <div className="elementsfix">
-                <span className="elements">Sexual Preferences: </span>
-                {userData.sexualPreferences === "M" ? (
-                  <span>male</span>
-                ) : (
-                  <span>female</span>
-                )}
+                <div className="goright">
+                  <span className="elements">Sexual Preferences : </span>
+                </div>
+                <div className="goleft">
+                  {userData.sexualPreferences === "M" ? (
+                    <span>male</span>
+                  ) : (
+                    <span>female</span>
+                  )}
+                </div>
               </div>
               <div className="elementsfix">
-                <span className="elements">City: </span>
-                <span>{userData.city}</span>
+                <div className="goright">
+                  <span className="elements">City : </span>
+                </div>
+                <div className="goleft">
+                  <span>{userData.city}</span>
+                </div>
               </div>
               {console.log(userData.images.length)}
             </div>
