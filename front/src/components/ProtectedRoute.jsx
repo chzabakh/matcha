@@ -17,10 +17,18 @@ export default function ProtecedRoute({ token, completedProfile }) {
       headers: {
         Authorization: token,
       },
-    });
+    }
+    )
+    .catch(() => {
+      localStorage.removeItem("token");
+      alert('error, please login again.');
+      history(0);
+    })
     setUserData(data);
+    
   };
   useEffect(() => {
+    if (localStorage.getItem("token"))
     fetchUsers();
   }, []);
   console.log(userData);
