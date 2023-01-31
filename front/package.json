@@ -26,6 +26,7 @@
     "react-icons": "^4.4.0",
     "react-router-dom": "^6.4.4",
     "react-scripts": "5.0.1",
+    "react-sliding-side-panel": "^2.0.3",
     "react-tag-input": "^6.8.1",
     "react-tag-input-component": "^2.0.1",
     "sass": "^1.54.8",

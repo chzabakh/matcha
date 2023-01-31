@@ -26,7 +26,7 @@ function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [completedProfile, setCompletedProfile] = useState(null);
   const test = "hello";
-  localStorage.setItem("perm", "hello");
+  // localStorage.setItem("perm", "hello");
   return (
     <UserContext.Provider
       value={{ token, setToken, completedProfile, setCompletedProfile }}

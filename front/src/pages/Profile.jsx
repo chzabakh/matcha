@@ -105,6 +105,9 @@ const Main = styled.div`
   .bio {
     margin-top: 80px;
     margin-bottom: 80px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
   }
   .name {
     margin-top: 30px;
