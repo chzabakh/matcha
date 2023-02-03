@@ -7,18 +7,21 @@ import Slider from './Slider'
 export default props => {
   return (
     <Menu>
-      <a className="menu-item" href="/">
+      <div className="menu-item">
         Age Gap
-        <Slider></Slider>
-      </a>
-      <a className="menu-item" href="/salads">
-        Salads
-      </a>
-      <a className="menu-item" href="/pizzas">
-        Pizzas
-      </a>
-      <a className="menu-item" href="/desserts">
-        Desserts
+        <Slider />
+      </div>
+      <div className="menu-item">
+        Fame Rating Gap
+        <Slider />
+      </div>
+      <div className="menu-item">
+        Location
+        <input style={{color: 'black'}}></input>
+      </div>
+      <a className="menu-item">
+        Tags
+        <input style={{color: 'black'}}></input>
       </a>
     </Menu>
   );

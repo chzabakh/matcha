@@ -25,23 +25,41 @@ export default function MinimumDistanceSlider() {
 
   const [value2, setValue2] = React.useState([20, 37]);
 
-  const handleChange2 = (event, newValue, activeThumb) => {
-    if (!Array.isArray(newValue)) {
-      return;
-    }
-
-    if (newValue[1] - newValue[0] < minDistance) {
-      if (activeThumb === 0) {
-        const clamped = Math.min(newValue[0], 100 - minDistance);
-        setValue2([clamped, clamped + minDistance]);
-      } else {
-        const clamped = Math.max(newValue[1], minDistance);
-        setValue2([clamped - minDistance, clamped]);
-      }
-    } else {
-      setValue2(newValue);
-    }
-  };
+  const marks = [
+    {
+      value: 0,
+    },
+    {
+      value: 10,
+    },
+    {
+      value: 20,
+    },
+    {
+      value: 30,
+    },
+    {
+      value: 40,
+    },
+    {
+      value: 50,
+    },
+    {
+      value: 60,
+    },
+    {
+      value: 70,
+    },
+    {
+      value: 80,
+    },
+    {
+      value: 90,
+    },
+    {
+      value: 100,
+    },
+  ];
 
   return (
     <Box sx={{ width: 200 }}>
@@ -52,6 +70,7 @@ export default function MinimumDistanceSlider() {
         valueLabelDisplay="auto"
         getAriaValueText={valuetext}
         disableSwap
+        marks={marks}
       />
     </Box>
   );
