@@ -4,7 +4,8 @@
     width: 36px;
     height: 30px;
     left: 36px;
-    top: 36px;
+    /* top: 36px; */
+    top: 101px;
   }
   
   /* Color/shape of burger icon bars */
@@ -21,6 +22,7 @@
   .bm-cross-button {
     height: 24px;
     width: 24px;
+    margin-top: -24px;
   }
   
   /* Color/shape of close button cross */
@@ -42,6 +44,7 @@
     background: #373a47;
     padding: 2.5em 1.5em 0;
     font-size: 1.15em;
+    margin-top: -20px;
   }
   
   /* Morph shape necessary with bubble or elastic */
@@ -73,4 +76,5 @@
   /* Styling of overlay */
   .bm-overlay {
     background: rgba(0, 0, 0, 0.3);
+    margin-top: -20px;
   }

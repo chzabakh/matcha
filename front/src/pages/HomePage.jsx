@@ -32,9 +32,10 @@ const Main = styled.div`
     background-color: #ffffffdc;
     width: 100%;
     position: absolute;
-    top: 100px;
+    top: 96px;
     padding-top: 20px;
     padding-bottom: 20px;
+    z-index: 0;
   }
   .rel {
     position: relative;
@@ -58,15 +59,7 @@ const Main = styled.div`
   .userInfos {
     width: 20%;
   }
-  .sidebarq {
-    position: static;
-    cursor: pointer;
-    z-index: 20;
-  }
-  .mlawi {
-    z-index: 10000;
-    position: absolute;
-  }
+  
 `;
 
 const Home = (e) => {
@@ -76,8 +69,10 @@ const Home = (e) => {
   return (
     <Main className="main-container">
       <NavbarLogged />
-          <div className="sort debug"></div>
+          <div className="sort">
           <Sidebar pageWrapId={'page-wrap'} outerContainerId={'outer-container'} />
+          </div>
+          <div  className="main-main"></div>
           
      </Main>
   );
