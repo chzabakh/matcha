@@ -9,6 +9,7 @@ import NavbarLogged from "../components/NavbarLogged";
 import axios from "axios";
 import SlidingPanel from "react-sliding-side-panel";
 import MenuIcon from '@mui/icons-material/Menu';
+import Sidebar from "../components/Sidebar";
 
 const Main = styled.div`
   .infos {
@@ -57,10 +58,14 @@ const Main = styled.div`
   .userInfos {
     width: 20%;
   }
-  .sidebar {
+  .sidebarq {
     position: static;
     cursor: pointer;
     z-index: 20;
+  }
+  .mlawi {
+    z-index: 10000;
+    position: absolute;
   }
 `;
 
@@ -71,19 +76,9 @@ const Home = (e) => {
   return (
     <Main className="main-container">
       <NavbarLogged />
-          <div className="sort">
-            <button onClick={() => setOpenPanel(!openPanel)}>Button</button>
-          </div>
-          <SlidingPanel
-        type={'left'}
-        isOpen={openPanel}
-        size={30}
-      >
-        <div className="sidebar debug">
-          <div>My Panel Content</div>
-          <button onClick={() => setOpenPanel(false)}>close</button>
-        </div>
-      </SlidingPanel>
+          <div className="sort debug"></div>
+          <Sidebar pageWrapId={'page-wrap'} outerContainerId={'outer-container'} />
+          
      </Main>
   );
 };
