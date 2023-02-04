@@ -8,21 +8,21 @@ export default props => {
   return (
     <Menu>
       <div className="menu-item">
-        Age Gap
-        <Slider />
+        <p style={{marginBottom: '40px'}}>Age Gap</p>
+        <Slider minAge={18} maxAge={99} />
       </div>
       <div className="menu-item">
-        Fame Rating Gap
-        <Slider />
+        <p style={{marginBottom: '40px'}}>Fame Rating Gap</p>
+        <Slider minRating={0} maxRating={100} />
+      </div>
+      <div style={{marginBottom: '30px'}} className="menu-item">
+        <p style={{marginBottom: '10px'}}>Location</p>
+        <input style={{color: 'black'}}></input>
       </div>
       <div className="menu-item">
-        Location
+        <p style={{marginBottom: '10px'}}>Tags</p>
         <input style={{color: 'black'}}></input>
       </div>
-      <a className="menu-item">
-        Tags
-        <input style={{color: 'black'}}></input>
-      </a>
     </Menu>
   );
 };

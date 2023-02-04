@@ -59,6 +59,9 @@ const Main = styled.div`
   .userInfos {
     width: 20%;
   }
+  .sortAndFilter {
+    display: flex;
+  }
   
 `;
 
@@ -71,6 +74,9 @@ const Home = (e) => {
       <NavbarLogged />
           <div className="sort">
           <Sidebar pageWrapId={'page-wrap'} outerContainerId={'outer-container'} />
+          <div className="debug sortAndFilter">
+
+          </div>
           </div>
           <div  className="main-main"></div>
           

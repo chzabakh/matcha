@@ -6,9 +6,9 @@ function valuetext(value) {
   return `${value}°C`;
 }
 
-const minDistance = 10;
+const minDistance = 2;
 
-export default function MinimumDistanceSlider() {
+export default function MinimumDistanceSlider({ minAge, maxAge }) {
   const [value1, setValue1] = React.useState([20, 37]);
 
   const handleChange1 = (event, newValue, activeThumb) => {
@@ -60,17 +60,18 @@ export default function MinimumDistanceSlider() {
       value: 100,
     },
   ];
-
   return (
     <Box sx={{ width: 200 }}>
       <Slider
         getAriaLabel={() => 'Minimum distance'}
         value={value1}
         onChange={handleChange1}
-        valueLabelDisplay="auto"
+        valueLabelDisplay="on"
         getAriaValueText={valuetext}
         disableSwap
         marks={marks}
+        min={minAge}
+        max={maxAge}
       />
     </Box>
   );
