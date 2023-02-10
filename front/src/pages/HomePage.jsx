@@ -8,8 +8,9 @@ import { Link } from "react-router-dom";
 import NavbarLogged from "../components/NavbarLogged";
 import axios from "axios";
 import SlidingPanel from "react-sliding-side-panel";
-import MenuIcon from '@mui/icons-material/Menu';
+import MenuIcon from "@mui/icons-material/Menu";
 import Sidebar from "../components/Sidebar";
+import Pagination from "@mui/material/Pagination";
 
 const Main = styled.div`
   .infos {
@@ -18,7 +19,7 @@ const Main = styled.div`
     font-style: italic;
     font-weight: bolder;
     background-color: #ffffffdc;
-    width: 100%;
+    width: 90%;
     position: absolute;
     top: 100px;
     padding-top: 100px;
@@ -62,7 +63,10 @@ const Main = styled.div`
   .sortAndFilter {
     display: flex;
   }
-  
+  .grey{
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
+
+  }
 `;
 
 const Home = (e) => {
@@ -72,15 +76,35 @@ const Home = (e) => {
   return (
     <Main className="main-container">
       <NavbarLogged />
-          <div className="sort">
-          <Sidebar pageWrapId={'page-wrap'} outerContainerId={'outer-container'} />
-          <div className="debug sortAndFilter">
+      <main className="main-main">
 
+      <div className="sort">
+        <Sidebar
+          pageWrapId={"page-wrap"}
+          outerContainerId={"outer-container"}
+          />
+        <div className="sortAndFilter">
+          {/* <button>serch</button>
+          <select>
+          <option>hi</option>
+          <option>dsa</option>
+          <option>sda</option>
+          <option>asd</option>
+        </select> */}
+        </div>
+        <div className="main-main">
+          <div className="infos" style={{ marginTop: "50px" }}>
+            <Pagination
+              style={{ marginLeft: "auto", marginRight: "auto", width: "40%" }}
+              count={10}
+              variant="outlined"
+              shape="rounded"
+              />
           </div>
-          </div>
-          <div  className="main-main"></div>
-          
-     </Main>
+        </div>
+      </div>
+              </main>
+    </Main>
   );
 };
 export default Home;
