@@ -1,5 +1,5 @@
 @hostname = http://localhost:3001
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFycm1hbmk4OCIsImlkIjoxLCJpYXQiOjE2NTU0NzAyNjB9.jwbDc_qdpzlc14n7er7XU1VH8zuByKtBZ-nDNxWnCPo
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImNoemFiYWtoIiwiaWQiOjIsImlhdCI6MTY3NjExMzYyMH0.Bks7ZURdNGaSzBPeIL-k-8UbHqXHKOlh6UhiwZlAFxA
 ### ------------------------------- REGISTER -------------------------------
 POST {{hostname}}/register
 Content-Type: application/json
@@ -209,7 +209,7 @@ Authorization: {{token}}
 Content-Type: application/json
 
 {
-    "id": 1
+    "id": 22
 }
 
 # -------------------------------------------------------------------------

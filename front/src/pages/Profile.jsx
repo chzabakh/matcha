@@ -156,19 +156,33 @@ const Profile = () => {
   const [count, setCount] = useState(0);
   const fetchUsers = async (id) => {
     if (id === "me") {
-      const { data } = await axios.get("http://localhost:3001/get_me", {
-        headers: {
-          Authorization: localStorage.getItem("token"),
-        },
-      });
-      setUserData(data);
-    } else if (id !== "me") {
+      const { data } = await axios
+        .get("http://localhost:3001/get_me", {
+          headers: {
+            Authorization: localStorage.getItem("token"),
+          },
+        })
+        .then(({ data }) => {
+          setUserData(data);
+          setIsLoading(false);
+        });
+    } else if (id !== "me") 
+    {
+      console.log("+++++++++++++++++", localStorage.getItem("token"));
       const { data } = await axios.get(
-        "https://jsonplaceholder.typicode.com/users/1"
+        "http://localhost:3001/get_user",
+        { "id": id },
+        {
+          headers: {
+            Authorization: localStorage.getItem("token"),
+          },
+        }
       );
+      setUserData(data);
+      setIsLoading(false);
+      console.log("+++++++++++++++++" + data);
     }
-    setIsLoading(false);
-  };
+  }
 
   let { id } = useParams();
 

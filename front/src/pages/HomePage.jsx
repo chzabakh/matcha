@@ -24,6 +24,7 @@ const Main = styled.div`
     top: 100px;
     padding-top: 100px;
     padding-bottom: 100px;
+    display: flex;
   }
   .sort {
     text-align: center;
@@ -73,6 +74,16 @@ const Home = (e) => {
   // console.log('second test: ' + e.data);
   const [openPanel, setOpenPanel] = useState(false);
   console.log(openPanel);
+
+  const getUsers = async () => {
+
+    const users = await axios.get("http://localhost:3001/get_feed_users", {
+      header: {
+        Authorization: localStorage.getItem("token"),
+      },
+    });
+  }
+
   return (
     <Main className="main-container">
       <NavbarLogged />
@@ -94,6 +105,12 @@ const Home = (e) => {
         </div>
         <div className="main-main">
           <div className="infos" style={{ marginTop: "50px" }}>
+            <div className="profiles">
+              {
+
+              }
+
+            </div>
             <Pagination
               style={{ marginLeft: "auto", marginRight: "auto", width: "40%" }}
               count={10}
