@@ -5,13 +5,13 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 
-export default function ActionAreaCard() {
+export default function MyCard() {
   return (
     <Card sx={{ maxWidth: 200 }}>
       <CardActionArea>
         <CardMedia
           component="img"
-          height="190"
+          height='200'
           image="/static/images/cards/contemplative-reptile.jpg"
           alt="green iguana"
         />

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import bgImage from "../images/background.webp";
+// import bgImage from "../images/background.webp";
 import styled from "styled-components";
-import Navbar from "../components/Navbar.jsx";
+// import Navbar from "../components/Navbar.jsx";
 import Footbar from "../components/Footbar";
 import "../styles/index.scss";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import NavbarLogged from "../components/NavbarLogged";
 import axios from "axios";
 
@@ -152,7 +152,7 @@ const Main = styled.div`
 const Profile = () => {
   const [userData, setUserData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  const [imgCnt, setImgCnt] = useState(0);
+  // const [imgCnt, setImgCnt] = useState(0);
   const [count, setCount] = useState(0);
   const fetchUsers = async (id) => {
     if (id === "me") {
@@ -162,35 +162,57 @@ const Profile = () => {
             Authorization: localStorage.getItem("token"),
           },
         })
-        .then(({ data }) => {
-          setUserData(data);
-          setIsLoading(false);
-        });
-    } else if (id !== "me") 
-    {
+        // .then(({ data }) => {
+        // });
+        setUserData(data);
+        setIsLoading(false);
+    } else if (id !== "me") {
+      /*
       console.log("+++++++++++++++++", localStorage.getItem("token"));
       const { data } = await axios.get(
         "http://localhost:3001/get_user",
-        { "id": id },
+        { id: id },
         {
           headers: {
             Authorization: localStorage.getItem("token"),
           },
         }
       );
+      */
+
+console.log('nigg');
+
+const data = {
+  "id": 101,
+  "firstName": "charaf",
+  "lastName": "zabakh",
+  "username": "czabakh",
+  "email": "qw@qw.com",
+  "birthday": "2000-02-05",
+  "city": "Khouribga",
+  "gender": "M",
+  "sexualPreferences": "F",
+  "biography": "Rank tall boy man them over post now. Off into she bed long fat room. Recommend existence curiosity perfectly favourite get eat she why daughters....!",
+  "longitude": -6.9063,
+  "latitude": 32.8811
+};
+
+
+
       setUserData(data);
       setIsLoading(false);
       console.log("+++++++++++++++++" + data);
     }
-  }
+  };
 
   let { id } = useParams();
 
   useEffect(() => {
     fetchUsers(id);
-  }, []);
+  }, [id]);
 
   if (isLoading) return <div>Loading ....</div>;
+
   return (
     <Main className=" main-container">
       <NavbarLogged />

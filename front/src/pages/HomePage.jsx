@@ -11,6 +11,7 @@ import SlidingPanel from "react-sliding-side-panel";
 import MenuIcon from "@mui/icons-material/Menu";
 import Sidebar from "../components/Sidebar";
 import Pagination from "@mui/material/Pagination";
+import MyCard from "../components/Card";
 
 const Main = styled.div`
   .infos {
@@ -24,7 +25,7 @@ const Main = styled.div`
     top: 100px;
     padding-top: 100px;
     padding-bottom: 100px;
-    display: flex;
+    /* display: flex; */
   }
   .sort {
     text-align: center;
@@ -68,21 +69,210 @@ const Main = styled.div`
   background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
 
   }
+  .profiles {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+  .cards {
+    height: 500;
+    width: 500;
+  }
 `;
 
 const Home = (e) => {
   // console.log('second test: ' + e.data);
-  const [openPanel, setOpenPanel] = useState(false);
-  console.log(openPanel);
+  // const [openPanel, setOpenPanel] = useState(false);
+  // console.log(openPanel);
 
-  const getUsers = async () => {
+  const [Profiles, setProfiles] = useState([]);
+  
+  useEffect(()=> {
+    
+    // const getUsers = async () => {
+  
+    //   const users = await axios.get("http://localhost:3001/get_feed_users", {
+    //     header: {
+    //       Authorization: localStorage.getItem("token"),
+    //     },
+    //   });
+    // }
 
-    const users = await axios.get("http://localhost:3001/get_feed_users", {
-      header: {
-        Authorization: localStorage.getItem("token"),
-      },
-    });
-  }
+
+const a = [{
+  "id": 2,
+  "firstName": "charaf eddine",
+  "lastName": "zabakh",
+  "username": "chzabakh",
+  "email": "qwe@qwe.com",
+  "isAccountConfirmed": "1",
+  "birthday": "2000-01-11",
+  "city": "Khouribga",
+  "gender": "M",
+  "sexualPreferences": "F",
+  "biography": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sed ante dictum, varius leo et, eleifend sem. Nam condimentum diam eget feugiat fer.",
+  "longitude": -6.9063,
+  "latitude": 32.8811,
+  "images": [
+    {
+      "id": 1,
+      "uid": 2,
+      "isProfileImage": "1",
+      "image": "1676294078782_cbbb780b692555581799208ac3669638.png",
+      "created_at": "2023-02-13T12:14:38.000Z",
+      "updated_at": "2023-02-13T12:14:38.000Z"
+    },
+    {
+      "id": 2,
+      "uid": 2,
+      "isProfileImage": "0",
+      "image": "1676294078898_8a596843aaf9efdb32edef006d115f13.png",
+      "created_at": "2023-02-13T12:14:38.000Z",
+      "updated_at": "2023-02-13T12:14:38.000Z"
+    },
+    {
+      "id": 3,
+      "uid": 2,
+      "isProfileImage": "0",
+      "image": "1676294078898_3794aeb818e1d8d0bde12ffcf9d479f2.png",
+      "created_at": "2023-02-13T12:14:38.000Z",
+      "updated_at": "2023-02-13T12:14:38.000Z"
+    },
+    {
+      "id": 4,
+      "uid": 2,
+      "isProfileImage": "0",
+      "image": "1676294078900_50941791e1086633f04dc163b80343a8.png",
+      "created_at": "2023-02-13T12:14:38.000Z",
+      "updated_at": "2023-02-13T12:14:38.000Z"
+    },
+    {
+      "id": 5,
+      "uid": 2,
+      "isProfileImage": "0",
+      "image": "1676294078900_d30dc4e1449603b04916f0d0ca5c4313.png",
+      "created_at": "2023-02-13T12:14:38.000Z",
+      "updated_at": "2023-02-13T12:14:38.000Z"
+    }
+  ]
+}, {
+  "id": 2,
+  "firstName": "charaf eddine",
+  "lastName": "zabakh",
+  "username": "chzabakh",
+  "email": "qwe@qwe.com",
+  "isAccountConfirmed": "1",
+  "birthday": "2000-01-11",
+  "city": "Khouribga",
+  "gender": "M",
+  "sexualPreferences": "F",
+  "biography": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sed ante dictum, varius leo et, eleifend sem. Nam condimentum diam eget feugiat fer.",
+  "longitude": -6.9063,
+  "latitude": 32.8811,
+  "images": [
+    {
+      "id": 1,
+      "uid": 2,
+      "isProfileImage": "1",
+      "image": "1676294078782_cbbb780b692555581799208ac3669638.png",
+      "created_at": "2023-02-13T12:14:38.000Z",
+      "updated_at": "2023-02-13T12:14:38.000Z"
+    },
+    {
+      "id": 2,
+      "uid": 2,
+      "isProfileImage": "0",
+      "image": "1676294078898_8a596843aaf9efdb32edef006d115f13.png",
+      "created_at": "2023-02-13T12:14:38.000Z",
+      "updated_at": "2023-02-13T12:14:38.000Z"
+    },
+    {
+      "id": 3,
+      "uid": 2,
+      "isProfileImage": "0",
+      "image": "1676294078898_3794aeb818e1d8d0bde12ffcf9d479f2.png",
+      "created_at": "2023-02-13T12:14:38.000Z",
+      "updated_at": "2023-02-13T12:14:38.000Z"
+    },
+    {
+      "id": 4,
+      "uid": 2,
+      "isProfileImage": "0",
+      "image": "1676294078900_50941791e1086633f04dc163b80343a8.png",
+      "created_at": "2023-02-13T12:14:38.000Z",
+      "updated_at": "2023-02-13T12:14:38.000Z"
+    },
+    {
+      "id": 5,
+      "uid": 2,
+      "isProfileImage": "0",
+      "image": "1676294078900_d30dc4e1449603b04916f0d0ca5c4313.png",
+      "created_at": "2023-02-13T12:14:38.000Z",
+      "updated_at": "2023-02-13T12:14:38.000Z"
+    }
+  ]
+}, {
+  "id": 2,
+  "firstName": "charaf eddine",
+  "lastName": "zabakh",
+  "username": "chzabakh",
+  "email": "qwe@qwe.com",
+  "isAccountConfirmed": "1",
+  "birthday": "2000-01-11",
+  "city": "Khouribga",
+  "gender": "M",
+  "sexualPreferences": "F",
+  "biography": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sed ante dictum, varius leo et, eleifend sem. Nam condimentum diam eget feugiat fer.",
+  "longitude": -6.9063,
+  "latitude": 32.8811,
+  "images": [
+    {
+      "id": 1,
+      "uid": 2,
+      "isProfileImage": "1",
+      "image": "1676294078782_cbbb780b692555581799208ac3669638.png",
+      "created_at": "2023-02-13T12:14:38.000Z",
+      "updated_at": "2023-02-13T12:14:38.000Z"
+    },
+    {
+      "id": 2,
+      "uid": 2,
+      "isProfileImage": "0",
+      "image": "1676294078898_8a596843aaf9efdb32edef006d115f13.png",
+      "created_at": "2023-02-13T12:14:38.000Z",
+      "updated_at": "2023-02-13T12:14:38.000Z"
+    },
+    {
+      "id": 3,
+      "uid": 2,
+      "isProfileImage": "0",
+      "image": "1676294078898_3794aeb818e1d8d0bde12ffcf9d479f2.png",
+      "created_at": "2023-02-13T12:14:38.000Z",
+      "updated_at": "2023-02-13T12:14:38.000Z"
+    },
+    {
+      "id": 4,
+      "uid": 2,
+      "isProfileImage": "0",
+      "image": "1676294078900_50941791e1086633f04dc163b80343a8.png",
+      "created_at": "2023-02-13T12:14:38.000Z",
+      "updated_at": "2023-02-13T12:14:38.000Z"
+    },
+    {
+      "id": 5,
+      "uid": 2,
+      "isProfileImage": "0",
+      "image": "1676294078900_d30dc4e1449603b04916f0d0ca5c4313.png",
+      "created_at": "2023-02-13T12:14:38.000Z",
+      "updated_at": "2023-02-13T12:14:38.000Z"
+    }
+  ]
+}];
+setProfiles(a);
+
+
+
+  }, [])
 
   return (
     <Main className="main-container">
@@ -104,10 +294,11 @@ const Home = (e) => {
         </select> */}
         </div>
         <div className="main-main">
-          <div className="infos" style={{ marginTop: "50px" }}>
+          <div className="infos debug" style={{ marginTop: "50px" }}>
             <div className="profiles">
+              <MyCard className="cards"/>
               {
-
+                // Profiles.map
               }
 
             </div>
