@@ -10,7 +10,7 @@ export default function ProtecedRoute({ token, completedProfile }) {
   console.log("inside prtctc");
   const [userData, setUserData] = useState({});
   const history = useNavigate();
-  console.log("data");
+  // console.log("data");
 
   const fetchUsers = async () => {
     const { data } = await axios.get("http://localhost:3001/get_me", {
@@ -31,7 +31,7 @@ export default function ProtecedRoute({ token, completedProfile }) {
     if (localStorage.getItem("token"))
     fetchUsers();
   }, []);
-  console.log(userData);
+  // console.log(userData);
   if (token !== null) {
     {
       console.log("nga " + completedProfile);

@@ -23,7 +23,7 @@ const Main = styled.div`
     width: 90%;
     position: absolute;
     top: 100px;
-    padding-top: 100px;
+    padding-top: 50px;
     padding-bottom: 100px;
     /* display: flex; */
   }
@@ -42,12 +42,6 @@ const Main = styled.div`
   }
   .rel {
     position: relative;
-  }
-  .bigger {
-    font-size: larger;
-    font-style: italic;
-    text-decoration: underline;
-    margin-bottom: 50px;
   }
   .twoFlex {
     display: flex;
@@ -73,10 +67,13 @@ const Main = styled.div`
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
+    min-height: 800px;
+    padding: 50px;
   }
-  .cards {
-    height: 500;
-    width: 500;
+  .bigger {
+    font-size: larger;
+    font-style: italic;
+    margin-bottom: 50px;
   }
 `;
 
@@ -100,7 +97,7 @@ const Home = (e) => {
 
 
 const a = [{
-  "id": 2,
+  "id": 1,
   "firstName": "charaf eddine",
   "lastName": "zabakh",
   "username": "chzabakh",
@@ -212,7 +209,7 @@ const a = [{
     }
   ]
 }, {
-  "id": 2,
+  "id": 3,
   "firstName": "charaf eddine",
   "lastName": "zabakh",
   "username": "chzabakh",
@@ -272,11 +269,12 @@ setProfiles(a);
 
 
 
-  }, [])
 
+  }, [])
+  // console.log('QQQQQ',Profiles)
   return (
     <Main className="main-container">
-      <NavbarLogged />
+      <NavbarLogged /> 
       <main className="main-main">
 
       <div className="sort">
@@ -294,16 +292,17 @@ setProfiles(a);
         </select> */}
         </div>
         <div className="main-main">
-          <div className="infos debug" style={{ marginTop: "50px" }}>
+          <div className="infos debug">
+          <p className="bigger">Suggested Profiles</p>
             <div className="profiles">
-              <MyCard className="cards"/>
+              <MyCard user={Profiles[0]}/>
               {
                 // Profiles.map
               }
 
             </div>
             <Pagination
-              style={{ marginLeft: "auto", marginRight: "auto", width: "40%" }}
+              style={{ marginLeft: "auto", marginRight: "auto", marginTop: "50px", width: "40%" }}
               count={10}
               variant="outlined"
               shape="rounded"
