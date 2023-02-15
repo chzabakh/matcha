@@ -25,7 +25,7 @@ export default function MyCard({ user }) {
   const age = calculateAge(user.birthday);
 console.log('qqqqqqqq',age);
   return (
-    <Card  sx={{ maxWidth: 300, maxHeight: 388 }}>
+    <Card  sx={{ maxWidth: 300, maxHeight: 388, margin: 3 }}>
       <CardActionArea>
         <CardMedia
           component="img"
