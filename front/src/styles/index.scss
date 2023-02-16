@@ -73,6 +73,7 @@
   flex-direction: column;
   justify-content: space-between;
   background-image: url("../images/background.webp");
+  background-attachment: fixed;
 }
 
 .main-main {
@@ -82,6 +83,16 @@
   justify-content: center;
   align-items: center;
   background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
+
+
+//  min-height: 1000px;
+    // height: 10%;
+    // overflow: scroll;
+
+
+  // overflow: scroll;
+  // min-height: 800px;
+  // height: 100%;
 }
 
 .login {

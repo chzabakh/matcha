@@ -49,6 +49,8 @@ const LoginModal = () => {
   const InputPassRef = useRef("");
   const { token, setToken, completedProfile, setCompletedProfile } = useContext(UserContext);
   const history = useNavigate();
+  const [err, setErr] = ('');
+  const [errcode, setErrcode] = ('0');
 
   const submit = async (e) => {
    e.preventDefault(); 
@@ -81,14 +83,26 @@ const LoginModal = () => {
       })
       .catch((err) => {
         // console.log('sdf');
-        if (err.response.status == 422) {
+
+
+      /*  if (err.response.status == 422) {
           // history(0);
           history("/activate-account");
           console.log(err);
-        }
+        }*/
+
+
+
         // console.error(logIn);
         // console.log(er.response.data.error.details);
         // console.log(err);
+
+        // console.log(err.response.data.error.details);
+        setErr(err.response.data.error.details);
+        setErrcode('1');
+
+
+
       });
   };
 
@@ -178,10 +192,11 @@ const LoginModal = () => {
                 onClick={submit}
               >
                 Login
-              </button>
-              <br />
-              <br />
-              <br />
+              </button>{
+                errcode ==='1' ?
+              (<div className="error debug" style={{color:'red', fontSize:'12px', marginBottom: '20px', marginTop: '20px'}}>{err}</div>) :
+              (<div></div>)
+              }
               <Typography
                 id="transition-modal-title"
                 variant="h6"
