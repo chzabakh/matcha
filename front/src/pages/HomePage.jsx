@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import bgImage from "../images/background.webp";
 import styled from "styled-components";
 import Navbar from "../components/Navbar.jsx";
@@ -99,6 +99,9 @@ const Main = styled.div`
     font-style: italic;
     /* margin-bottom: 50px; */
   }
+  .main-main-fix {
+  height: 300vh;
+}
 `;
 // const a = [
 //   {
@@ -299,10 +302,17 @@ const Home = (e) => {
   //       }, [])
 
   // console.log('QQQQQ',Profiles)
+  const childRef = useRef(null);
+  useEffect(() => {
+    const childHeight = childRef.current.offsetHeight;
+    const parentElement = childRef.current.parentElement;
+    parentElement.style.height = `${childHeight}px`;
+  }, [])
+
   return (
     <Main className="main-container">
       <NavbarLogged />
-      <main className="main-main">
+      <main className="main-main main-main-fix">
         <div className="sort">
           <Sidebar
             pageWrapId={"page-wrap"}
@@ -311,7 +321,7 @@ const Home = (e) => {
           <div className="main-main">
             <div className="infos">
               <p className="bigger">Suggested Profiles</p>
-              <div className="profiles">
+              <div className="profiles" ref={childRef}>
                 {Profiles.map((obj, idx) => (
                   <MyCard user={obj} key={idx} />
                 ))}
