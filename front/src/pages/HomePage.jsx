@@ -31,27 +31,7 @@ const Main = styled.div`
     overflow: scroll; */
     /* display: flex; */
   }
-  @media (max-height: 600px) {
-    .infos {
-      text-align: center;
-      font-family: verdana;
-      font-style: italic;
-      font-weight: bolder;
-      background-color: #ffffffdc;
-      width: 90%;
-      position: absolute;
-      top: 100px;
-      padding-top: 50px;
-      padding-bottom: 100px;
-
-
-      /* min-height: 600px;
-      height: 100%;
-      overflow: scroll; */
-
-      /* display: flex; */
-    }
-  }
+  
   .sort {
     text-align: center;
     font-family: verdana;
@@ -100,185 +80,10 @@ const Main = styled.div`
     /* margin-bottom: 50px; */
   }
   .main-main-fix {
-  height: 300vh;
+  height: 180vh;
+  /* height: fit-content; */
 }
 `;
-// const a = [
-//   {
-//     id: 1,
-//     firstName: "charaf eddine",
-//     lastName: "zabakh",
-//     username: "chzabakh",
-//     email: "qwe@qwe.com",
-//     isAccountConfirmed: "1",
-//     birthday: "2000-01-11",
-//     city: "Khouribga",
-//     gender: "M",
-//     sexualPreferences: "F",
-//     biography:
-//       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sed ante dictum, varius leo et, eleifend sem. Nam condimentum diam eget feugiat fer.",
-//     longitude: -6.9063,
-//     latitude: 32.8811,
-//     images: [
-//       {
-//         id: 1,
-//         uid: 2,
-//         isProfileImage: "1",
-//         image: "1676294078782_cbbb780b692555581799208ac3669638.png",
-//         created_at: "2023-02-13T12:14:38.000Z",
-//         updated_at: "2023-02-13T12:14:38.000Z",
-//       },
-//       {
-//         id: 2,
-//         uid: 2,
-//         isProfileImage: "0",
-//         image: "1676294078898_8a596843aaf9efdb32edef006d115f13.png",
-//         created_at: "2023-02-13T12:14:38.000Z",
-//         updated_at: "2023-02-13T12:14:38.000Z",
-//       },
-//       {
-//         id: 3,
-//         uid: 2,
-//         isProfileImage: "0",
-//         image: "1676294078898_3794aeb818e1d8d0bde12ffcf9d479f2.png",
-//         created_at: "2023-02-13T12:14:38.000Z",
-//         updated_at: "2023-02-13T12:14:38.000Z",
-//       },
-//       {
-//         id: 4,
-//         uid: 2,
-//         isProfileImage: "0",
-//         image: "1676294078900_50941791e1086633f04dc163b80343a8.png",
-//         created_at: "2023-02-13T12:14:38.000Z",
-//         updated_at: "2023-02-13T12:14:38.000Z",
-//       },
-//       {
-//         id: 5,
-//         uid: 2,
-//         isProfileImage: "0",
-//         image: "1676294078900_d30dc4e1449603b04916f0d0ca5c4313.png",
-//         created_at: "2023-02-13T12:14:38.000Z",
-//         updated_at: "2023-02-13T12:14:38.000Z",
-//       },
-//     ],
-//   },
-//   {
-//     id: 2,
-//     firstName: "bou3eza",
-//     lastName: "zabakh",
-//     username: "chzabakh",
-//     email: "qwe@qwe.com",
-//     isAccountConfirmed: "1",
-//     birthday: "2004-01-11",
-//     city: "Khouribga",
-//     gender: "M",
-//     sexualPreferences: "F",
-//     biography:
-//       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sed ante dictum, varius leo et, eleifend sem. Nam condimentum diam eget feugiat fer.",
-//     longitude: -6.9063,
-//     latitude: 32.8811,
-//     images: [
-//       {
-//         id: 1,
-//         uid: 2,
-//         isProfileImage: "1",
-//         image: "1676294078782_cbbb780b692555581799208ac3669638.png",
-//         created_at: "2023-02-13T12:14:38.000Z",
-//         updated_at: "2023-02-13T12:14:38.000Z",
-//       },
-//       {
-//         id: 2,
-//         uid: 2,
-//         isProfileImage: "0",
-//         image: "1676294078898_8a596843aaf9efdb32edef006d115f13.png",
-//         created_at: "2023-02-13T12:14:38.000Z",
-//         updated_at: "2023-02-13T12:14:38.000Z",
-//       },
-//       {
-//         id: 3,
-//         uid: 2,
-//         isProfileImage: "0",
-//         image: "1676294078898_3794aeb818e1d8d0bde12ffcf9d479f2.png",
-//         created_at: "2023-02-13T12:14:38.000Z",
-//         updated_at: "2023-02-13T12:14:38.000Z",
-//       },
-//       {
-//         id: 4,
-//         uid: 2,
-//         isProfileImage: "0",
-//         image: "1676294078900_50941791e1086633f04dc163b80343a8.png",
-//         created_at: "2023-02-13T12:14:38.000Z",
-//         updated_at: "2023-02-13T12:14:38.000Z",
-//       },
-//       {
-//         id: 5,
-//         uid: 2,
-//         isProfileImage: "0",
-//         image: "1676294078900_d30dc4e1449603b04916f0d0ca5c4313.png",
-//         created_at: "2023-02-13T12:14:38.000Z",
-//         updated_at: "2023-02-13T12:14:38.000Z",
-//       },
-//     ],
-//   },
-//   {
-//     id: 3,
-//     firstName: "9addour",
-//     lastName: "zabakh",
-//     username: "chzabakh",
-//     email: "qwe@qwe.com",
-//     isAccountConfirmed: "1",
-//     birthday: "2003-01-11",
-//     city: "Khouribga",
-//     gender: "M",
-//     sexualPreferences: "F",
-//     biography:
-//       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sed ante dictum, varius leo et, eleifend sem. Nam condimentum diam eget feugiat fer.",
-//     longitude: -6.9063,
-//     latitude: 32.8811,
-//     images: [
-//       {
-//         id: 1,
-//         uid: 2,
-//         isProfileImage: "1",
-//         image: "1676294078782_cbbb780b692555581799208ac3669638.png",
-//         created_at: "2023-02-13T12:14:38.000Z",
-//         updated_at: "2023-02-13T12:14:38.000Z",
-//       },
-//       {
-//         id: 2,
-//         uid: 2,
-//         isProfileImage: "0",
-//         image: "1676294078898_8a596843aaf9efdb32edef006d115f13.png",
-//         created_at: "2023-02-13T12:14:38.000Z",
-//         updated_at: "2023-02-13T12:14:38.000Z",
-//       },
-//       {
-//         id: 3,
-//         uid: 2,
-//         isProfileImage: "0",
-//         image: "1676294078898_3794aeb818e1d8d0bde12ffcf9d479f2.png",
-//         created_at: "2023-02-13T12:14:38.000Z",
-//         updated_at: "2023-02-13T12:14:38.000Z",
-//       },
-//       {
-//         id: 4,
-//         uid: 2,
-//         isProfileImage: "0",
-//         image: "1676294078900_50941791e1086633f04dc163b80343a8.png",
-//         created_at: "2023-02-13T12:14:38.000Z",
-//         updated_at: "2023-02-13T12:14:38.000Z",
-//       },
-//       {
-//         id: 5,
-//         uid: 2,
-//         isProfileImage: "0",
-//         image: "1676294078900_d30dc4e1449603b04916f0d0ca5c4313.png",
-//         created_at: "2023-02-13T12:14:38.000Z",
-//         updated_at: "2023-02-13T12:14:38.000Z",
-//       },
-//     ],
-//   },
-// ];
 const Home = (e) => {
   // console.log('second test: ' + e.data);
   // const [openPanel, setOpenPanel] = useState(false);
@@ -302,12 +107,15 @@ const Home = (e) => {
   //       }, [])
 
   // console.log('QQQQQ',Profiles)
-  const childRef = useRef(null);
-  useEffect(() => {
-    const childHeight = childRef.current.offsetHeight;
-    const parentElement = childRef.current.parentElement;
-    parentElement.style.height = `${childHeight}px`;
-  }, [])
+
+
+  // const childRef = useRef(null);
+  // useEffect(() => {
+  //   const childHeight = childRef.current.offsetHeight;
+  //   console.log(childHeight);
+  //   const parentElement = childRef.current.closest('.main-main-fix');
+  //   parentElement.style.height = `${childHeight + 500}px`;
+  // }, [])
 
   return (
     <Main className="main-container">
@@ -319,9 +127,12 @@ const Home = (e) => {
             outerContainerId={"outer-container"}
           />
           <div className="main-main">
-            <div className="infos">
+            <div className="infos"
+              // ref={childRef}
+            >
               <p className="bigger">Suggested Profiles</p>
-              <div className="profiles" ref={childRef}>
+              <div className="profiles" 
+              >
                 {Profiles.map((obj, idx) => (
                   <MyCard user={obj} key={idx} />
                 ))}
