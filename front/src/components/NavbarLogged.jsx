@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 const Nav = styled.div`
   .main-header {
     position: fixed;
+    /* position: sticky; */
     display: flex;
     width: 100%;
     height: 6rem;
@@ -21,6 +22,7 @@ const Nav = styled.div`
     background-image: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.4));
     z-index: 10;
   }
+  
 
   .logo {
     font-family: Lobster, cursive;

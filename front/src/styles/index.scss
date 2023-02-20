@@ -84,11 +84,9 @@
   align-items: center;
   background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
 
-
-//  min-height: 1000px;
-    // height: 10%;
-    // overflow: scroll;
-
+  //  min-height: 1000px;
+  // height: 10%;
+  // overflow: scroll;
 
   // overflow: scroll;
   // min-height: 800px;
@@ -111,7 +109,6 @@
 
 .mylogin {
   font-family: sans-serif;
-  margin-left: 15px;
   background-color: white;
   // background-color: orange !important;
   color: black !important;
@@ -119,14 +116,13 @@
   padding: 10px 25px;
   border-radius: 30px;
   cursor: pointer;
-  width: 90%;
+  width: 50%;
   // margin-left: 40%;
   // margin-right: auto;
 }
 
 .mylogin:hover {
   font-family: sans-serif;
-  margin-left: 15px;
   background: linear-gradient(
     90deg,
     rgba(255, 0, 108, 1) 25%,
@@ -134,11 +130,6 @@
   );
   // background-color: orange !important;
   color: white !important;
-  font-size: 18px;
-  padding: 10px 25px;
-  border-radius: 30px;
-  cursor: pointer;
-  width: 90%;
   // margin-left: 40%;
   // margin-right: auto;
 }
@@ -190,16 +181,28 @@
 .inputclass {
   color: purple;
   background: lime;
-
 }
 
 .enteremail {
   // border: 1px solid black;
-  border-radius: 10px;
-  background-color: #eeeeee;
+  border-radius: 5px;
+  background-color: rgba(239, 239, 240, 1);
   padding: 10px;
+  height: 45px;
+  width: 80%;
 }
-
+.myform {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 12px;
+}
+.myform h2 {
+  align-self: flex-start;
+  margin-left: 44px;
+}
 .customlogo {
   font-family: Lobster, cursive;
   color: black;
@@ -218,16 +221,17 @@ html {
   height: 100%;
 }
 
-body {
+body,
+#root {
+  min-height: 100vh;
   height: 100%;
 }
 .mc {
-  background-image: url("../images/background.webp");
-  height: 100vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url("../images/background.webp");
+  min-height: 100%;
   background-size: cover;
   background-repeat: no-repeat;
-}
-.grey {
-  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
-  height: 100vh;
+  background-attachment: fixed;
+  // position: fixed;
 }

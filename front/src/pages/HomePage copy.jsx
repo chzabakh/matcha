@@ -84,7 +84,7 @@ const Main = styled.div`
   /* height: fit-content; */
 }
 `;
-const Home = (e) => {
+const oldHome = (e) => {
   // console.log('second test: ' + e.data);
   // const [openPanel, setOpenPanel] = useState(false);
   // console.log(openPanel);
@@ -161,4 +161,4 @@ const Home = (e) => {
     </Main>
   );
 };
-export default Home;
+export default oldHome;

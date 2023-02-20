@@ -22,8 +22,12 @@ const style = {
   position: "absolute",
   top: "50%",
   left: "50%",
+  display: "flex",
+  jusityContent: "center",
+  alignItems: "center",
+  flexDirection: "column",
   transform: "translate(-50%, -50%)",
-  width: 400,
+  width: 600,
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
@@ -35,9 +39,6 @@ const ModalWrapper = styled.div`
     /* border: 1px solid black; */
     background-color: red;
   }
-  .myform {
-    margin-left: 50px !important;
-  }
 `;
 
 const LoginModal = () => {
@@ -47,14 +48,15 @@ const LoginModal = () => {
   const handleClose = () => setOpen(false);
   const [inputPass, setInputPass] = useState("");
   const InputPassRef = useRef("");
-  const { token, setToken, completedProfile, setCompletedProfile } = useContext(UserContext);
+  const { token, setToken, completedProfile, setCompletedProfile } =
+    useContext(UserContext);
   const history = useNavigate();
-  const [err, setErr] = ('');
-  const [errcode, setErrcode] = ('0');
+  const [err, setErr] = "";
+  const [errcode, setErrcode] = "0";
 
   const submit = async (e) => {
-   e.preventDefault(); 
-   //prevent refreshing
+    e.preventDefault();
+    //prevent refreshing
 
     // console.log("before");
     const res = await axios
@@ -70,13 +72,11 @@ const LoginModal = () => {
         // if (e.data.isAccountConfirmed == "1") {
         // }
         setCompletedProfile(e.data.biography);
-        if (e.data.biography == null)
-        {
-          console.log('test1');
+        if (e.data.biography == null) {
+          console.log("test1");
           history("/complete-profile");
           history(0);
-        }
-        else {
+        } else {
           history("/home");
           history(0);
         }
@@ -84,14 +84,11 @@ const LoginModal = () => {
       .catch((err) => {
         // console.log('sdf');
 
-
-      /*  if (err.response.status == 422) {
+        /*  if (err.response.status == 422) {
           // history(0);
           history("/activate-account");
           console.log(err);
         }*/
-
-
 
         // console.error(logIn);
         // console.log(er.response.data.error.details);
@@ -99,10 +96,7 @@ const LoginModal = () => {
 
         // console.log(err.response.data.error.details);
         setErr(err.response.data.error.details);
-        setErrcode('1');
-
-
-
+        setErrcode("1");
       });
   };
 
@@ -192,11 +186,22 @@ const LoginModal = () => {
                 onClick={submit}
               >
                 Login
-              </button>{
-                errcode ==='1' ?
-              (<div className="error debug" style={{color:'red', fontSize:'12px', marginBottom: '20px', marginTop: '20px'}}>{err}</div>) :
-              (<div></div>)
-              }
+              </button>
+              {errcode === "1" ? (
+                <div
+                  className="error debug"
+                  style={{
+                    color: "red",
+                    fontSize: "12px",
+                    marginBottom: "20px",
+                    marginTop: "20px",
+                  }}
+                >
+                  {err}
+                </div>
+              ) : (
+                <div></div>
+              )}
               <Typography
                 id="transition-modal-title"
                 variant="h6"

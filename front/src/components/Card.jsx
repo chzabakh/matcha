@@ -1,16 +1,16 @@
-import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
-import MaleIcon from '@mui/icons-material/Male';
-import FemaleIcon from '@mui/icons-material/Female';
-import { height } from '@mui/system';
+import * as React from "react";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
+import { CardActionArea } from "@mui/material";
+import MaleIcon from "@mui/icons-material/Male";
+import FemaleIcon from "@mui/icons-material/Female";
+import { height } from "@mui/system";
 
 export default function MyCard({ user }) {
-  console.log('qqq',user);
-  
+  console.log("qqq", user);
+
   const calculateAge = (dateOfBirth) => {
     var today = new Date();
     var birthDate = new Date(dateOfBirth);
@@ -21,11 +21,11 @@ export default function MyCard({ user }) {
     }
     return age;
   };
-  
+
   const age = calculateAge(user.birthday);
-console.log('qqqqqqqq',age);
+  console.log("qqqqqqqq", age);
   return (
-    <Card  sx={{ maxWidth: 300, maxHeight: 388, margin: 3 }}>
+    <Card sx={{ maxWidth: 300, maxHeight: 388, margin: 3 }}>
       <CardActionArea>
         <CardMedia
           component="img"
@@ -34,11 +34,11 @@ console.log('qqqqqqqq',age);
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-         {user.firstName} 
-         {/* {user.gender === 'M' ? <MaleIcon /> : <FemaleIcon /> } */}
+            {user.firstName}
+            {/* {user.gender === 'M' ? <MaleIcon /> : <FemaleIcon /> } */}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-          {age} Years 
+            {age} Years
           </Typography>
         </CardContent>
       </CardActionArea>
