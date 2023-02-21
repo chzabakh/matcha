@@ -3,10 +3,12 @@ import styled from "styled-components";
 import { slide as Menu } from "react-burger-menu";
 import "../styles/sidebar.css";
 import Slider from "./Slider";
+import MenuIcon from "../images/menu2.png"
+
 
 export default (props) => {
   return (
-    <Menu>
+    <Menu customBurgerIcon={ <img src={MenuIcon} /> }>
       <div>
         <p style={{ marginBottom: "40px" }}>Age Gap</p>
         <Slider minAge={18} maxAge={99} />
