@@ -1,6 +1,16 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Slider from '@mui/material/Slider';
+import { Slider, withStyles } from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    neutral: {
+      main: '#ff0000',
+      contrastText: '#700303',
+    },
+  },
+});
 
 function valuetext(value) {
   return `${value}°C`;
@@ -72,6 +82,9 @@ export default function MinimumDistanceSlider({ minAge, maxAge }) {
         marks={marks}
         min={minAge}
         max={maxAge}
+        // color="#F0A339"
+        // theme={theme}
+        color='error'
       />
     </Box>
   );
