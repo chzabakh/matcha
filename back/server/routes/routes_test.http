@@ -1,5 +1,5 @@
 @hostname = http://localhost:3001
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImNoemFiYWtoIiwiaWQiOjIsImlhdCI6MTY3NjExMzYyMH0.Bks7ZURdNGaSzBPeIL-k-8UbHqXHKOlh6UhiwZlAFxA
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImNoemFiYWtoIiwiaWQiOjIsImlhdCI6MTY3NzE3NjM2MX0.UPB8wrZcstX3qUMHNDgTcvnyffZjC4KRa0_qByuKnqI
 ### ------------------------------- REGISTER -------------------------------
 POST {{hostname}}/register
 Content-Type: application/json
@@ -228,14 +228,14 @@ Authorization: {{token}}
 Content-Type: application/json
 
 {
-    "ageMin": 1,
-    "ageMax": 3001,
-    "ratingMin": 0,
+    "ageMin": 0,
+    "ageMax": 100,
+    "ratingMin": 1,
     "ratingMax": 100,
-    "distance": 1000,
+    "distance": 999999999,
     "commonTagsIDs": [1, 2, 3, 4, 5],
     "pageNb": 1,
-    "userPerPage": 50
+    "userPerPage": 1000
 }
 
 # -------------------------------------------------------------------------

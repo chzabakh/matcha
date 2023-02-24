@@ -3,14 +3,8 @@ import styled from "styled-components";
 import { slide as Menu } from "react-burger-menu";
 import "../styles/sidebar.css";
 import Slider from "./Slider";
-import { withStyles } from '@mui/styles';
 import MenuIcon from "../images/menu4.png";
 
-const CustomSlider = withStyles({
-  root: {
-    color: 'yellow',
-  },
-})(Slider);
 
 const MyMenu = styled(Menu)`
   .title {
@@ -31,11 +25,11 @@ export default (props) => {
         <p className="title">Search</p>
         <div>
           <p style={{ marginBottom: "40px" }}>Age Gap</p>
-          <CustomSlider minAge={18} maxAge={99} />
+          <Slider minAge={18} maxAge={99} />
         </div>
         <div>
           <p style={{ marginBottom: "40px" }}>Fame Rating Gap</p>
-          <CustomSlider minRating={0} maxRating={100} />
+          <Slider minRating={0} maxRating={100} />
         </div>
         <div style={{ marginBottom: "30px" }}>
           <p style={{ marginBottom: "10px" }}>Location</p>

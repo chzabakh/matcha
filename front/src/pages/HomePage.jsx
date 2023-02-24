@@ -16,7 +16,7 @@ import { FakeData } from "../fakeData/fakeData";
 const HomePage = styled.div`
   display: flex;
   min-height: 100%;
-  
+
   .content {
     position: relative;
     height: 100%;
@@ -52,15 +52,36 @@ const HomePage = styled.div`
 `;
 
 const Home = (e) => {
-  const [Profiles, setProfiles] = useState(FakeData);
+  const [Profiles, setProfiles] = useState([]);
+
+  useEffect(() => {
+    const getUsers = async () => {
+      const settings = {
+        ageMin: 0,
+        ageMax: 100,
+        ratingMin: 1,
+        ratingMax: 100,
+        distance: 999999999,
+        commonTagsIDs: [1, 2, 3, 4, 5],
+        pageNb: 1,
+        userPerPage: 1000,
+      };
+      console.log("hellllllllll",localStorage.getItem("token"));
+      const users = await axios.get("http://localhost:3001/get_feed_users", settings,
+       {
+        header: {
+          Authorization: localStorage.getItem("token"),
+        },
+      });
+      setProfiles(users);
+    };
+    getUsers();
+  }, []);
 
   return (
     <HomePage>
       <NavbarLogged />
-      <Sidebar
-            pageWrapId={"page-wrap"}
-            outerContainerId={"outer-container"}
-          />
+      <Sidebar pageWrapId={"page-wrap"} outerContainerId={"outer-container"} />
       <main className="mc debfug">
         <div className="grey">
           <div className="infos content">
@@ -77,16 +98,16 @@ const Home = (e) => {
               ))}
             </div>
             <Pagination
-                style={{
-                  marginLeft: "auto",
-                  marginRight: "auto",
-                  marginTop: "50px",
-                  width: "40%",
-                }}
-                count={10}
-                variant="outlined"
-                shape="rounded"
-              />
+              style={{
+                marginLeft: "auto",
+                marginRight: "auto",
+                marginTop: "50px",
+                width: "40%",
+              }}
+              count={10}
+              variant="outlined"
+              shape="rounded"
+            />
           </div>
         </div>
       </main>

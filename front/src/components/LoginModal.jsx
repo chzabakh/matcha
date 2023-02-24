@@ -51,8 +51,8 @@ const LoginModal = () => {
   const { token, setToken, completedProfile, setCompletedProfile } =
     useContext(UserContext);
   const history = useNavigate();
-  const [err, setErr] = "";
-  const [errcode, setErrcode] = "0";
+  const [err, setErr] = useState("");
+  const [errcode, setErrcode] = useState("0");
 
   const submit = async (e) => {
     e.preventDefault();
@@ -189,7 +189,7 @@ const LoginModal = () => {
               </button>
               {errcode === "1" ? (
                 <div
-                  className="error debug"
+                  className="error"
                   style={{
                     color: "red",
                     fontSize: "12px",

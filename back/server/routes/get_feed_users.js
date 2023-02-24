@@ -9,6 +9,7 @@ const queryPromise = util.promisify(dbController.query.bind(dbController))
 router.get('/', validateToken, isAccountComplete, async (req, res) => {
 	const { ageMin, ageMax, distance, ratingMin, ratingMax, commonTagsIDs, pageNb, userPerPage } = req.body
 	try {
+		console.log('<<<<<<<<<', req.user.sexualPreferences, '>>>>>>>')
 		var result = await queryPromise(
 			`SELECT users.id, fameRating, ` +
 				`firstName, lastName, username, email, city, gender, sexualPreferences, biography, longitude, latitude, ` +
